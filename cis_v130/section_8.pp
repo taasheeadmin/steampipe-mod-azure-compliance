@@ -25,7 +25,8 @@ control "cis_v130_8_1" {
   description   = "Ensure that all keys in Azure Key Vault have an expiration time set."
   query         = query.keyvault_key_expiration_set
   documentation = file("./cis_v130/docs/cis_v130_8_1.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v130_8_common_tags, {
     cis_item_id = "8.1"
     cis_level   = "1"
@@ -39,7 +40,8 @@ control "cis_v130_8_2" {
   description   = "Ensure that all Secrets in the Azure Key Vault have an expiration time set."
   query         = query.keyvault_secret_expiration_set
   documentation = file("./cis_v130/docs/cis_v130_8_2.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v130_8_common_tags, {
     cis_item_id = "8.2"
     cis_level   = "1"
@@ -53,7 +55,8 @@ control "cis_v130_8_3" {
   description   = "Resource Manager Locks provide a way for administrators to lock down Azure resources to prevent deletion of, or modifications to, a resource. These locks sit outside of the Role Based Access Controls (RBAC) hierarchy and, when applied, will place restrictions on the resource for all users. These locks are very useful when there is an important resource in a subscription that users should not be able to delete or change. Locks can help prevent accidental and malicious changes or deletion."
   query         = query.manual_control
   documentation = file("./cis_v130/docs/cis_v130_8_3.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v130_8_common_tags, {
     cis_item_id = "8.3"
     cis_level   = "2"
@@ -67,7 +70,8 @@ control "cis_v130_8_4" {
   description   = "The key vault contains object keys, secrets and certificates. Accidental unavailability of a key vault can cause immediate data loss or loss of security functions (authentication, validation, verification, non-repudiation, etc.) supported by the key vault objects. It is recommended the key vault be made recoverable by enabling the \"Do Not Purge\" and \"Soft Delete\" functions."
   query         = query.keyvault_vault_recoverable
   documentation = file("./cis_v130/docs/cis_v130_8_4.md")
-
+  severity = "critical"
+  
   tags = merge(local.cis_v130_8_common_tags, {
     cis_item_id = "8.4"
     cis_level   = "1"
@@ -79,13 +83,14 @@ control "cis_v130_8_4" {
 control "cis_v130_8_5" {
   title         = "8.5 Enable role-based access control (RBAC) within Azure Kubernetes Services"
   description   = "Ensure that RBAC is enabled on all Azure Kubernetes Services Instances."
-  query         = query.keyvault_vault_recoverable
+  query = query.kubernetes_cluster_rbac_enabled
   documentation = file("./cis_v130/docs/cis_v130_8_5.md")
-
+  severity = "critical"
+  
   tags = merge(local.cis_v130_8_common_tags, {
     cis_item_id = "8.5"
     cis_level   = "1"
     cis_type    = "automated"
-    service     = "Azure/KeyVault"
+    service     = "Azure/AKS"
   })
 }
