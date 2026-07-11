@@ -27,7 +27,8 @@ control "cis_v130_6_1" {
   description   = "Disable RDP access on network security groups from the Internet."
   query         = query.network_security_group_rdp_access_restricted
   documentation = file("./cis_v130/docs/cis_v130_6_1.md")
-
+  severity = "critical"
+  
   tags = merge(local.cis_v130_6_common_tags, {
     cis_item_id = "6.1"
     cis_level   = "1"
@@ -41,7 +42,8 @@ control "cis_v130_6_2" {
   description   = "Disable SSH access on network security groups from the Internet."
   query         = query.network_security_group_ssh_access_restricted
   documentation = file("./cis_v130/docs/cis_v130_6_2.md")
-
+  severity = "critical"
+  
   tags = merge(local.cis_v130_6_common_tags, {
     cis_item_id = "6.2"
     cis_level   = "1"
@@ -55,7 +57,8 @@ control "cis_v130_6_3" {
   description   = "Ensure that no SQL Databases allow ingress from 0.0.0.0/0 (ANY IP)."
   query         = query.sql_database_allow_internet_access
   documentation = file("./cis_v130/docs/cis_v130_6_3.md")
-
+  severity = "critical"
+  
   tags = merge(local.cis_v130_6_common_tags, {
     cis_item_id = "6.3"
     cis_level   = "1"
@@ -69,7 +72,8 @@ control "cis_v130_6_4" {
   description   = "Network Security Group Flow Logs should be enabled and the retention period is set to greater than or equal to 90 days."
   query         = query.network_sg_flowlog_retention_period_greater_than_90
   documentation = file("./cis_v130/docs/cis_v130_6_4.md")
-
+  severity = "medium"
+  
   tags = merge(local.cis_v130_6_common_tags, {
     cis_item_id = "6.4"
     cis_level   = "2"
@@ -83,7 +87,8 @@ control "cis_v130_6_5" {
   description   = "Enable Network Watcher for Azure subscriptions."
   query         = query.network_watcher_enabled
   documentation = file("./cis_v130/docs/cis_v130_6_5.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v130_6_common_tags, {
     cis_item_id = "6.5"
     cis_level   = "1"
@@ -97,7 +102,8 @@ control "cis_v130_6_6" {
   description   = "Disable Internet exposed UDP ports on network security groups."
   query         = query.network_security_group_udp_service_restricted
   documentation = file("./cis_v130/docs/cis_v130_6_6.md")
-
+  severity = "critical"
+  
   tags = merge(local.cis_v130_6_common_tags, {
     cis_item_id = "6.6"
     cis_level   = "1"
