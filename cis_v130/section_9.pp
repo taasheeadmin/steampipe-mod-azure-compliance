@@ -183,7 +183,8 @@ control "cis_v130_9_11" {
   query         = query.manual_control
   documentation = file("./cis_v130/docs/cis_v130_9_11.md")
   severity = "high"
-  
+
+
   tags = merge(local.cis_v130_9_common_tags, {
     cis_item_id = "9.11"
     cis_level   = "2"
