@@ -91,6 +91,6 @@ control "cis_v130_8_5" {
     cis_item_id = "8.5"
     cis_level   = "1"
     cis_type    = "automated"
-    service     = "Azure/AKS"
+    service     = "Azure/KubernetesService"
   })
 }
