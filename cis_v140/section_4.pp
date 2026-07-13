@@ -93,7 +93,8 @@ control "cis_v140_4_1_1" {
   description   = "Enable auditing on SQL Servers."
   query         = query.sql_server_auditing_on
   documentation = file("./cis_v140/docs/cis_v140_4_1_1.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v140_4_1_common_tags, {
     cis_item_id = "4.1.1"
     cis_level   = "1"
@@ -106,7 +107,8 @@ control "cis_v140_4_1_2" {
   title         = "4.1.2 Ensure that 'Data encryption' is set to 'On' on a SQL Database"
   query         = query.sql_database_transparent_data_encryption_enabled
   documentation = file("./cis_v140/docs/cis_v140_4_1_2.md")
-
+  severity = "critical"
+  
   tags = merge(local.cis_v140_4_1_common_tags, {
     cis_item_id = "4.1.2"
     cis_level   = "1"
@@ -120,7 +122,8 @@ control "cis_v140_4_1_3" {
   description   = "SQL Server Audit Retention should be configured to be greater than 90 days."
   query         = query.sql_server_auditing_retention_period_90
   documentation = file("./cis_v140/docs/cis_v140_4_1_3.md")
-
+  severity = "medium"
+  
   tags = merge(local.cis_v140_4_1_common_tags, {
     cis_item_id = "4.1.3"
     cis_level   = "1"
@@ -134,7 +137,8 @@ control "cis_v140_4_2_1" {
   description   = "Enable \"Azure Defender for SQL\" on critical SQL Servers."
   query         = query.sql_server_atp_enabled
   documentation = file("./cis_v140/docs/cis_v140_4_2_1.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v140_4_2_common_tags, {
     "cis_item_id" = "4.2.1"
     "cis_level"   = "2"
@@ -148,7 +152,8 @@ control "cis_v140_4_2_2" {
   description   = "Enable Vulnerability Assessment (VA) service scans for critical SQL servers and corresponding SQL databases."
   query         = query.sql_server_and_databases_va_enabled
   documentation = file("./cis_v140/docs/cis_v140_4_2_2.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v140_4_2_common_tags, {
     cis_item_id = "4.2.2"
     cis_level   = "2"
@@ -162,7 +167,8 @@ control "cis_v140_4_2_3" {
   description   = "Enable Vulnerability Assessment (VA) Periodic recurring scans for critical SQL servers and corresponding SQL databases."
   query         = query.sql_server_va_setting_periodic_scan_enabled
   documentation = file("./cis_v140/docs/cis_v140_4_2_3.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v140_4_2_common_tags, {
     cis_item_id = "4.2.3"
     cis_level   = "2"
@@ -176,7 +182,8 @@ control "cis_v140_4_2_4" {
   description   = "Configure 'Send scan reports to' with email ids of concerned data owners/stakeholders for a critical SQL servers."
   query         = query.sql_server_va_setting_scan_reports_configured
   documentation = file("./cis_v140/docs/cis_v140_4_2_4.md")
-
+  severity = "medium"
+  
   tags = merge(local.cis_v140_4_2_common_tags, {
     cis_item_id = "4.2.4"
     cis_level   = "2"
@@ -190,7 +197,8 @@ control "cis_v140_4_2_5" {
   description   = "Enable Vulnerability Assessment (VA) setting 'Also send email notifications to admins and subscription owners'."
   query         = query.sql_server_va_setting_reports_notify_admins
   documentation = file("./cis_v140/docs/cis_v140_4_2_5.md")
-
+  severity = "medium"
+  
   tags = merge(local.cis_v140_4_2_common_tags, {
     cis_item_id = "4.2.5"
     cis_level   = "2"
@@ -204,7 +212,8 @@ control "cis_v140_4_3_1" {
   description   = "Enable SSL connection on PostgreSQL Servers."
   query         = query.postgres_sql_ssl_enabled
   documentation = file("./cis_v140/docs/cis_v140_4_3_1.md")
-
+  severity = "critical"
+  
   tags = merge(local.cis_v140_4_3_common_tags, {
     cis_item_id = "4.3.1"
     cis_level   = "1"
@@ -218,7 +227,8 @@ control "cis_v140_4_3_2" {
   description   = "Enable log_checkpoints on PostgreSQL Servers."
   query         = query.postgres_db_server_log_checkpoints_on
   documentation = file("./cis_v140/docs/cis_v140_4_3_2.md")
-
+  severity = "medium"
+  
   tags = merge(local.cis_v140_4_3_common_tags, {
     cis_item_id = "4.3.2"
     cis_level   = "1"
@@ -232,7 +242,8 @@ control "cis_v140_4_3_3" {
   description   = "Enable log_connections on PostgreSQL Servers."
   query         = query.postgres_db_server_log_connections_on
   documentation = file("./cis_v140/docs/cis_v140_4_3_3.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v140_4_3_common_tags, {
     cis_item_id = "4.3.3"
     cis_level   = "1"
@@ -246,7 +257,8 @@ control "cis_v140_4_3_4" {
   description   = "Enable log_disconnections on PostgreSQL Servers."
   query         = query.postgres_db_server_log_disconnections_on
   documentation = file("./cis_v140/docs/cis_v140_4_3_4.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v140_4_3_common_tags, {
     cis_item_id = "4.3.4"
     cis_level   = "1"
@@ -260,7 +272,8 @@ control "cis_v140_4_3_5" {
   description   = "Enable connection_throttling on PostgreSQL Servers."
   query         = query.postgres_db_server_connection_throttling_on
   documentation = file("./cis_v140/docs/cis_v140_4_3_5.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v140_4_3_common_tags, {
     cis_item_id = "4.3.5"
     cis_level   = "1"
@@ -274,7 +287,8 @@ control "cis_v140_4_3_6" {
   description   = "Enable log_retention_days on PostgreSQL Servers."
   query         = query.postgres_db_server_log_retention_days_3
   documentation = file("./cis_v140/docs/cis_v140_4_3_6.md")
-
+  severity = "medium"
+  
   tags = merge(local.cis_v140_4_3_common_tags, {
     cis_item_id = "4.3.6"
     cis_level   = "1"
@@ -288,7 +302,8 @@ control "cis_v140_4_3_7" {
   description   = "Disable access from Azure services to PostgreSQL Database Server."
   query         = query.manual_control
   documentation = file("./cis_v140/docs/cis_v140_4_3_7.md")
-
+  severity = "critical"
+  
   tags = merge(local.cis_v140_4_3_common_tags, {
     cis_item_id = "4.3.7"
     cis_level   = "1"
@@ -302,7 +317,8 @@ control "cis_v140_4_3_8" {
   description   = "Enable encryption at rest for PostgreSQL Databases."
   query         = query.postgresql_server_infrastructure_encryption_enabled
   documentation = file("./cis_v140/docs/cis_v140_4_3_8.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v140_4_3_common_tags, {
     cis_item_id = "4.3.8"
     cis_level   = "1"
@@ -330,7 +346,8 @@ control "cis_v140_4_4_1" {
   description   = "Enable SSL connection on MYSQL Servers."
   query         = query.mysql_ssl_enabled
   documentation = file("./cis_v140/docs/cis_v140_4_4_1.md")
-
+  severity = "critical"
+  
   tags = merge(local.cis_v140_4_4_common_tags, {
     cis_item_id = "4.4.1"
     cis_level   = "1"
@@ -344,7 +361,8 @@ control "cis_v140_4_4_2" {
   description   = "Ensure TLS version on MySQL flexible servers is set to the default value."
   query         = query.mysql_server_min_tls_1_2
   documentation = file("./cis_v140/docs/cis_v140_4_4_2.md")
-
+  severity = "critical"
+  
   tags = merge(local.cis_v140_4_4_common_tags, {
     cis_item_id = "4.4.2"
     cis_level   = "1"
@@ -358,7 +376,8 @@ control "cis_v140_4_5" {
   description   = "Use Azure Active Directory Authentication for authentication with SQL Database."
   query         = query.sql_db_active_directory_admin_configured
   documentation = file("./cis_v140/docs/cis_v140_4_5.md")
-
+  severity = "critical"
+  
   tags = merge(local.cis_v140_4_common_tags, {
     cis_item_id = "4.5"
     cis_level   = "1"
@@ -372,7 +391,8 @@ control "cis_v140_4_6" {
   description   = "Based on business needs or criticality of data/databases hosted a SQL server, it is recommended that the TDE protector is encrypted by a key that is managed by the data owner (Customer-managed key)"
   query         = query.sql_server_tde_protector_cmk_encrypted
   documentation = file("./cis_v140/docs/cis_v140_4_6.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v140_4_common_tags, {
     cis_item_id = "4.6"
     cis_level   = "2"
