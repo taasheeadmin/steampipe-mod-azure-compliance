@@ -43,7 +43,8 @@ control "cis_v140_1_1" {
   description   = "Enable multi-factor authentication for all user credentials who have write access to Azure resources. These include roles like 'Service Co-Administrators', 'Subscription Owners', 'Contributors'."
   query         = query.ad_manual_control
   documentation = file("./cis_v140/docs/cis_v140_1_1.md")
-
+  severity = "critical"
+  
   tags = merge(local.cis_v140_1_common_tags, {
     cis_item_id = "1.1"
     cis_level   = "1"
@@ -57,7 +58,8 @@ control "cis_v140_1_2" {
   description   = "Enable multi-factor authentication for all non-privileged users."
   query         = query.ad_manual_control
   documentation = file("./cis_v140/docs/cis_v140_1_2.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v140_1_common_tags, {
     cis_item_id = "1.2"
     cis_level   = "2"
@@ -71,7 +73,8 @@ control "cis_v140_1_3" {
   description   = "Guest users allow you to share your company's applications and services with users from any other organization, while maintaining control over your own corporate data. Guest users should be review on a monthly basis to ensure that inactive and unneeded accounts are removed."
   query         = query.ad_guest_user_reviewed_monthly
   documentation = file("./cis_v140/docs/cis_v140_1_3.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v140_1_common_tags, {
     cis_item_id = "1.3"
     cis_level   = "1"
