@@ -71,7 +71,8 @@ control "cis_v200_2_1_1" {
   description   = "Turning on Microsoft Defender for Servers enables threat detection for Servers, providing threat intelligence, anomaly detection, and behavior analytics in the Microsoft Defender for Cloud."
   query         = query.securitycenter_azure_defender_on_for_server
   documentation = file("./cis_v200/docs/cis_v200_2_1_1.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v200_2_1_common_tags, {
     cis_item_id = "2.1.1"
     cis_type    = "manual"
@@ -85,7 +86,8 @@ control "cis_v200_2_1_2" {
   description   = "Turning on Microsoft Defender for App Service enables threat detection for App Service, providing threat intelligence, anomaly detection, and behavior analytics in the Microsoft Defender for Cloud."
   query         = query.securitycenter_azure_defender_on_for_appservice
   documentation = file("./cis_v200/docs/cis_v200_2_1_2.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v200_2_1_common_tags, {
     cis_item_id = "2.1.2"
     cis_type    = "manual"
