@@ -82,6 +82,7 @@ control "cis_v400_2_1_1_1_1" {
   title         = "2.1.1.1.1 Ensure Critical Data is Encrypted with Microsoft Managed Keys (MMK)"
   description   = "Microsoft Managed Keys (MMK) (also known as Platform-managed keys (PMK)) provides a very low overhead method of encrypting data at rest and implementing encryption key management."
   query         = query.manual_control
+  severity = "medium"
   documentation = file("./cis_v400/docs/cis_v400_2_1_1_1_1.md")
 
   tags = merge(local.cis_v400_2_1_1_1_common_tags, {

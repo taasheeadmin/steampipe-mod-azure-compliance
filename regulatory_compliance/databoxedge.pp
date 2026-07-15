@@ -9,6 +9,8 @@ control "databox_edge_device_double_encryption_enabled" {
   description = "To secure the data at rest on the device, ensure it's double-encrypted, the access to data is controlled, and once the device is deactivated, the data is securely erased off the data disks. Double encryption is the use of two layers of encryption: BitLocker XTS-AES 256-bit encryption on the data volumes and built-in encryption of the hard drives. Learn more in the security overview documentation for the specific Stack Edge device."
   query       = query.databox_edge_device_double_encryption_enabled
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_databoxedge_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -21,6 +23,8 @@ control "databox_job_double_encryption_enabled" {
   description = "Enable a second layer of software-based encryption for data at rest on the device. The device is already protected via Advanced Encryption Standard 256-bit encryption for data at rest. This option adds a second layer of data encryption."
   query       = query.manual_control
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_databoxedge_common_tags, {
     nist_sp_800_53_rev_5  = "true"
   })
@@ -30,6 +34,8 @@ control "databox_job_unlock_password_encrypted_with_cmk" {
   title       = "Azure Data Box jobs should use a customer-managed key to encrypt the device unlock password"
   description = "Use a customer-managed key to control the encryption of the device unlock password for Azure Data Box. Customer-managed keys also help manage access to the device unlock password by the Data Box service in order to prepare the device and copy data in an automated manner. The data on the device itself is already encrypted at rest with Advanced Encryption Standard 256-bit encryption, and the device unlock password is encrypted by default with a Microsoft managed key."
   query       = query.manual_control
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_databoxedge_common_tags, {
     nist_sp_800_53_rev_5  = "true"

@@ -9,6 +9,8 @@ control "search_service_logging_enabled" {
   description = "Audit enabling of resource logs. This enables you to recreate activity trails to use for investigation purposes; when a security incident occurs or when your network is compromised."
   query       = query.search_service_logging_enabled
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_cognitivesearch_common_tags, {
     fedramp_high          = "true"
     hipaa_hitrust_v92     = "true"
@@ -22,6 +24,8 @@ control "search_service_uses_sku_supporting_private_link" {
   description = "With supported SKUs of Azure Cognitive Search, Azure Private Link lets you connect your virtual network to Azure services without a public IP address at the source or destination. The private link platform handles the connectivity between the consumer and services over the Azure backbone network. By mapping private endpoints to your Search service, data leakage risks are reduced."
   query       = query.search_service_uses_sku_supporting_private_link
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_cognitivesearch_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -33,6 +37,8 @@ control "search_service_public_network_access_disabled" {
   title       = "Azure Cognitive Search services should disable public network access"
   description = "Disabling public network access improves security by ensuring that your Azure Cognitive Search service is not exposed on the public internet. Creating private endpoints can limit exposure of your Search service."
   query       = query.search_service_public_network_access_disabled
+
+  severity = "critical"
 
   tags = merge(local.regulatory_compliance_cognitivesearch_common_tags, {
     fedramp_high          = "true"
@@ -46,6 +52,8 @@ control "search_service_uses_private_link" {
   description = "Azure Private Link lets you connect your virtual network to Azure services without a public IP address at the source or destination. The Private Link platform handles the connectivity between the consumer and services over the Azure backbone network. By mapping private endpoints to Azure Cognitive Search, data leakage risks are reduced."
   query       = query.search_service_uses_private_link
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_cognitivesearch_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -58,6 +66,8 @@ control "search_service_uses_managed_identity" {
   description = "Cognitive Search services should use a managed identity for enhanced authentication security."
   query       = query.search_service_uses_managed_identity
 
+  severity = "high"
+
   tags = local.regulatory_compliance_cognitivesearch_common_tags
 }
 
@@ -65,6 +75,8 @@ control "search_service_replica_count_3" {
   title       = "Cognitive Search services should maintain SLA for index updates"
   description = "This control checks if Cognitive Search maintains SLA for index updates."
   query       = query.search_service_replica_count_3
+
+  severity = "low"
 
   tags = local.regulatory_compliance_cognitivesearch_common_tags
 }

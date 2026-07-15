@@ -9,6 +9,8 @@ control "stream_analytics_job_logging_enabled" {
   description = "Audit enabling of resource logs. This enables you to recreate activity trails to use for investigation purposes; when a security incident occurs or when your network is compromised."
   query       = query.stream_analytics_job_logging_enabled
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_streamanalytics_common_tags, {
     fedramp_high          = "true"
     hipaa_hitrust_v92     = "true"
@@ -21,6 +23,8 @@ control "stream_analytics_job_encrypted_with_cmk" {
   title       = "Azure Stream Analytics jobs should use customer-managed keys to encrypt data"
   description = "Use customer-managed keys when you want to securely store any metadata and private data assets of your Stream Analytics jobs in your storage account. This gives you total control over how your Stream Analytics data is encrypted."
   query       = query.manual_control
+
+  severity = "medium"
 
   tags = merge(local.regulatory_compliance_streamanalytics_common_tags, {
     nist_sp_800_53_rev_5  = "true"

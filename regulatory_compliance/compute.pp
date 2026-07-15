@@ -9,6 +9,8 @@ control "compute_vm_attached_with_network" {
   description = "This policy audits any virtual machine connected to a virtual network that is not approved."
   query       = query.compute_vm_attached_with_network
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     hipaa_hitrust_v92 = "true"
   })
@@ -18,6 +20,8 @@ control "compute_vm_adaptive_network_hardening_recommendation_applied" {
   title       = "Adaptive network hardening recommendations should be applied on internet facing virtual machines"
   description = "Azure Security Center analyzes the traffic patterns of Internet facing virtual machines and provides Network Security Group rule recommendations that reduce the potential attack surface."
   query       = query.manual_control_hipaa
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     hipaa_hitrust_v92    = "true"
@@ -29,6 +33,8 @@ control "compute_vm_remote_access_restricted_all_ports" {
   title       = "All network ports should be restricted on network security groups associated to your virtual machine"
   description = "Azure Security Center has identified some of your network security groups' inbound rules to be too permissive. Inbound rules should not allow access from 'Any' or 'Internet' ranges. This can potentially enable attackers to target your resources."
   query       = query.compute_vm_remote_access_restricted_all_ports
+
+  severity = "critical"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
@@ -45,6 +51,8 @@ control "compute_vm_tcp_udp_access_restricted_internet" {
   description = "Protect your virtual machines from potential threats by restricting access to them with network security groups (NSG)."
   query       = query.compute_vm_tcp_udp_access_restricted_internet
 
+  severity = "critical"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
     hipaa_hitrust_v92     = "true"
@@ -58,6 +66,8 @@ control "compute_vm_jit_access_protected" {
   title       = "Management ports of virtual machines should be protected with just-in-time network access control"
   description = "Possible network Just In Time (JIT) access will be monitored by Azure Security Center as recommendations"
   query       = query.compute_vm_jit_access_protected
+
+  severity = "critical"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
@@ -73,6 +83,8 @@ control "compute_vm_log_analytics_agent_installed" {
   description = "This policy audits any Windows/Linux virtual machines if the Log Analytics extension is not installed."
   query       = query.compute_vm_log_analytics_agent_installed
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
     hipaa_hitrust_v92     = "true"
@@ -87,6 +99,8 @@ control "compute_vm_log_analytics_agent_installed_windows" {
   description = "Requires that prerequisites are deployed to the policy assignment scope. Machines are non-compliant if the agent is not installed, or if it is installed but the COM object AgentConfigManager.MgmtSvcCfg returns that it is registered to a workspace other than the ID specified in the policy parameter."
   query       = query.compute_vm_log_analytics_agent_installed_windows
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     hipaa_hitrust_v92 = "true"
   })
@@ -96,6 +110,8 @@ control "compute_vm_malware_agent_installed" {
   title       = "Deploy default Microsoft IaaSAntimalware extension for Windows Server"
   description = "This policy deploys a Microsoft IaaSAntimalware extension with a default configuration when a VM is not configured with the antimalware extension."
   query       = query.compute_vm_malware_agent_installed
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     nist_sp_800_171_rev_2 = "true"
@@ -107,6 +123,8 @@ control "compute_vm_scale_set_log_analytics_agent_installed" {
   title       = "Log Analytics agent should be installed on your virtual machine scale sets for Azure Security Center monitoring"
   description = "This policy audits any Windows/Linux Virtual Machine Scale Sets if the Log Analytics extension is not installed."
   query       = query.compute_vm_scale_set_log_analytics_agent_installed
+
+  severity = "medium"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
@@ -122,6 +140,8 @@ control "compute_vm_disaster_recovery_enabled" {
   description = "Audit virtual machines which do not have disaster recovery configured."
   query       = query.compute_vm_disaster_recovery_enabled
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high         = "true"
     hipaa_hitrust_v92    = "true"
@@ -135,6 +155,8 @@ control "compute_vm_malware_agent_automatic_upgrade_enabled" {
   description = "This policy audits any Windows virtual machine not configured with automatic update of Microsoft Antimalware protection signatures."
   query       = query.compute_vm_malware_agent_automatic_upgrade_enabled
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     nist_sp_800_171_rev_2 = "true"
     hipaa_hitrust_v92     = "true"
@@ -146,6 +168,8 @@ control "compute_vm_scale_set_logging_enabled" {
   description = "It is recommended to enable Logs so that activity trail can be recreated when investigations are required in the event of an incident or a compromise."
   query       = query.compute_vm_scale_set_logging_enabled
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_compute_common_tags
 }
 
@@ -153,6 +177,8 @@ control "compute_vm_meet_system_audit_policies_requirement_windows" {
   title       = "Windows machines should meet requirements for 'System Audit Policies - Detailed Tracking'"
   description = "Windows machines should have the specified Group Policy settings in the category 'System Audit Policies - Detailed Tracking' for auditing DPAPI, process creation/termination, RPC events, and PNP activity. This policy requires that the Guest Configuration prerequisites have been deployed to the policy assignment scope."
   query       = query.manual_control_hipaa
+
+  severity = "medium"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     hipaa_hitrust_v92 = "true"
@@ -163,6 +189,8 @@ control "compute_vm_network_traffic_data_collection_windows_agent_installed" {
   title       = "Network traffic data collection agent should be installed on Windows virtual machines"
   description = "Security Center uses the Microsoft Dependency agent to collect network traffic data from your Azure virtual machines to enable advanced network protection features such as traffic visualization on the network map, network hardening recommendations and specific network threats."
   query       = query.compute_vm_network_traffic_data_collection_windows_agent_installed
+
+  severity = "medium"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
@@ -178,6 +206,8 @@ control "compute_vm_network_traffic_data_collection_linux_agent_installed" {
   description = "Security Center uses the Microsoft Dependency agent to collect network traffic data from your Azure virtual machines to enable advanced network protection features such as traffic visualization on the network map, network hardening recommendations and specific network threats."
   query       = query.compute_vm_network_traffic_data_collection_linux_agent_installed
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
     hipaa_hitrust_v92     = "true"
@@ -192,6 +222,8 @@ control "compute_vm_adaptive_application_controls_enabled" {
   description = "Enable application controls to define the list of known-safe applications running on your machines, and alert you when other applications run. This helps harden your machines against malware. To simplify the process of configuring and maintaining your rules, Security Center uses machine learning to analyze the applications running on each machine and suggest the list of known-safe applications."
   query       = query.manual_control_hipaa
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     hipaa_hitrust_v92    = "true"
     nist_sp_800_53_rev_5 = "true"
@@ -202,6 +234,8 @@ control "compute_vm_security_configuration_vulnerabilities_remediated" {
   title       = "Vulnerabilities in security configuration on your machines should be remediated"
   description = "Servers which do not satisfy the configured baseline will be monitored by Azure Security Center as recommendations."
   query       = query.manual_control_hipaa
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     hipaa_hitrust_v92    = "true"
@@ -214,6 +248,8 @@ control "compute_vm_uses_azure_resource_manager" {
   title       = "Virtual machines should be migrated to new Azure Resource Manager resources"
   description = "Use new Azure Resource Manager for your virtual machines to provide security enhancements such as: stronger access control (RBAC), better auditing, Azure Resource Manager based deployment and governance, access to managed identities, access to key vault for secrets, Azure AD-based authentication and support for tags and resource groups for easier security management."
   query       = query.compute_vm_uses_azure_resource_manager
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
@@ -229,6 +265,8 @@ control "compute_vm_scale_set_security_configuration_vulnerabilities_remediated"
   description = "Audit the OS vulnerabilities on your virtual machine scale sets to protect them from attacks."
   query       = query.manual_control_hipaa
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     hipaa_hitrust_v92    = "true"
     nist_sp_800_53_rev_5 = "true"
@@ -239,6 +277,8 @@ control "compute_vm_system_updates_installed" {
   title       = "System updates should be installed on your machines"
   description = "Missing security system updates on your servers will be monitored by Azure Security Center as recommendations."
   query       = query.compute_vm_system_updates_installed
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
@@ -255,6 +295,8 @@ control "compute_vm_administrators_group_with_no_specified_members_windows" {
   description = "Requires that prerequisites are deployed to the policy assignment scope. Machines are non-compliant if the local Administrators group does not contain one or more members that are listed in the policy parameter."
   query       = query.manual_control_hipaa
 
+  severity = "critical"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     hipaa_hitrust_v92 = "true"
   })
@@ -264,6 +306,8 @@ control "compute_vm_administrators_group_with_specified_members_windows" {
   title       = "Audit Windows machines that have the specified members in the Administrators group"
   description = "Requires that prerequisites are deployed to the policy assignment scope. Machines are non-compliant if the local Administrators group contains one or more of the members listed in the policy parameter."
   query       = query.manual_control_hipaa
+
+  severity = "medium"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     hipaa_hitrust_v92 = "true"
@@ -275,6 +319,8 @@ control "compute_vm_administrators_group_with_extra_accounts_windows" {
   description = "Requires that prerequisites are deployed to the policy assignment scope. Machines are non-compliant if the local Administrators group contains members that are not listed in the policy parameter."
   query       = query.manual_control_hipaa
 
+  severity = "critical"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     hipaa_hitrust_v92 = "true"
   })
@@ -284,6 +330,8 @@ control "compute_vm_meet_security_option_requirement_windows" {
   title       = "Windows machines should meet requirements for 'Security Options - Accounts'"
   description = "Windows machines should have the specified Group Policy settings in the category 'Security Options - Accounts' for limiting local account use of blank passwords and guest account status. This policy requires that the Guest Configuration prerequisites have been deployed to the policy assignment scope."
   query       = query.manual_control_hipaa
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     hipaa_hitrust_v92 = "true"
@@ -295,6 +343,8 @@ control "compute_vm_meet_security_option_audit_requirement_windows" {
   description = "Windows machines should have the specified Group Policy settings in the category 'Security Options - Audit' for forcing audit policy subcategory and shutting down if unable to log security audits. This policy requires that the Guest Configuration prerequisites have been deployed to the policy assignment scope."
   query       = query.manual_control_hipaa
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     hipaa_hitrust_v92 = "true"
   })
@@ -305,6 +355,8 @@ control "compute_vm_with_no_specified_certificates_in_trusted_root_windows" {
   description = "Requires that prerequisites are deployed to the policy assignment scope. Machines are non-compliant if the machine Trusted Root certificate store does not contain one or more of the certificates listed by the policy parameter."
   query       = query.manual_control_hipaa
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     hipaa_hitrust_v92 = "true"
   })
@@ -314,6 +366,8 @@ control "compute_vm_endpoint_protection_agent_installed" {
   title       = "Monitor missing Endpoint Protection in Azure Security Center"
   description = "Servers without an installed Endpoint Protection agent will be monitored by Azure Security Center as recommendations."
   query       = query.manual_control_hipaa
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     hipaa_hitrust_v92 = "true"
@@ -326,6 +380,8 @@ control "compute_vm_meet_firewall_properties_windows" {
   description = "Windows machines should have the specified Group Policy settings in the category 'Windows Firewall Properties' for firewall state, connections, rule management, and notifications. This policy requires that the Guest Configuration prerequisites have been deployed to the policy assignment scope."
   query       = query.manual_control_hipaa
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     hipaa_hitrust_v92 = "true"
   })
@@ -335,6 +391,8 @@ control "compute_vm_vulnerability_assessment_solution_enabled" {
   title       = "A vulnerability assessment solution should be enabled on your virtual machines"
   description = "Audits virtual machines to detect whether they are running a supported vulnerability assessment solution. A core component of every cyber risk and security program is the identification and analysis of vulnerabilities. Azure Security Center's standard pricing tier includes vulnerability scanning for your virtual machines at no extra cost. Additionally, Security Center can automatically deploy this tool for you."
   query       = query.compute_vm_vulnerability_assessment_solution_enabled
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
@@ -351,6 +409,8 @@ control "compute_vm_guest_configuration_with_user_and_system_assigned_managed_id
   description = "This policy adds a system-assigned managed identity to virtual machines hosted in Azure that are supported by Guest Configuration and have at least one user-assigned identity but do not have a system-assigned managed identity. A system-assigned managed identity is a prerequisite for all Guest Configuration assignments and must be added to machines before using any Guest Configuration policy definitions."
   query       = query.compute_vm_guest_configuration_with_user_and_system_assigned_managed_identity
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -364,6 +424,8 @@ control "compute_vm_passwords_stored_using_reversible_encryption_windows" {
   description = "Requires that prerequisites are deployed to the policy assignment scope. Machines are non-compliant if Windows machines that do not store passwords using reversible encryption."
   query       = query.compute_vm_passwords_stored_using_reversible_encryption_windows
 
+  severity = "critical"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -375,6 +437,8 @@ control "compute_vm_account_with_password_linux" {
   title       = "Audit Linux machines that have accounts without passwords"
   description = "Requires that prerequisites are deployed to the policy assignment scope.  Machines are non-compliant if Linux machines that have accounts without passwords."
   query       = query.compute_vm_account_with_password_linux
+
+  severity = "critical"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
@@ -388,6 +452,8 @@ control "compute_vm_ssh_key_authentication_linux" {
   description = "Although SSH itself provides an encrypted connection, using passwords with SSH still leaves the VM vulnerable to brute-force attacks. The most secure option for authenticating to an Azure Linux virtual machine over SSH is with a public-private key pair, also known as SSH keys."
   query       = query.compute_vm_ssh_key_authentication_linux
 
+  severity = "critical"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -399,6 +465,8 @@ control "compute_vm_guest_configuration_installed_linux" {
   title       = "Deploy the Linux Guest Configuration extension to enable Guest Configuration assignments on Linux VMs"
   description = "This policy deploys the Linux Guest Configuration extension to Linux virtual machines hosted in Azure that are supported by Guest Configuration. The Linux Guest Configuration extension is a prerequisite for all Linux Guest Configuration assignments and must be deployed to machines before using any Linux Guest Configuration policy definition."
   query       = query.compute_vm_guest_configuration_installed_linux
+
+  severity = "medium"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
@@ -412,6 +480,8 @@ control "compute_vm_guest_configuration_installed" {
   description = "To ensure secure configurations of in-guest settings of your machine, install the Guest Configuration extension. In-guest settings that the extension monitors include the configuration of the operating system, application configuration or presence, and environment settings. Once installed, in-guest policies will be available such as 'Windows Exploit guard should be enabled'."
   query       = query.compute_vm_guest_configuration_installed
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -424,6 +494,8 @@ control "arc_compute_machine_linux_log_analytics_agent_installed" {
   description = "This policy audits Linux Azure Arc machines if the Log Analytics extension is not installed."
   query       = query.arc_compute_machine_linux_log_analytics_agent_installed
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -435,6 +507,8 @@ control "compute_vm_guest_configuration_installed_windows" {
   title       = "Deploy the Windows Guest Configuration extension to enable Guest Configuration assignments on Windows VMs"
   description = "This policy deploys the Windows Guest Configuration extension to Windows virtual machines hosted in Azure that are supported by Guest Configuration. The Windows Guest Configuration extension is a prerequisite for all Windows Guest Configuration assignments and must be deployed to machines before using any Windows Guest Configuration policy definition."
   query       = query.compute_vm_guest_configuration_installed_windows
+
+  severity = "medium"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
@@ -449,6 +523,8 @@ control "compute_vm_restrict_previous_24_passwords_resuse_windows" {
   description = "Requires that prerequisites are deployed to the policy assignment scope. Machines are non-compliant if Windows machines that allow re-use of the previous 24 passwords."
   query       = query.compute_vm_restrict_previous_24_passwords_resuse_windows
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     nist_sp_800_171_rev_2 = "true"
     nist_sp_800_53_rev_5  = "true"
@@ -461,6 +537,8 @@ control "compute_vm_max_password_age_70_days_windows" {
   description = "Requires that prerequisites are deployed to the policy assignment scope. Machines are non-compliant if Windows machines that do not have a maximum password age of 70 days."
   query       = query.compute_vm_max_password_age_70_days_windows
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     nist_sp_800_53_rev_5 = "true"
     pci_dss_v321         = "true"
@@ -472,6 +550,8 @@ control "compute_vm_min_password_age_1_day_windows" {
   description = "Requires that prerequisites are deployed to the policy assignment scope. Machines are non-compliant if Windows machines that do not have a minimum password age of 1 day."
   query       = query.compute_vm_min_password_age_1_day_windows
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     nist_sp_800_53_rev_5 = "true"
   })
@@ -481,6 +561,8 @@ control "compute_vm_password_complexity_setting_enabled_windows" {
   title       = "Audit Windows machines that do not have the password complexity setting enabled"
   description = "Requires that prerequisites are deployed to the policy assignment scope. Machines are non-compliant if Windows machines that do not have the password complexity setting enabled."
   query       = query.compute_vm_password_complexity_setting_enabled_windows
+
+  severity = "critical"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
@@ -494,6 +576,8 @@ control "compute_vm_min_password_length_14_windows" {
   description = "Requires that prerequisites are deployed to the policy assignment scope. Machines are non-compliant if Windows machines that do not restrict the minimum password length to 14 characters."
   query       = query.compute_vm_min_password_length_14_windows
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     nist_sp_800_171_rev_2 = "true"
     nist_sp_800_53_rev_5  = "true"
@@ -506,6 +590,8 @@ control "compute_disk_access_uses_private_link" {
   description = "Azure Private Link lets you connect your virtual network to Azure services without a public IP address at the source or destination. The Private Link platform handles the connectivity between the consumer and services over the Azure backbone network. By mapping private endpoints to diskAccesses, data leakage risks are reduced."
   query       = query.compute_disk_access_uses_private_link
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -517,6 +603,8 @@ control "network_interface_ip_forwarding_disabled" {
   title       = "IP Forwarding on your virtual machine should be disabled"
   description = "Enabling IP forwarding on a virtual machine's NIC allows the machine to receive traffic addressed to other destinations. IP forwarding is rarely required (e.g., when using the VM as a network virtual appliance), and therefore, this should be reviewed by the network security team."
   query       = query.network_interface_ip_forwarding_disabled
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
@@ -531,6 +619,8 @@ control "arc_compute_machine_windows_log_analytics_agent_installed" {
   description = "This policy audits Windows Azure Arc machines if the Log Analytics agent is not installed."
   query       = query.arc_compute_machine_windows_log_analytics_agent_installed
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -542,6 +632,8 @@ control "compute_vm_guest_configuration_with_system_assigned_managed_identity" {
   title       = "Virtual machines' Guest Configuration extension should be deployed with system-assigned managed identity"
   description = "The Guest Configuration extension requires a system assigned managed identity. Azure virtual machines in the scope of this policy will be non-compliant when they have the Guest Configuration extension installed but do not have a system assigned managed identity."
   query       = query.compute_vm_guest_configuration_with_system_assigned_managed_identity
+
+  severity = "medium"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
@@ -556,6 +648,8 @@ control "compute_vm_windows_defender_exploit_guard_enabled" {
   description = "Windows Defender Exploit Guard uses the Azure Policy Guest Configuration agent. Exploit Guard has four components that are designed to lock down devices against a wide variety of attack vectors and block behaviors commonly used in malware attacks while enabling enterprises to balance their security risk and productivity requirements (Windows only)."
   query       = query.compute_vm_windows_defender_exploit_guard_enabled
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -568,6 +662,8 @@ control "compute_vm_secure_communication_protocols_configured" {
   description = "To protect the privacy of information communicated over the Internet, your web servers should use the latest version of the industry-standard cryptographic protocol, Transport Layer Security (TLS). TLS secures communications over a network by using security certificates to encrypt a connection between machines."
   query       = query.compute_vm_secure_communication_protocols_configured
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     nist_sp_800_53_rev_5 = "true"
   })
@@ -577,6 +673,8 @@ control "compute_vm_restrict_remote_connection_from_accounts_without_password_li
   title       = "Audit Linux machines that allow remote connections from accounts without passwords"
   description = "Requires that prerequisites are deployed to the policy assignment scope. Machines are non-compliant if Linux machines that allow remote connections from accounts without passwords."
   query       = query.compute_vm_restrict_remote_connection_from_accounts_without_password_linux
+
+  severity = "critical"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
@@ -590,6 +688,8 @@ control "compute_os_and_data_disk_encrypted_with_cmk_and_platform_managed" {
   description = "High security sensitive customers who are concerned of the risk associated with any particular encryption algorithm, implementation, or key being compromised can opt for additional layer of encryption using a different encryption algorithm/mode at the infrastructure layer using platform managed encryption keys. The disk encryption sets are required to use double encryption."
   query       = query.compute_os_and_data_disk_encrypted_with_cmk_and_platform_managed
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -601,6 +701,8 @@ control "compute_vm_and_sacle_set_encryption_at_host_enabled" {
   title       = "Virtual machines and virtual machine scale sets should have encryption at host enabled"
   description = "Use encryption at host to get end-to-end encryption for your virtual machine and virtual machine scale set data. Encryption at host enables encryption at rest for your temporary disk and OS/data disk caches. Temporary and ephemeral OS disks are encrypted with platform-managed keys when encryption at host is enabled. OS/data disk caches are encrypted at rest with either customer-managed or platform-managed key, depending on the encryption type selected on the disk."
   query       = query.compute_vm_and_sacle_set_encryption_at_host_enabled
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
@@ -614,6 +716,8 @@ control "compute_vm_allowlist_rules_in_adaptive_application_control_policy_updat
   description = "Monitor for changes in behavior on groups of machines configured for auditing by Azure Security Center's adaptive application controls. Security Center uses machine learning to analyze the running processes on your machines and suggest a list of known-safe applications. These are presented as recommended apps to allow in adaptive application control policies."
   query       = query.manual_control
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     nist_sp_800_53_rev_5 = "true"
   })
@@ -623,6 +727,8 @@ control "compute_vm_scale_set_endpoint_protection_solution_installed" {
   title       = "Endpoint protection solution should be installed on virtual machine scale sets"
   description = "Audit the existence and health of an endpoint protection solution on your virtual machines scale sets, to protect them from threats and vulnerabilities."
   query       = query.manual_control
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     hipaa_hitrust_v92    = "true"
@@ -635,6 +741,8 @@ control "compute_vm_monitor_missing_endpoint_protection_in_asc" {
   description = "Servers without an installed Endpoint Protection agent will be monitored by Azure Security Center as recommendations."
   query       = query.manual_control
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     nist_sp_800_53_rev_5 = "true"
   })
@@ -644,6 +752,8 @@ control "compute_vm_non_internet_facing_protected_with_nsg" {
   title       = "Non-internet-facing virtual machines should be protected with network security groups"
   description = "Protect your non-internet-facing virtual machines from potential threats by restricting access with network security groups (NSG)."
   query       = query.manual_control
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     nist_sp_800_53_rev_5 = "true"
@@ -655,6 +765,8 @@ control "compute_vm_password_file_permissions_0644_linux" {
   description = "Requires that prerequisites are deployed to the policy assignment scope. Machines are non-compliant if Linux machines that do not have the passwd file permissions set to 0644"
   query       = query.manual_control
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     nist_sp_800_53_rev_5 = "true"
   })
@@ -664,6 +776,8 @@ control "compute_vm_temp_disks_cache_and_data_flows_encrypted" {
   title       = "Virtual machines should encrypt temp disks, caches, and data flows between Compute and Storage resources"
   description = "By default, a virtual machine's OS and data disks are encrypted-at-rest using platform-managed keys. Temp disks, data caches and data flowing between compute and storage aren't encrypted. Disregard this recommendation if: 1. using encryption-at-host, or 2. server-side encryption on Managed Disks meets your security requirements. Learn more in: Server-side encryption of Azure Disk Storage: https://aka.ms/disksse, Different disk encryption offerings: https://aka.ms/diskencryptioncomparison"
   query       = query.manual_control
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     hipaa_hitrust_v92    = "true"
@@ -677,6 +791,8 @@ control "compute_vm_container_security_configurations_vulnerabilities_remediated
   description = "Audit vulnerabilities in security configuration on machines with Docker installed and display as recommendations in Azure Security Center."
   query       = query.manual_control
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     hipaa_hitrust_v92    = "true"
     nist_sp_800_53_rev_5 = "true"
@@ -687,6 +803,8 @@ control "compute_vm_meet_security_baseline_requirements_linux" {
   title       = "Linux machines should meet requirements for the Azure compute security baseline"
   description = "Requires that prerequisites are deployed to the policy assignment scope. Machines are non-compliant if the machine is not configured correctly for one of the recommendations in the Azure compute security baseline."
   query       = query.compute_vm_meet_security_baseline_requirements_linux
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
@@ -699,6 +817,8 @@ control "compute_vm_meet_security_baseline_requirements_windows" {
   title       = "Windows machines should meet requirements of the Azure compute security baseline"
   description = "Requires that prerequisites are deployed to the policy assignment scope. Machines are non-compliant if the machine is not configured correctly for one of the recommendations in the Azure compute security baseline."
   query       = query.compute_vm_meet_security_baseline_requirements_windows
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
@@ -722,6 +842,8 @@ control "compute_vm_vulnerability_findings_resolved_for_sql_server" {
   description = "SQL vulnerability assessment scans your database for security vulnerabilities, and exposes any deviations from best practices such as misconfigurations, excessive permissions, and unprotected sensitive data. Resolving the vulnerabilities found can greatly improve your database security posture."
   query       = query.manual_control
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     nist_sp_800_53_rev_5 = "true"
   })
@@ -731,6 +853,8 @@ control "compute_vm_guest_configuration_with_no_managed_identity" {
   title       = "Add system-assigned managed identity to enable Guest Configuration assignments on virtual machines with no identities"
   description = "This policy adds a system-assigned managed identity to virtual machines hosted in Azure that are supported by Guest Configuration but do not have any managed identities. A system-assigned managed identity is a prerequisite for all Guest Configuration assignments and must be added to machines before using any Guest Configuration policy definitions."
   query       = query.compute_vm_guest_configuration_with_no_managed_identity
+
+  severity = "medium"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
@@ -745,6 +869,8 @@ control "compute_vm_meet_security_options_requirement_windows" {
   description = "Windows machines should have the specified Group Policy settings in the category 'Security Options - Recovery console' for allowing floppy copy and access to all drives and folders. This policy requires that the Guest Configuration prerequisites have been deployed to the policy assignment scope."
   query       = query.manual_control
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     hipaa_hitrust_v92 = "true"
   })
@@ -754,6 +880,8 @@ control "compute_vm_scale_set_system_updates_installed" {
   title       = "System updates on virtual machine scale sets should be installed"
   description = "Audit whether there are any missing system security updates and critical updates that should be installed to ensure that your Windows and Linux virtual machine scale sets are secure."
   query       = query.manual_control
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     hipaa_hitrust_v92    = "true"
@@ -766,6 +894,8 @@ control "compute_vm_meet_security_options_network_access_requirement_windows" {
   description = "Windows machines should have the specified Group Policy settings in the category 'Security Options - Network Access' for including access for anonymous users, local accounts, and remote access to the registry. This policy requires that the Guest Configuration prerequisites have been deployed to the policy assignment scope. For details, visit https://aka.ms/gcpol."
   query       = query.manual_control
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     hipaa_hitrust_v92 = "true"
   })
@@ -775,6 +905,8 @@ control "compute_vm_meet_security_options_user_account_control_requirement_windo
   title       = "Windows machines should meet requirements for 'Security Options - User Account Control'"
   description = "Windows machines should have the specified Group Policy settings in the category 'Security Options - User Account Control' for mode for admins, behavior of elevation prompt, and virtualizing file and registry write failures. This policy requires that the Guest Configuration prerequisites have been deployed to the policy assignment scope. For details, visit https://aka.ms/gcpol."
   query       = query.manual_control
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     hipaa_hitrust_v92 = "true"
@@ -786,6 +918,8 @@ control "compute_vm_azure_backup_enabled" {
   description = "Ensure protection of your Azure Virtual Machines by enabling Azure Backup. Azure Backup is a secure and cost effective data protection solution for Azure."
   query       = query.manual_control
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     hipaa_hitrust_v92 = "true"
   })
@@ -796,6 +930,8 @@ control "compute_vm_image_builder_uses_private_link" {
   description = "Azure Private Link lets you connect your virtual network to Azure services without a public IP address at the source or destination. The Private Link platform handles the connectivity between the consumer and services over the Azure backbone network. By mapping private endpoints to your VM Image Builder building resources, data leakage risks are reduced."
   query       = query.manual_control
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     nist_sp_800_53_rev_5 = "true"
   })
@@ -805,6 +941,8 @@ control "compute_os_and_data_disk_encrypted_with_cmk" {
   title       = "OS and data disks should be encrypted with a customer-managed key"
   description = "Use customer-managed keys to manage the encryption at rest of the contents of your managed disks. By default, the data is encrypted at rest with platform-managed keys, but customer-managed keys are commonly required to meet regulatory compliance standards. Customer-managed keys enable the data to be encrypted with an Azure Key Vault key created and owned by you. You have full control and responsibility for the key lifecycle, including rotation and management. Learn more at https://aka.ms/disks-cmk."
   query       = query.compute_os_and_data_disk_encrypted_with_cmk
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     fedramp_high          = "true"
@@ -818,6 +956,8 @@ control "compute_vm_data_and_os_disk_uses_managed_disk" {
   description = "This control checks whether virtual machines use managed disks for OS and data disks."
   query       = query.compute_vm_data_and_os_disk_uses_managed_disk
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_compute_common_tags
 }
 
@@ -825,6 +965,8 @@ control "compute_vm_scale_set_automatic_upgrade_enabled" {
   title       = "Compute virtual machine scale sets should have automatic OS image patching enabled"
   description = "This control checks whether virtual machine scale sets have automatic OS image patching enabled."
   query       = query.compute_vm_scale_set_automatic_upgrade_enabled
+
+  severity = "high"
 
   tags = local.regulatory_compliance_compute_common_tags
 }
@@ -834,6 +976,8 @@ control "compute_vm_scale_set_ssh_key_authentication_linux" {
   description = "This control checks whether virtual machine scale sets have SSH key authentication enabled. This control is only applicable for Linux-type operating systems."
   query       = query.compute_vm_scale_set_ssh_key_authentication_linux
 
+  severity = "high"
+
   tags = local.regulatory_compliance_compute_common_tags
 }
 
@@ -841,6 +985,8 @@ control "compute_unattached_disk_encrypted_with_cmk" {
   title       = "Ensure that 'Unattached disks' are encrypted with 'Customer Managed Key' (CMK)"
   description = "Ensure that unattached disks in a subscription are encrypted with a Customer Managed Key (CMK)."
   query       = query.compute_unattached_disk_encrypted_with_cmk
+
+  severity = "medium"
 
   tags = local.regulatory_compliance_compute_common_tags
 }
@@ -850,6 +996,8 @@ control "compute_vm_utilizing_managed_disk" {
   description = "Migrate BLOB based VHD's to Managed Disks on Virtual Machines to exploit the default features of this configuration."
   query       = query.compute_vm_utilizing_managed_disk
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_compute_common_tags
 }
 
@@ -857,6 +1005,8 @@ control "compute_disk_unattached_encrypted_with_cmk" {
   title       = "Unattached Compute disks should be encrypted with ADE/CMK"
   description = "This policy identifies the disks which are unattached and are encrypted with default encryption instead of ADE/CMK. Azure encrypts disks by default Server-Side Encryption (SSE) with platform-managed keys [SSE with PMK]. It is recommended to use either SSE with Azure Disk Encryption [SSE with PMK+ADE] or Customer Managed Key [SSE with CMK] which improves on platform-managed keys by giving you control of the encryption keys to meet your compliance need."
   query       = query.compute_disk_unattached_encrypted_with_cmk
+
+  severity = "medium"
 
   tags = local.regulatory_compliance_compute_common_tags
 }
@@ -866,6 +1016,8 @@ control "compute_vm_scale_set_uses_managed_disks" {
   description = "This policy identifies Azure Virtual machine scale sets which are not utilising Managed Disks. Using Azure Managed disk over traditional BLOB storage based VHD's has more advantage features like Managed disks are by default encrypted, reduces cost over storage accounts and more resilient as Microsoft will manage the disk storage and move around if underlying hardware goes faulty. It is recommended to move BLOB based VHD's to Managed Disks."
   query       = query.compute_vm_scale_set_uses_managed_disks
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_compute_common_tags
 }
 
@@ -874,6 +1026,8 @@ control "compute_vm_scale_set_boot_diagnostics_enabled" {
   description = "This policy identifies Azure Virtual Machines scale sets which has Boot Diagnostics setting Disabled. Boot Diagnostics when enabled for virtual machine, captures Screenshot and Console Output during virtual machine startup. This would help in troubleshooting virtual machine when it enters a non-bootable state."
   query       = query.compute_vm_scale_set_boot_diagnostics_enabled
 
+  severity = "low"
+
   tags = local.regulatory_compliance_compute_common_tags
 }
 
@@ -881,6 +1035,8 @@ control "compute_windows_vm_secure_boot_enabled" {
   title       = "Secure Boot should be enabled on supported Windows virtual machines"
   description = "Enable Secure Boot on supported Windows virtual machines to mitigate against malicious and unauthorized changes to the boot chain. Once enabled, only trusted bootloaders, kernel and kernel drivers will be allowed to run. This assessment applies to Trusted Launch and Confidential Windows virtual machines."
   query       = query.compute_windows_vm_secure_boot_enabled
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_compute_common_tags, {
     rbi_itf_nbfc_v2017 = "true"
@@ -892,6 +1048,8 @@ control "compute_vm_trust_launch_enabled" {
   description = "When Secure Boot and vTPM are enabled together, they provide a strong foundation for protecting your VM from boot attacks. For example, if an attacker attempts to replace the bootloader with a malicious version, Secure Boot will prevent the VM from booting."
   query       = query.compute_vm_trust_launch_enabled
 
+  severity = "high"
+
   tags = local.regulatory_compliance_compute_common_tags
 }
 
@@ -900,6 +1058,8 @@ control "compute_disk_public_access_disabled" {
   description = "Virtual Machine Disks and snapshots can be configured to allow access from different network resources."
   query       = query.compute_disk_public_access_disabled
 
+  severity = "critical"
+
   tags = local.regulatory_compliance_compute_common_tags
 }
 
@@ -907,6 +1067,8 @@ control "compute_disk_data_access_auth_mode_enabled" {
   title       = "Ensure that 'Enable Data Access Authentication Mode' is 'Checked'"
   description = "Data Access Authentication Mode provides a method of uploading or exporting Virtual Machine Disks."
   query       = query.compute_disk_data_access_auth_mode_enabled
+
+  severity = "high"
 
   tags = local.regulatory_compliance_compute_common_tags
 }

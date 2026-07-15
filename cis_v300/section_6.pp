@@ -53,6 +53,7 @@ control "cis_v300_6_1_1" {
   title         = "6.1.1 Ensure that a 'Diagnostic Setting' exists for Subscription Activity Logs"
   description   = "Enable Diagnostic settings for exporting activity logs. Diagnostic settings are available for each individual resource within a subscription. Settings should be configured for all appropriate resources for your environment."
   query         = query.manual_control
+  severity      = "medium"
   documentation = file("./cis_v300/docs/cis_v300_6_1_1.md")
 
   tags = merge(local.cis_v300_6_1_common_tags, {
@@ -67,6 +68,7 @@ control "cis_v300_6_1_2" {
   title         = "6.1.2 Ensure Diagnostic Setting captures appropriate categories"
   description   = "A Diagnostic Setting must exist. If a Diagnostic Setting does not exist, the navigation and options within this recommendation will not be available. Please review the recommendation at the beginning of this subsection titled: 'Ensure that a 'Diagnostic Setting' exists.' The diagnostic setting should be configured to log the appropriate activities from the control/management plane."
   query         = query.monitor_diagnostic_settings_captures_proper_categories
+  severity      = "high"
   documentation = file("./cis_v300/docs/cis_v300_6_1_2.md")
 
   tags = merge(local.cis_v300_6_1_common_tags, {
@@ -81,6 +83,7 @@ control "cis_v300_6_1_3" {
   title         = "6.1.3 Ensure the storage account containing the container with activity logs is encrypted with Customer Managed Key"
   description   = "Storage accounts with the activity log exports can be configured to use Customer Managed Keys (CMK)."
   query         = query.monitor_logs_storage_container_insights_activity_logs_encrypted_with_byok
+  severity      = "high"
   documentation = file("./cis_v300/docs/cis_v300_6_1_3.md")
 
   tags = merge(local.cis_v300_6_1_common_tags, {
@@ -95,6 +98,7 @@ control "cis_v300_6_1_4" {
   title         = "6.1.4 Ensure that logging for Azure Key Vault is 'Enabled'"
   description   = "Enable AuditEvent logging for key vault instances to ensure interactions with key vaults are logged and available."
   query         = query.keyvault_logging_enabled
+  severity      = "high"
   documentation = file("./cis_v300/docs/cis_v300_6_1_4.md")
 
   tags = merge(local.cis_v300_6_1_common_tags, {
@@ -109,6 +113,7 @@ control "cis_v300_6_1_5" {
   title         = "6.1.5 Ensure that Network Security Group Flow logs are captured and sent to Log Analytics"
   description   = "Ensure that network flow logs are captured and fed into a central log analytics workspace."
   query         = query.nsg_network_watcher_flow_log_send_to_log_analytics
+  severity      = "high"
   documentation = file("./cis_v300/docs/cis_v300_6_1_5.md")
 
   tags = merge(local.cis_v300_6_1_common_tags, {
@@ -123,6 +128,7 @@ control "cis_v300_6_1_6" {
   title         = "6.1.6 Ensure that logging for Azure AppService 'HTTP logs' is enabled"
   description   = "Enable AppServiceHTTPLogs diagnostic log category for Azure App Service instances to ensure all http requests are captured and centrally logged."
   query         = query.appservice_web_app_diagnostic_log_category_http_log_enabled
+  severity      = "medium"
   documentation = file("./cis_v300/docs/cis_v300_6_1_6.md")
 
   tags = merge(local.cis_v300_6_1_common_tags, {
@@ -159,6 +165,7 @@ control "cis_v300_6_2_1" {
   title         = "6.2.1 Ensure that Activity Log Alert exists for Create Policy Assignment"
   description   = "Create an activity log alert for the Create Policy Assignment event."
   query         = query.monitor_log_alert_create_policy_assignment
+  severity      = "high"
   documentation = file("./cis_v300/docs/cis_v300_6_2_1.md")
 
   tags = merge(local.cis_v300_6_2_common_tags, {
@@ -173,6 +180,7 @@ control "cis_v300_6_2_2" {
   title         = "6.2.2 Ensure that Activity Log Alert exists for Delete Policy Assignment"
   description   = "Create an activity log alert for the Delete Policy Assignment event."
   query         = query.monitor_log_alert_delete_policy_assignment
+  severity      = "critical"
   documentation = file("./cis_v300/docs/cis_v300_6_2_2.md")
 
   tags = merge(local.cis_v300_6_2_common_tags, {
@@ -187,6 +195,7 @@ control "cis_v300_6_2_3" {
   title         = "6.2.3 Ensure that Activity Log Alert exists for Create or Update Network Security Group"
   description   = "Create an Activity Log Alert for the Create or Update Network Security Group event."
   query         = query.monitor_log_alert_create_update_nsg
+  severity      = "high"
   documentation = file("./cis_v300/docs/cis_v300_6_2_3.md")
 
   tags = merge(local.cis_v300_6_2_common_tags, {
@@ -201,6 +210,7 @@ control "cis_v300_6_2_4" {
   title         = "6.2.4 Ensure that Activity Log Alert exists for Delete Network Security Group"
   description   = "Create an activity log alert for the Delete Network Security Group event."
   query         = query.monitor_log_alert_delete_nsg
+  severity      = "critical"
   documentation = file("./cis_v300/docs/cis_v300_6_2_4.md")
 
   tags = merge(local.cis_v300_6_2_common_tags, {
@@ -215,6 +225,7 @@ control "cis_v300_6_2_5" {
   title         = "6.2.5 Ensure that Activity Log Alert exists for Create or Update Security Solution"
   description   = "Create an activity log alert for the Create or Update Security Solution event."
   query         = query.monitor_log_alert_create_update_security_solution
+  severity      = "high"
   documentation = file("./cis_v300/docs/cis_v300_6_2_5.md")
 
   tags = merge(local.cis_v300_6_2_common_tags, {
@@ -229,6 +240,7 @@ control "cis_v300_6_2_6" {
   title         = "6.2.6 Ensure that Activity Log Alert exists for Delete Security Solution"
   description   = "Create an activity log alert for the Delete Security Solution event."
   query         = query.monitor_log_alert_delete_security_solution
+  severity      = "critical"
   documentation = file("./cis_v300/docs/cis_v300_6_2_6.md")
 
   tags = merge(local.cis_v300_6_2_common_tags, {
@@ -243,6 +255,7 @@ control "cis_v300_6_2_7" {
   title         = "6.2.7 Ensure that Activity Log Alert exists for Create or Update SQL Server Firewall Rule"
   description   = "Create an activity log alert for the Create or Update SQL Server Firewall Rule event."
   query         = query.monitor_log_alert_create_update_sql_servers_firewall_rule
+  severity      = "critical"
   documentation = file("./cis_v300/docs/cis_v300_6_2_7.md")
 
   tags = merge(local.cis_v300_6_2_common_tags, {
@@ -257,6 +270,7 @@ control "cis_v300_6_2_8" {
   title         = "6.2.8 Ensure that Activity Log Alert exists for Delete SQL Server Firewall Rule"
   description   = "Create an activity log alert for the 'Delete SQL Server Firewall Rule.'"
   query         = query.monitor_log_alert_delete_sql_servers_firewall_rule
+  severity      = "critical"
   documentation = file("./cis_v300/docs/cis_v300_6_2_8.md")
 
   tags = merge(local.cis_v300_6_2_common_tags, {
@@ -271,6 +285,7 @@ control "cis_v300_6_2_9" {
   title         = "6.2.9 Ensure that Activity Log Alert exists for Create or Update Public IP Address rule"
   description   = "Create an activity log alert for the Create or Update Public IP Addresses rule."
   query         = query.monitor_log_alert_create_update_public_ip_address
+  severity      = "high"
   documentation = file("./cis_v300/docs/cis_v300_6_2_9.md")
 
   tags = merge(local.cis_v300_6_2_common_tags, {
@@ -285,6 +300,7 @@ control "cis_v300_6_2_10" {
   title         = "6.2.10 Ensure that Activity Log Alert exists for Delete Public IP Address rule"
   description   = "Create an activity log alert for the Delete Public IP Address rule."
   query         = query.monitor_log_alert_delete_public_ip_address
+  severity      = "critical"
   documentation = file("./cis_v300/docs/cis_v300_6_2_10.md")
 
   tags = merge(local.cis_v300_6_common_tags, {
@@ -314,6 +330,7 @@ control "cis_v300_6_3_1" {
   query         = query.monitor_application_insights_configured
   documentation = file("./cis_v300/docs/cis_v300_6_3_1.md")
 
+  severity = "medium"
   tags = merge(local.cis_v140_5_common_tags, {
     cis_item_id = "6.3.1"
     cis_level   = "2"
@@ -326,6 +343,7 @@ control "cis_v300_6_4" {
   title         = "6.4 Ensure that Azure Monitor Resource Logging is Enabled for All Services that Support it"
   description   = "Resource Logs capture activity to the data access plane while the Activity log is a subscription-level log for the control plane. Resource-level diagnostic logs provide insight into operations that were performed within that resource itself; for example, reading or updating a secret from a Key Vault."
   query         = query.manual_control
+  severity      = "high"
   documentation = file("./cis_v300/docs/cis_v300_6_4.md")
 
   tags = merge(local.cis_v300_6_common_tags, {

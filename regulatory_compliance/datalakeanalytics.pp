@@ -9,6 +9,8 @@ control "datalake_analytics_account_logging_enabled" {
   description = "Audit enabling of resource logs. This enables you to recreate activity trails to use for investigation purposes; when a security incident occurs or when your network is compromised."
   query       = query.datalake_analytics_account_logging_enabled
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_datalakeanalytics_common_tags, {
     fedramp_high          = "true"
     hipaa_hitrust_v92     = "true"

@@ -9,6 +9,8 @@ control "spring_cloud_service_network_injection_enabled" {
   description = "Azure Spring Cloud instances should use virtual network injection for the following purposes: 1. Isolate Azure Spring Cloud from Internet. 2. Enable Azure Spring Cloud to interact with systems in either on premises data centers or Azure service in other virtual networks. 3. Empower customers to control inbound and outbound network communications for Azure Spring Cloud."
   query       = query.spring_cloud_service_network_injection_enabled
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_springcloud_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"

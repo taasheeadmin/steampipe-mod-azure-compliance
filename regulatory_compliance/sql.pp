@@ -9,6 +9,8 @@ control "sql_server_and_databases_va_enabled" {
   description = "Audit Azure SQL servers which do not have recurring vulnerability assessment scans enabled. Vulnerability assessment can discover, track, and help you remediate potential database vulnerabilities."
   query       = query.sql_server_and_databases_va_enabled
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_sql_common_tags, {
     fedramp_high          = "true"
     hipaa_hitrust_v92     = "true"
@@ -23,6 +25,8 @@ control "sql_server_transparent_data_encryption_enabled" {
   description = "Transparent data encryption should be enabled to protect data-at-rest and meet compliance requirements."
   query       = query.sql_server_transparent_data_encryption_enabled
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_sql_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -35,6 +39,8 @@ control "sql_server_auditing_on" {
   title       = "Auditing on SQL server should be enabled"
   description = "Auditing on your SQL Server should be enabled to track database activities across all databases on the server and save them in an audit log."
   query       = query.sql_server_auditing_on
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_sql_common_tags, {
     fedramp_high          = "true"
@@ -50,6 +56,8 @@ control "sql_server_use_virtual_service_endpoint" {
   description = "This policy audits any SQL Server not configured to use a virtual network service endpoint."
   query       = query.sql_server_use_virtual_service_endpoint
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_sql_common_tags, {
     hipaa_hitrust_v92 = "true"
   })
@@ -59,6 +67,8 @@ control "sql_server_tde_protector_cmk_encrypted" {
   title       = "SQL servers should use customer-managed keys to encrypt data at rest"
   description = "Implementing Transparent Data Encryption (TDE) with your own key provides increased transparency and control over the TDE Protector, increased security with an HSM-backed external service, and promotion of separation of duties. This recommendation applies to organizations with a related compliance requirement."
   query       = query.sql_server_tde_protector_cmk_encrypted
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_sql_common_tags, {
     fedramp_high          = "true"
@@ -73,6 +83,8 @@ control "sql_database_long_term_geo_redundant_backup_enabled" {
   description = "This policy audits any Azure SQL Database with long-term geo-redundant backup not enabled."
   query       = query.sql_database_long_term_geo_redundant_backup_enabled
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_sql_common_tags, {
     fedramp_high         = "true"
     hipaa_hitrust_v92    = "true"
@@ -85,6 +97,8 @@ control "sql_database_vulnerability_findings_resolved" {
   title       = "SQL databases should have vulnerability findings resolved"
   description = "Monitor vulnerability assessment scan results and recommendations for how to remediate database vulnerabilities."
   query       = query.sql_database_vulnerability_findings_resolved
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_sql_common_tags, {
     fedramp_high          = "true"
@@ -101,6 +115,8 @@ control "sql_database_transparent_data_encryption_enabled" {
   description = "Transparent data encryption should be enabled to protect data-at-rest and meet compliance requirements."
   query       = query.sql_database_transparent_data_encryption_enabled
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_sql_common_tags, {
     hipaa_hitrust_v92 = "true"
     pci_dss_v321      = "true"
@@ -111,6 +127,8 @@ control "sql_server_azure_defender_enabled" {
   title       = "Azure Defender for SQL should be enabled for unprotected Azure SQL servers"
   description = "Audit SQL servers without Advanced Data Security."
   query       = query.sql_server_azure_defender_enabled
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_sql_common_tags, {
     fedramp_high          = "true"
@@ -125,6 +143,8 @@ control "sql_server_azure_ad_authentication_enabled" {
   description = "Audit provisioning of an Azure Active Directory administrator for your SQL server to enable Azure AD authentication. Azure AD authentication enables simplified permission management and centralized identity management of database users and other Microsoft services."
   query       = query.sql_server_azure_ad_authentication_enabled
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_sql_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -138,6 +158,8 @@ control "sql_db_public_network_access_disabled" {
   description = "Disabling the public network access property improves security by ensuring your Azure SQL Database can only be accessed from a private endpoint. This configuration denies all logins that match IP or virtual network based firewall rules."
   query       = query.sql_db_public_network_access_disabled
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_sql_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -149,6 +171,8 @@ control "sql_server_uses_private_link" {
   title       = "Private endpoint connections on Azure SQL Database should be enabled"
   description = "Private endpoint connections enforce secure communication by enabling private connectivity to Azure SQL Database."
   query       = query.sql_server_uses_private_link
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_sql_common_tags, {
     fedramp_high          = "true"
@@ -162,6 +186,8 @@ control "sql_server_auditing_storage_account_destination_retention_90_days" {
   description = "For incident investigation purposes, we recommend setting the data retention for your SQL Server' auditing to storage account destination to at least 90 days. Confirm that you are meeting the necessary retention rules for the regions in which you are operating. This is sometimes required for compliance with regulatory standards."
   query       = query.sql_server_auditing_storage_account_destination_retention_90_days
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_sql_common_tags, {
     nist_sp_800_171_rev_2 = "true"
     nist_sp_800_53_rev_5  = "true"
@@ -174,6 +200,8 @@ control "sql_server_threat_detection_all_enabled" {
   description = "This control ensures that SQL server threat detection is enabled for all."
   query       = query.sql_server_threat_detection_all_enabled
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_sql_common_tags
 }
 
@@ -181,6 +209,8 @@ control "sql_database_allow_internet_access" {
   title       = "Ensure no SQL Databases allow ingress 0.0.0.0/0 (ANY IP)"
   description = "Ensure that no SQL Databases allow ingress from 0.0.0.0/0 (ANY IP)."
   query       = query.sql_database_allow_internet_access
+
+  severity = "high"
 
   tags = local.regulatory_compliance_sql_common_tags
 }
@@ -190,6 +220,8 @@ control "sql_db_active_directory_admin_configured" {
   description = "Use Azure Active Directory Authentication for authentication with SQL Database."
   query       = query.sql_db_active_directory_admin_configured
 
+  severity = "high"
+
   tags = local.regulatory_compliance_sql_common_tags
 }
 
@@ -197,6 +229,8 @@ control "sql_server_atp_enabled" {
   title       = "Ensure that Microsoft Defender for SQL is set to 'On' for critical SQL Servers"
   description = "Enable \"Azure Defender for SQL\" on critical SQL Servers."
   query       = query.sql_server_atp_enabled
+
+  severity = "high"
 
   tags = local.regulatory_compliance_sql_common_tags
 }
@@ -206,6 +240,8 @@ control "sql_server_auditing_retention_period_90" {
   description = "SQL Server Audit Retention should be configured to be greater than 90 days."
   query       = query.sql_server_auditing_retention_period_90
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_sql_common_tags
 }
 
@@ -213,6 +249,8 @@ control "sql_server_va_setting_periodic_scan_enabled" {
   title       = "Ensure that VA setting Periodic Recurring Scans is enabled on a SQL server"
   description = "Enable Vulnerability Assessment (VA) Periodic recurring scans for critical SQL servers and corresponding SQL databases."
   query       = query.sql_server_va_setting_periodic_scan_enabled
+
+  severity = "medium"
 
   tags = local.regulatory_compliance_sql_common_tags
 }
@@ -222,6 +260,8 @@ control "sql_server_va_setting_reports_notify_admins" {
   description = "Enable Vulnerability Assessment (VA) setting 'Also send email notifications to admins and subscription owners'."
   query       = query.sql_server_va_setting_reports_notify_admins
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_sql_common_tags
 }
 
@@ -229,6 +269,8 @@ control "sql_server_va_setting_scan_reports_configured" {
   title       = "Ensure that VA setting 'Send scan reports to' is configured for a SQL server"
   description = "Configure 'Send scan reports to' with email ids of concerned data owners/stakeholders for a critical SQL servers."
   query       = query.sql_server_va_setting_scan_reports_configured
+
+  severity = "medium"
 
   tags = local.regulatory_compliance_sql_common_tags
 }

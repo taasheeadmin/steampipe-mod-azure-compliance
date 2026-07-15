@@ -9,6 +9,8 @@ control "batch_account_logging_enabled" {
   description = "Audit enabling of resource logs. This enables you to recreate activity trails to use for investigation purposes; when a security incident occurs or when your network is compromised."
   query       = query.batch_account_logging_enabled
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_batch_common_tags, {
     fedramp_high          = "true"
     hipaa_hitrust_v92     = "true"
@@ -22,6 +24,8 @@ control "batch_account_encrypted_with_cmk" {
   description = "Use customer-managed keys to manage the encryption at rest of your Batch account's data. By default, customer data is encrypted with service-managed keys, but customer-managed keys are commonly required to meet regulatory compliance standards. Customer-managed keys enable the data to be encrypted with an Azure Key Vault key created and owned by you. You have full control and responsibility for the key lifecycle, including rotation and management."
   query       = query.batch_account_encrypted_with_cmk
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_batch_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -33,6 +37,8 @@ control "batch_account_identity_provider_enabled" {
   title       = "Batch accounts identity provider should be enabled"
   description = "Ensure that managed identity provider is enabled for the batch account. This control is non-compliant if batch account identity provider is disabled."
   query       = query.batch_account_identity_provider_enabled
+
+  severity = "high"
 
   tags = local.regulatory_compliance_batch_common_tags
 }

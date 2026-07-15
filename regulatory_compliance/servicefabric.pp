@@ -9,6 +9,8 @@ control "servicefabric_cluster_active_directory_authentication_enabled" {
   description = "Audit usage of client authentication only via Azure Active Directory in Service Fabric."
   query       = query.servicefabric_cluster_active_directory_authentication_enabled
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_servicefabric_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -20,6 +22,8 @@ control "servicefabric_cluster_protection_level_as_encrypt_and_sign" {
   title       = "Service Fabric clusters should have the ClusterProtectionLevel property set to EncryptAndSign"
   description = "Service Fabric provides three levels of protection (None, Sign and EncryptAndSign) for node-to-node communication using a primary cluster certificate. Set the protection level to ensure that all node-to-node messages are encrypted and digitally signed."
   query       = query.servicefabric_cluster_protection_level_as_encrypt_and_sign
+
+  severity = "critical"
 
   tags = merge(local.regulatory_compliance_servicefabric_common_tags, {
     fedramp_high          = "true"

@@ -9,6 +9,8 @@ control "securitycenter_automatic_provisioning_monitoring_agent_on" {
   description = "To monitor for security vulnerabilities and threats, Azure Security Center collects data from your Azure virtual machines. Data is collected by the Log Analytics agent, formerly known as the Microsoft Monitoring Agent (MMA), which reads various security-related configurations and event logs from the machine and copies the data to your Log Analytics workspace for analysis. We recommend enabling auto provisioning to automatically deploy the agent to all supported Azure VMs and any new ones that are created."
   query       = query.securitycenter_automatic_provisioning_monitoring_agent_on
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_securitycenter_common_tags, {
     fedramp_high          = "true"
     hipaa_hitrust_v92     = "true"
@@ -23,6 +25,8 @@ control "securitycenter_notify_alerts_configured" {
   description = "To ensure the relevant people in your organization are notified when there is a potential security breach in one of your subscriptions, enable email notifications for high severity alerts in Security Center."
   query       = query.securitycenter_notify_alerts_configured
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_securitycenter_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -35,6 +39,8 @@ control "securitycenter_security_alerts_to_owner_enabled" {
   title       = "Email notification to subscription owner for high severity alerts should be enabled"
   description = "To ensure your subscription owners are notified when there is a potential security breach in their subscription, set email notifications to subscription owners for high severity alerts in Security Center."
   query       = query.securitycenter_security_alerts_to_owner_enabled
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_securitycenter_common_tags, {
     fedramp_high          = "true"
@@ -49,6 +55,8 @@ control "securitycenter_email_configured" {
   description = "To ensure the relevant people in your organization are notified when there is a potential security breach in one of your subscriptions, set a security contact to receive email notifications from Security Center."
   query       = query.securitycenter_email_configured
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_securitycenter_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -61,6 +69,8 @@ control "securitycenter_azure_defender_on_for_sqlservervm" {
   title       = "Azure Defender for SQL should be enabled for unprotected SQL Managed Instances"
   description = "Audit each SQL Managed Instance without advanced data security."
   query       = query.securitycenter_azure_defender_on_for_sqlservervm
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_securitycenter_common_tags, {
     fedramp_high          = "true"
@@ -75,6 +85,8 @@ control "securitycenter_azure_defender_on_for_containers" {
   description = "Microsoft Defender for Containers provides hardening, vulnerability assessment and run-time protections for your Azure, hybrid, and multi-cloud Kubernetes environments."
   query       = query.securitycenter_azure_defender_on_for_containers
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_securitycenter_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -87,6 +99,8 @@ control "securitycenter_azure_defender_on_for_k8s" {
   description = "Azure Defender for Kubernetes provides real-time threat protection for containerized environments and generates alerts for suspicious activities."
   query       = query.securitycenter_azure_defender_on_for_k8s
 
+  severity = "high"
+
   tags = local.regulatory_compliance_securitycenter_common_tags
 }
 
@@ -94,6 +108,8 @@ control "securitycenter_azure_defender_on_for_appservice" {
   title       = "Azure Defender for App Service should be enabled"
   description = "Azure Defender for App Service leverages the scale of the cloud, and the visibility that Azure has as a cloud provider, to monitor for common web app attacks."
   query       = query.securitycenter_azure_defender_on_for_appservice
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_securitycenter_common_tags, {
     fedramp_high          = "true"
@@ -108,6 +124,8 @@ control "securitycenter_azure_defender_on_for_keyvault" {
   description = "Azure Defender for Key Vault provides an additional layer of protection and security intelligence by detecting unusual and potentially harmful attempts to access or exploit key vault accounts."
   query       = query.securitycenter_azure_defender_on_for_keyvault
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_securitycenter_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -120,6 +138,8 @@ control "securitycenter_azure_defender_on_for_server" {
   title       = "Azure Defender for servers should be enabled"
   description = "Azure Defender for servers provides real-time threat protection for server workloads and generates hardening recommendations as well as alerts about suspicious activities."
   query       = query.securitycenter_azure_defender_on_for_server
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_securitycenter_common_tags, {
     fedramp_high          = "true"
@@ -134,6 +154,8 @@ control "securitycenter_azure_defender_on_for_sqldb" {
   description = "Azure Defender for SQL provides functionality for surfacing and mitigating potential database vulnerabilities, detecting anomalous activities that could indicate threats to SQL databases, and discovering and classifying sensitive data."
   query       = query.securitycenter_azure_defender_on_for_sqldb
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_securitycenter_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -146,6 +168,8 @@ control "securitycenter_azure_defender_on_for_storage" {
   title       = "Microsoft Defender for Storage (Classic) should be enabled"
   description = "Azure Defender for Storage provides detections of unusual and potentially harmful attempts to access or exploit storage accounts."
   query       = query.securitycenter_azure_defender_on_for_storage
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_securitycenter_common_tags, {
     fedramp_high          = "true"
@@ -160,6 +184,8 @@ control "securitycenter_azure_defender_on_for_containerregistry" {
   description = "Azure Defender for container registries provides vulnerability scanning of any images pulled within the last 30 days, pushed to your registry, or imported, and exposes detailed findings per image."
   query       = query.securitycenter_azure_defender_on_for_containerregistry
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_securitycenter_common_tags
 }
 
@@ -167,6 +193,8 @@ control "securitycenter_azure_defender_on_for_dns" {
   title       = "Azure Defender for DNS should be enabled"
   description = "Azure Defender for DNS provides an additional layer of protection for your cloud resources by continuously monitoring all DNS queries from your Azure resources. Azure Defender alerts you about suspicious activity at the DNS layer."
   query       = query.securitycenter_azure_defender_on_for_dns
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_securitycenter_common_tags, {
     nist_sp_800_53_rev_5 = "true"
@@ -177,6 +205,8 @@ control "securitycenter_azure_defender_on_for_resource_manager" {
   title       = "Azure Defender for Resource Manager should be enabled"
   description = "Azure Defender for Resource Manager automatically monitors the resource management operations in your organization. Azure Defender detects threats and alerts you about suspicious activity."
   query       = query.securitycenter_azure_defender_on_for_resource_manager
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_securitycenter_common_tags, {
     fedramp_high          = "true"
@@ -191,6 +221,8 @@ control "securitycenter_pricing_standard" {
   description = "This control checks whether Security center pricing is set to standard. This control is non-compliant if pricing is set to free."
   query       = query.securitycenter_pricing_standard
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_securitycenter_common_tags
 }
 
@@ -198,6 +230,8 @@ control "securitycenter_additional_email_configured" {
   title       = "Ensure 'Additional email addresses' is configured with a security contact email"
   description = "Security Center emails the subscription owners whenever a high-severity alert is triggered for their subscription. You should provide a security contact email address as an additional email address."
   query       = query.securitycenter_additional_email_configured
+
+  severity = "medium"
 
   tags = local.regulatory_compliance_securitycenter_common_tags
 }
@@ -207,6 +241,8 @@ control "securitycenter_asc_default_setting_not_disabled" {
   description = "None of the settings offered by ASC Default policy should be set to effect \"Disabled\"."
   query       = query.securitycenter_asc_default_setting_not_disabled
 
+  severity = "high"
+
   tags = local.regulatory_compliance_securitycenter_common_tags
 }
 
@@ -215,6 +251,8 @@ control "securitycenter_azure_defender_on_for_cosmosdb" {
   description = "Microsoft Defender for Azure Cosmos DB scans all incoming network requests for threats to your Azure Cosmos DB resources."
   query       = query.securitycenter_azure_defender_on_for_cosmosdb
 
+  severity = "high"
+
   tags = local.regulatory_compliance_securitycenter_common_tags
 }
 
@@ -222,6 +260,8 @@ control "securitycenter_azure_defender_on_for_database" {
   title       = "Ensure That Microsoft Defender for Databases is set to 'On'"
   description = "Turning on Microsoft Defender for Databases enables threat detection for the instances running your database software. This provides threat intelligence, anomaly detection, and behavior analytics in the Azure Microsoft Defender for Cloud. Instead of being enabled on services like Platform as a Service (PaaS), this implementation will run within your instances as Infrastructure as a Service (IaaS) on the Operating Systems hosting your databases."
   query       = query.securitycenter_azure_defender_on_for_database
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_securitycenter_common_tags, {
     nist_sp_800_171_rev_2 = "true"
@@ -233,6 +273,8 @@ control "securitycenter_azure_defender_on_for_opensource_relational_db" {
   description = "Turning on Microsoft Defender for Open-source relational databases enables threat detection for Open-source relational databases, providing threat intelligence, anomaly detection, and behavior analytics in the Microsoft Defender for Cloud."
   query       = query.securitycenter_azure_defender_on_for_opensource_relational_db
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_securitycenter_common_tags, {
     rbi_itf_nbfc_v2017 = "true"
   })
@@ -243,6 +285,8 @@ control "securitycenter_mcas_integration" {
   description = "This setting enables Microsoft Defender for Cloud Apps (MCAS) integration with Microsoft Defender for Cloud."
   query       = query.securitycenter_mcas_integration
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_securitycenter_common_tags
 }
 
@@ -250,6 +294,8 @@ control "securitycenter_wdatp_integration" {
   title       = "Ensure that Windows Defender ATP (WDATP) integration with Security Center is selected"
   description = "This setting enables Windows Defender ATP (WDATP) integration with Security Center."
   query       = query.securitycenter_wdatp_integration
+
+  severity = "medium"
 
   tags = local.regulatory_compliance_securitycenter_common_tags
 }
@@ -259,6 +305,8 @@ control "securitycenter_container_image_scan_enabled" {
   description = "This control ensures that image scan for container registries are enabled."
   query       = query.securitycenter_container_image_scan_enabled
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_securitycenter_common_tags
 }
 
@@ -267,6 +315,8 @@ control "security_center_defender_for_api_enabled" {
   description   = "Microsoft Defender for APIs offers full lifecycle protection, detection, and response coverage for APIs."
   query         = query.security_center_defender_for_api_enabled
 
+  severity = "high"
+
   tags = local.regulatory_compliance_securitycenter_common_tags
 }
 
@@ -274,6 +324,8 @@ control "security_center_defender_for_cloudposture_enabled" {
   title         = "Ensure Microsoft Defender CSPM is set to 'On'"
   description   = "Enable Microsoft Defender CSPM to continuously assess cloud resources for security misconfigurations, compliance risks, and exposure to threats."
   query         = query.security_center_defender_for_cloudposture_enabled
+
+  severity = "high"
 
   tags = local.regulatory_compliance_securitycenter_common_tags
 }

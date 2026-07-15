@@ -47,6 +47,7 @@ control "cis_v400_3_1_1" {
   description   = "Networking for Azure Databricks can be set up in a few different ways."
   query         = query.databricks_workspace_deployed_in_custom_vnet
   documentation = file("./cis_v400/docs/cis_v400_3_1_1.md")
+  severity = "high"
 
   tags = merge(local.cis_v400_3_1_common_tags, {
     cis_item_id = "3.1.1"
@@ -62,6 +63,8 @@ control "cis_v400_3_1_2" {
   query         = query.databricks_workspace_subnet_with_nsg_configured
   documentation = file("./cis_v400/docs/cis_v400_3_1_2.md")
 
+  severity = "high"
+
   tags = merge(local.cis_v400_3_1_common_tags, {
     cis_item_id = "3.1.2"
     cis_level   = "1"
@@ -75,6 +78,8 @@ control "cis_v400_3_1_3" {
   description   = "By default, data exchanged between worker nodes in an Azure Databricks cluster is not encrypted."
   query         = query.manual_control
   documentation = file("./cis_v400/docs/cis_v400_3_1_3.md")
+
+  severity = "high"
 
   tags = merge(local.cis_v400_3_1_common_tags, {
     cis_item_id = "3.1.3"
@@ -90,6 +95,8 @@ control "cis_v400_3_1_4" {
   query         = query.manual_control
   documentation = file("./cis_v400/docs/cis_v400_3_1_4.md")
 
+  severity = "high"
+
   tags = merge(local.cis_v400_3_1_common_tags, {
     cis_item_id = "3.1.4"
     cis_level   = "1"
@@ -103,6 +110,8 @@ control "cis_v400_3_1_5" {
   description   = "Unity Catalog is a centralized governance model for managing and securing data in Azure Databricks."
   query         = query.manual_control
   documentation = file("./cis_v400/docs/cis_v400_3_1_5.md")
+
+  severity = "high"
 
   tags = merge(local.cis_v400_3_1_common_tags, {
     cis_item_id = "3.1.5"
@@ -118,6 +127,8 @@ control "cis_v400_3_1_6" {
   query         = query.manual_control
   documentation = file("./cis_v400/docs/cis_v400_3_1_6.md")
 
+  severity = "critical"
+
   tags = merge(local.cis_v400_3_1_common_tags, {
     cis_item_id = "3.1.6"
     cis_level   = "1"
@@ -132,6 +143,8 @@ control "cis_v400_3_1_7" {
   query         = query.databricks_workspace_diagnostic_log_delivery_configured
   documentation = file("./cis_v400/docs/cis_v400_3_1_7.md")
 
+  severity = "medium"
+
   tags = merge(local.cis_v400_3_1_common_tags, {
     cis_item_id = "3.1.7"
     cis_level   = "1"
@@ -145,6 +158,8 @@ control "cis_v400_3_1_8" {
   description   = "Azure Databricks encrypts data in transit using TLS 1."
   query         = query.databricks_workspace_cmk_configured
   documentation = file("./cis_v400/docs/cis_v400_3_1_8.md")
+
+  severity = "high"
 
   tags = merge(local.cis_v400_3_1_common_tags, {
     cis_item_id = "3.1.8"

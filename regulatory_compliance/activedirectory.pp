@@ -9,6 +9,8 @@ control "ad_guest_user_reviewed_monthly" {
   description = "Guest users allow you to share your company's applications and services with users from any other organization, while maintaining control over your own corporate data. Guest users should be review on a monthly basis to ensure that inactive and unneeded accounts are removed."
   query       = query.ad_guest_user_reviewed_monthly
 
+  severity = "high"
+
   tags = local.regulatory_compliance_activedirectory_common_tags
 }
 
@@ -16,6 +18,8 @@ control "ad_security_defaults_policy_enabled" {
   title         = "Ensure that 'security defaults' is enabled in Microsoft Entra ID"
   description   = "Security defaults in Microsoft Entra ID make it easier to be secure and help protect your organization. Security defaults contain preconfigured security settings for common attacks."
   query         = query.ad_security_defaults_policy_enabled
+
+  severity = "high"
 
   tags = local.regulatory_compliance_activedirectory_common_tags
 }
@@ -25,6 +29,8 @@ control "ad_all_user_mfa_enabled" {
   description   = "A Conditional Access policy can be enabled to ensure that users are required to use Multifactor Authentication (MFA) to login."
   query         = query.ad_all_user_mfa_enabled
 
+  severity = "critical"
+
   tags = local.regulatory_compliance_activedirectory_common_tags
 }
 
@@ -32,6 +38,8 @@ control "ad_authorization_policy_user_consent_verified_publishers_selected_permi
   title         = "Ensure that 'User consent for applications' is set to 'Allow user consent for apps from verified publishers, for selected permissions'"
   description   = "Allow users to provide consent for selected permissions when a request is coming from a verified publisher."
   query         = query.ad_authorization_policy_user_consent_verified_publishers_selected_permissions
+
+  severity = "medium"
 
   tags = local.regulatory_compliance_activedirectory_common_tags
 }
@@ -41,6 +49,8 @@ control "ad_authorization_policy_guest_user_access_restricted" {
   description   = "Limit guest user permissions."
   query         = query.ad_authorization_policy_guest_user_access_restricted
 
+  severity = "high"
+
   tags = local.regulatory_compliance_activedirectory_common_tags
 }
 
@@ -49,6 +59,8 @@ control "ad_authorization_policy_guest_invite_restricted" {
   description   = "Restrict invitations to either users with specific administrative roles or no one."
   query         = query.ad_authorization_policy_guest_invite_restricted
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_activedirectory_common_tags
 }
 
@@ -56,6 +68,8 @@ control "ad_disabled_user_no_role_assignments" {
   title         = "Ensure disabled user accounts do not have read, write, or owner permissions"
   description   = "Ensure that any roles granting read, write, or owner permissions are removed from disabled Azure user accounts. While an automated assessment procedure exists for this recommendation, the assessment status remains manual. Removing role assignments from disabled user accounts depends on the context and requirements of each organization and environment."
   query         = query.ad_disabled_user_no_role_assignments
+
+  severity = "high"
 
   tags = local.regulatory_compliance_activedirectory_common_tags
 
@@ -66,6 +80,8 @@ control "iam_subscription_owner_between_2_and_3" {
   description   = "The Owner role in Azure grants full control over all resources in a subscription, including the ability to assign roles to others."
   query         = query.iam_subscription_owner_between_2_and_3
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_activedirectory_common_tags
 }
 
@@ -75,6 +91,8 @@ control "ad_authorization_policy_user_consent_disallowed" {
   query         = query.ad_authorization_policy_user_consent_disallowed
   documentation = file("./cis_v500/docs/cis_v500_5_12.md")
 
+  severity = "high"
+
   tags = local.regulatory_compliance_activedirectory_common_tags
 }
 
@@ -82,6 +100,8 @@ control "ad_require_mfa_for_device_join" {
   title         = "Ensure that 'Require Multifactor Authentication to register or join devices with Microsoft Entra' is set to 'Yes'"
   description   = "This recommendation is only relevant if your subscription is using Per-User MFA. If your organization is licensed to use Conditional Access, the preferred method of requiring MFA to join devices to Entra ID is to use a Conditional Access policy (see additional information below for link)."
   query         = query.ad_require_mfa_for_device_join
+
+  severity = "high"
 
   tags = local.regulatory_compliance_activedirectory_common_tags
 }
@@ -91,6 +111,8 @@ control "ad_m365_group_creation_disabled" {
   description   = "Restrict Microsoft 365 group creation to administrators only."
   query         = query.ad_m365_group_creation_disabled
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_activedirectory_common_tags
 }
 
@@ -98,6 +120,8 @@ control "ad_custom_banned_password_enforced" {
   title         = "Ensure that a 'Custom banned password list' is set to 'Enforce'"
   description   = "Microsoft Azure applies a default global banned password list to all user and admin accounts that are created and managed directly in Microsoft Entra ID. The Microsoft Entra password policy does not apply to user accounts that are synchronized from an on-premises Active Directory environment, unless Microsoft Entra ID Connect is used and EnforceCloudPasswordPolicyForPasswordSyncedUsers is enabled."
   query         = query.ad_custom_banned_password_enforced
+
+  severity = "high"
 
   tags = local.regulatory_compliance_activedirectory_common_tags
 }
@@ -107,6 +131,8 @@ control "ad_account_duration_min_60_seconds" {
   description   = "The account lockout duration value determines how long an account retains the status of lockout, and therefore how long before a user can continue to attempt to login after passing the lockout threshold."
   query         = query.ad_account_duration_min_60_seconds
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_activedirectory_common_tags
 }
 
@@ -114,6 +140,8 @@ control "ad_account_lockout_threshold_max_10" {
   title         = "Ensure that account 'Lockout threshold' is less than or equal to '10'"
   description   = "The account lockout threshold determines how many failed login attempts are permitted prior to placing the account in a locked-out state and initiating a variable lockout duration."
   query         = query.ad_account_lockout_threshold_max_10
+
+  severity = "medium"
 
   tags = local.regulatory_compliance_activedirectory_common_tags
 }
@@ -123,6 +151,8 @@ control "ad_admin_portals_require_mfa" {
   description   = "This recommendation ensures that users accessing Microsoft Admin Portals (i.e. Microsoft 365 Admin, Microsoft 365 Defender, Exchange Admin Center, Azure Portal, etc.) are required to use multi-factor authentication (MFA) credentials when logging into an Admin Portal."
   query         = query.ad_admin_portals_require_mfa
 
+  severity = "critical"
+
   tags = local.regulatory_compliance_activedirectory_common_tags
 }
 
@@ -131,6 +161,8 @@ control "ad_mfa_service_mgmt_api" {
   description   = "This recommendation ensures that users accessing the Windows Azure Service Management API (i.e. Azure Powershell, Azure CLI, Azure Resource Manager API, etc.) are required to use multi-factor authentication (MFA) credentials when accessing resources through the Windows Azure Service Management API."
   query         = query.ad_mfa_service_mgmt_api
 
+  severity = "critical"
+
   tags = local.regulatory_compliance_activedirectory_common_tags
 }
 
@@ -138,6 +170,8 @@ control "ad_user_mfa_enabled" {
   title         = "Ensure that 'multifactor authentication' is 'enabled' for all users"
   description   = "Multifactor authentication requires an individual to present a minimum of two separate forms of authentication before access is granted. Multifactor authentication provides additional assurance that the individual attempting to gain access is who they claim to be. With multifactor authentication, an attacker would need to compromise at least two different authentication mechanisms, increasing the difficulty of compromise and thus reducing the risk."
   query         = query.ad_user_mfa_enabled
+
+  severity = "critical"
 
   tags = local.regulatory_compliance_activedirectory_common_tags
 }

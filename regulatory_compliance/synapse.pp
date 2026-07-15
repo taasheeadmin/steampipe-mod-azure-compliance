@@ -9,6 +9,8 @@ control "synapse_workspace_private_link_used" {
   description = "Azure Private Link lets you connect your virtual network to Azure services without a public IP address at the source or destination. The Private Link platform handles the connectivity between the consumer and services over the Azure backbone network. By mapping private endpoints to Azure Synapse workspace, data leakage risks are reduced."
   query       = query.synapse_workspace_private_link_used
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_synapse_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -20,6 +22,8 @@ control "synapse_workspace_vulnerability_assessment_enabled" {
   title       = "Vulnerability assessment should be enabled on your Synapse workspaces"
   description = "Discover, track, and remediate potential vulnerabilities by configuring recurring SQL vulnerability assessment scans on your Synapse workspaces."
   query       = query.synapse_workspace_vulnerability_assessment_enabled
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_synapse_common_tags, {
     fedramp_high          = "true"
@@ -34,6 +38,8 @@ control "synapse_workspace_encryption_at_rest_using_cmk" {
   description = "Use customer-managed keys to control the encryption at rest of the data stored in Azure Synapse workspaces. Customer-managed keys deliver double encryption by adding a second layer of encryption on top of the default encryption with service-managed keys."
   query       = query.synapse_workspace_encryption_at_rest_using_cmk
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_synapse_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -45,6 +51,8 @@ control "synapse_workspace_data_exfiltration_protection_enabled" {
   title       = "Synapse workspaces should have data exfiltration protection enabled"
   description = "This control checks whether Synapse workspace has data exfiltration protection enabled."
   query       = query.synapse_workspace_data_exfiltration_protection_enabled
+
+  severity = "critical"
 
   tags = local.regulatory_compliance_synapse_common_tags
 }

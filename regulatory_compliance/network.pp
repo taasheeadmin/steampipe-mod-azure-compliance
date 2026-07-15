@@ -9,6 +9,8 @@ control "network_security_group_remote_access_restricted" {
   description = "Open remote management ports are exposing your VM to a high level of risk from Internet-based attacks. These attacks attempt to brute force credentials to gain admin access to the machine."
   query       = query.network_security_group_remote_access_restricted
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_network_common_tags, {
     fedramp_high          = "true"
     hipaa_hitrust_v92     = "true"
@@ -23,6 +25,8 @@ control "network_security_group_rdp_access_restricted" {
   description = "Windows machines should have the specified Group Policy settings in the category 'User Rights Assignment' for allowing log on locally, RDP, access from the network, and many other user activities. This policy requires that the Guest Configuration prerequisites have been deployed to the policy assignment scope."
   query       = query.network_security_group_rdp_access_restricted
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_network_common_tags, {
     hipaa_hitrust_v92 = "true"
   })
@@ -32,6 +36,8 @@ control "network_watcher_enabled" {
   title       = "Network Watcher should be enabled"
   description = "Network Watcher is a regional service that enables you to monitor and diagnose conditions at a network scenario level in, to, and from Azure. Scenario level monitoring enables you to diagnose problems at an end to end network level view. It is required to have a network watcher resource group to be created in every region where a virtual network is present. An alert is enabled if a network watcher resource group is not available in a particular region."
   query       = query.network_watcher_enabled
+
+  severity = "low"
 
   tags = merge(local.regulatory_compliance_network_common_tags, {
     fedramp_high          = "true"
@@ -45,6 +51,8 @@ control "network_security_group_subnet_associated" {
   title       = "Subnets should be associated with a Network Security Group"
   description = "This policy denies if a gateway subnet is configured with a network security group. Assigning a network security group to a gateway subnet will cause the gateway to stop functioning."
   query       = query.network_security_group_subnet_associated
+
+  severity = "medium"
 
   tags = merge(local.regulatory_compliance_network_common_tags, {
     fedramp_high          = "true"
@@ -60,6 +68,8 @@ control "network_security_group_not_configured_gateway_subnets" {
   description = "Protect your subnet from potential threats by restricting access to it with a Network Security Group (NSG). NSGs contain a list of Access Control List (ACL) rules that allow or deny network traffic to your subnet."
   query       = query.network_security_group_not_configured_gateway_subnets
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_network_common_tags, {
     hipaa_hitrust_v92 = "true"
   })
@@ -69,6 +79,8 @@ control "network_watcher_in_regions_with_virtual_network" {
   title       = "Deploy network watcher when virtual networks are created"
   description = "This policy creates a network watcher resource in regions with virtual networks. You need to ensure existence of a resource group named networkWatcherRG, which will be used to deploy network watcher instances."
   query       = query.network_watcher_in_regions_with_virtual_network
+
+  severity = "low"
 
   tags = merge(local.regulatory_compliance_network_common_tags, {
     hipaa_hitrust_v92 = "true"
@@ -80,6 +92,8 @@ control "network_security_group_diagnostic_setting_deployed" {
   description = "This policy automatically deploys diagnostic settings to network security groups. A storage account with name '{storagePrefixParameter}{NSGLocation}' will be automatically created."
   query       = query.network_security_group_diagnostic_setting_deployed
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_network_common_tags, {
     hipaa_hitrust_v92 = "true"
   })
@@ -89,6 +103,8 @@ control "application_gateway_waf_enabled" {
   title       = "Web Application Firewall (WAF) should be enabled for Application Gateway"
   description = "Deploy Azure Web Application Firewall (WAF) in front of public facing web applications for additional inspection of incoming traffic. Web Application Firewall (WAF) provides centralized protection of your web applications from common exploits and vulnerabilities such as SQL injections, Cross-Site Scripting, local and remote file executions. You can also restrict access to your web applications by countries, IP address ranges, and other http(s) parameters via custom rules."
   query       = query.application_gateway_waf_enabled
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_network_common_tags, {
     fedramp_high          = "true"
@@ -103,6 +119,8 @@ control "network_ddos_enabled" {
   description = "DDoS protection standard should be enabled for all virtual networks with a subnet that is part of an application gateway with a public IP."
   query       = query.network_ddos_enabled
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_network_common_tags, {
     nist_sp_800_53_rev_5 = "true"
   })
@@ -113,6 +131,8 @@ control "network_virtual_network_gateway_no_basic_sku" {
   description = "The use of Basic or Free SKUs in Azure whilst cost effective have significant limitations in terms of what can be monitored and what support can be realized from Microsoft. Typically, these SKU's do not have a service SLA and Microsoft will usually refuse to provide support for them. Consequently Basic/Free SKUs should never be used for production workloads."
   query       = query.network_virtual_network_gateway_no_basic_sku
 
+  severity = "low"
+
   tags = local.regulatory_compliance_network_common_tags
 }
 
@@ -120,6 +140,8 @@ control "network_lb_no_basic_sku" {
   title       = "Network load balancers should use standard SKUs as a minimum"
   description = "The use of Basic or Free SKUs in Azure whilst cost effective have significant limitations in terms of what can be monitored and what support can be realized from Microsoft. Typically, these SKU's do not have a service SLA and Microsoft will usually refuse to provide support for them. Consequently Basic/Free SKUs should never be used for production workloads."
   query       = query.network_lb_no_basic_sku
+
+  severity = "low"
 
   tags = local.regulatory_compliance_network_common_tags
 }
@@ -129,6 +151,8 @@ control "network_public_ip_no_basic_sku" {
   description = "The use of Basic or Free SKUs in Azure whilst cost effective have significant limitations in terms of what can be monitored and what support can be realized from Microsoft. Typically, these SKU's do not have a service SLA and Microsoft will usually refuse to provide support for them. Consequently Basic/Free SKUs should never be used for production workloads."
   query       = query.network_public_ip_no_basic_sku
 
+  severity = "low"
+
   tags = local.regulatory_compliance_network_common_tags
 }
 
@@ -136,6 +160,8 @@ control "network_subnet_protected_by_firewall" {
   title       = "All Internet traffic should be routed via your deployed Azure Firewall"
   description = "Azure Security Center has identified that some of your subnets aren't protected with a next generation firewall. Protect your subnets from potential threats by restricting access to them with Azure Firewall or a supported next generation firewall."
   query       = query.manual_control
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_network_common_tags, {
     nist_sp_800_53_rev_5 = "true"
@@ -147,6 +173,8 @@ control "network_bastion_host_min_1" {
   description = "The Azure Bastion service allows secure remote access to Azure Virtual Machines over the Internet without exposing remote access protocol ports and services directly to the Internet. The Azure Bastion service provides this access using TLS over 443/TCP, and subscribes to hardened configurations within an organization's Azure Active Directory service."
   query       = query.network_bastion_host_min_1
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_network_common_tags
 }
 
@@ -154,6 +182,8 @@ control "network_security_group_https_access_restricted" {
   title       = "Ensure that HTTP(S) access from the Internet is evaluated and restricted"
   description = "Network security groups should be periodically evaluated for port misconfigurations. Where certain ports and protocols may be exposed to the Internet, they should be evaluated for necessity and restricted wherever they are not explicitly required and narrowly configured."
   query       = query.network_security_group_https_access_restricted
+
+  severity = "high"
 
   tags = local.regulatory_compliance_network_common_tags
 }
@@ -163,6 +193,8 @@ control "network_security_group_ssh_access_restricted" {
   description = "Disable SSH access on network security groups from the Internet."
   query       = query.network_security_group_ssh_access_restricted
 
+  severity = "high"
+
   tags = local.regulatory_compliance_network_common_tags
 }
 
@@ -170,6 +202,8 @@ control "network_security_group_udp_service_restricted" {
   title       = "Ensure that UDP Services are restricted from the Internet"
   description = "Disable Internet exposed UDP ports on network security groups."
   query       = query.network_security_group_udp_service_restricted
+
+  severity = "high"
 
   tags = local.regulatory_compliance_network_common_tags
 }
@@ -180,6 +214,8 @@ control "network_sg_flowlog_retention_period_greater_than_90" {
   description = "Network Security Group Flow Logs should be enabled and the retention period is set to greater than or equal to 90 days."
   query       = query.network_sg_flowlog_retention_period_greater_than_90
 
+  severity = "low"
+
   tags = local.regulatory_compliance_network_common_tags
 }
 
@@ -187,6 +223,8 @@ control "network_network_peering_connected" {
   title       = "Virtual network network peering should be in connected state"
   description = "This control ensures whether virtual network network peering is in connetecd state. This contol is non-compliant if network peering is not in connected state."
   query       = query.network_network_peering_connected
+
+  severity = "low"
 
   tags = local.regulatory_compliance_network_common_tags
 }
@@ -196,6 +234,8 @@ control "network_security_group_restrict_inbound_udp_port_445" {
   description = "Network security group provide stateful filtering of inbound/outbound network traffic to Azure resources. It is recommended that no network security group allows unrestricted inbound access to UDP port 445."
   query       = query.network_security_group_restrict_inbound_udp_port_445
 
+  severity = "high"
+
   tags = local.regulatory_compliance_network_common_tags
 }
 
@@ -203,6 +243,8 @@ control "network_security_group_restrict_inbound_tcp_port_20" {
   title       = "Network security groups should restrict inbound TCP port 20 access from internet"
   description = "Network security group provide stateful filtering of inbound/outbound network traffic to Azure resources. It is recommended that no network security group allows unrestricted inbound access to TCP port 20."
   query       = query.network_security_group_restrict_inbound_tcp_port_20
+
+  severity = "high"
 
   tags = local.regulatory_compliance_network_common_tags
 }
@@ -212,6 +254,8 @@ control "network_security_group_restrict_inbound_tcp_port_21" {
   description = "Network security group provide stateful filtering of inbound/outbound network traffic to Azure resources. It is recommended that no network security group allows unrestricted inbound access to TCP port 20."
   query       = query.network_security_group_restrict_inbound_tcp_port_21
 
+  severity = "high"
+
   tags = local.regulatory_compliance_network_common_tags
 }
 
@@ -219,6 +263,8 @@ control "network_security_group_restrict_inbound_icmp_port" {
   title       = "Network security groups should restrict inbound ICMP port access from internet"
   description = "Network security group provide stateful filtering of inbound/outbound network traffic to Azure resources. It is recommended that no network security group allows unrestricted inbound access to ICMP port."
   query       = query.network_security_group_restrict_inbound_icmp_port
+
+  severity = "low"
 
   tags = local.regulatory_compliance_network_common_tags
 }
@@ -228,6 +274,8 @@ control "network_security_group_restrict_inbound_tcp_port_4333" {
   description = "Network security group provide stateful filtering of inbound/outbound network traffic to Azure resources. It is recommended that no network security group allows unrestricted inbound access to TCP port 4333."
   query       = query.network_security_group_restrict_inbound_tcp_port_4333
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_network_common_tags
 }
 
@@ -235,6 +283,8 @@ control "network_security_group_restrict_inbound_tcp_port_3306" {
   title       = "Network security groups should restrict inbound TCP port 3306 access from internet"
   description = "Network security group provide stateful filtering of inbound/outbound network traffic to Azure resources. It is recommended that no network security group allows unrestricted inbound access to TCP port 3306."
   query       = query.network_security_group_restrict_inbound_tcp_port_3306
+
+  severity = "high"
 
   tags = local.regulatory_compliance_network_common_tags
 }
@@ -244,6 +294,8 @@ control "network_security_group_restrict_inbound_tcp_port_53" {
   description = "Network security group provide stateful filtering of inbound/outbound network traffic to Azure resources. It is recommended that no network security group allows unrestricted inbound access to TCP port 53."
   query       = query.network_security_group_restrict_inbound_tcp_port_53
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_network_common_tags
 }
 
@@ -251,6 +303,8 @@ control "network_security_group_restrict_inbound_udp_port_53" {
   title       = "Network security groups should restrict inbound UDP port 53 access from internet"
   description = "Network security group provide stateful filtering of inbound/outbound network traffic to Azure resources. It is recommended that no network security group allows unrestricted inbound access to UDP port 53."
   query       = query.network_security_group_restrict_inbound_udp_port_53
+
+  severity = "medium"
 
   tags = local.regulatory_compliance_network_common_tags
 }
@@ -260,6 +314,8 @@ control "network_security_group_restrict_inbound_udp_port_137" {
   description = "Network security group provide stateful filtering of inbound/outbound network traffic to Azure resources. It is recommended that no network security group allows unrestricted inbound access to UDP port 137."
   query       = query.network_security_group_restrict_inbound_udp_port_137
 
+  severity = "low"
+
   tags = local.regulatory_compliance_network_common_tags
 }
 
@@ -267,6 +323,8 @@ control "network_security_group_restrict_inbound_udp_port_138" {
   title       = "Network security groups should restrict inbound UDP port 137 access from internet"
   description = "Network security group provide stateful filtering of inbound/outbound network traffic to Azure resources. It is recommended that no network security group allows unrestricted inbound access to UDP port 137."
   query       = query.network_security_group_restrict_inbound_udp_port_138
+
+  severity = "low"
 
   tags = local.regulatory_compliance_network_common_tags
 }
@@ -276,6 +334,8 @@ control "network_security_group_restrict_inbound_tcp_port_5432" {
   description = "Network security group provide stateful filtering of inbound/outbound network traffic to Azure resources. It is recommended that no network security group allows unrestricted inbound access to TCP port 5432."
   query       = query.network_security_group_restrict_inbound_tcp_port_5432
 
+  severity = "high"
+
   tags = local.regulatory_compliance_network_common_tags
 }
 
@@ -283,6 +343,8 @@ control "network_security_group_restrict_inbound_tcp_port_25" {
   title       = "Network security groups should restrict inbound TCP port 25 access from internet"
   description = "Network security group provide stateful filtering of inbound/outbound network traffic to Azure resources. It is recommended that no network security group allows unrestricted inbound access to TCP port 25."
   query       = query.network_security_group_restrict_inbound_tcp_port_25
+
+  severity = "high"
 
   tags = local.regulatory_compliance_network_common_tags
 }
@@ -292,6 +354,8 @@ control "network_security_group_restrict_inbound_tcp_port_1433" {
   description = "Network security group provide stateful filtering of inbound/outbound network traffic to Azure resources. It is recommended that no network security group allows unrestricted inbound access to TCP port 1433."
   query       = query.network_security_group_restrict_inbound_tcp_port_1433
 
+  severity = "high"
+
   tags = local.regulatory_compliance_network_common_tags
 }
 
@@ -299,6 +363,8 @@ control "network_security_group_restrict_inbound_udp_port_1434" {
   title       = "Network security groups should restrict inbound UDP port 1434 access from internet"
   description = "Network security group provide stateful filtering of inbound/outbound network traffic to Azure resources. It is recommended that no network security group allows unrestricted inbound access to UDP port 1434."
   query       = query.network_security_group_restrict_inbound_udp_port_1434
+
+  severity = "high"
 
   tags = local.regulatory_compliance_network_common_tags
 }
@@ -308,6 +374,8 @@ control "network_security_group_restrict_inbound_tcp_port_23" {
   description = "Network security group provide stateful filtering of inbound/outbound network traffic to Azure resources. It is recommended that no network security group allows unrestricted inbound access to TCP port 23."
   query       = query.network_security_group_restrict_inbound_tcp_port_23
 
+  severity = "high"
+
   tags = local.regulatory_compliance_network_common_tags
 }
 
@@ -315,6 +383,8 @@ control "network_security_group_restrict_inbound_tcp_port_5500" {
   title       = "Network security groups should restrict inbound TCP port 5500 access from internet"
   description = "Network security group provide stateful filtering of inbound/outbound network traffic to Azure resources. It is recommended that no network security group allows unrestricted inbound access to TCP port 5500."
   query       = query.network_security_group_restrict_inbound_tcp_port_5500
+
+  severity = "medium"
 
   tags = local.regulatory_compliance_network_common_tags
 }
@@ -324,6 +394,8 @@ control "network_security_group_restrict_inbound_tcp_port_5900" {
   description = "Network security group provide stateful filtering of inbound/outbound network traffic to Azure resources. It is recommended that no network security group allows unrestricted inbound access to TCP port 5900."
   query       = query.network_security_group_restrict_inbound_tcp_port_5900
 
+  severity = "high"
+
   tags = local.regulatory_compliance_network_common_tags
 }
 
@@ -331,6 +403,8 @@ control "network_security_group_restrict_inbound_tcp_port_135" {
   title       = "Network security groups should restrict inbound TCP port 135 access from internet"
   description = "Network security group provide stateful filtering of inbound/outbound network traffic to Azure resources. It is recommended that no network security group allows unrestricted inbound access to TCP port 135."
   query       = query.network_security_group_restrict_inbound_tcp_port_135
+
+  severity = "high"
 
   tags = local.regulatory_compliance_network_common_tags
 }
@@ -340,6 +414,8 @@ control "network_security_group_restrict_inbound_tcp_port_445" {
   description = "Network security group provide stateful filtering of inbound/outbound network traffic to Azure resources. It is recommended that no network security group allows unrestricted inbound access to TCP port 445."
   query       = query.network_security_group_restrict_inbound_tcp_port_445
 
+  severity = "critical"
+
   tags = local.regulatory_compliance_network_common_tags
 }
 
@@ -348,6 +424,8 @@ control "network_security_group_outbound_access_restricted" {
   description = "Network security group provide stateful filtering of inbound/outbound network traffic to Azure resources. It is recommended that no network security group allows unrestricted outbound access."
   query       = query.network_security_group_outbound_access_restricted
 
+  severity = "high"
+
   tags = local.regulatory_compliance_network_common_tags
 }
 
@@ -355,6 +433,8 @@ control "network_sg_flowlog_enabled" {
   title       = "Flow logs should be configured for every network security group"
   description = "Audit for network security groups to verify if flow logs are configured. Enabling flow logs allows to log information about IP traffic flowing through network security group. It can be used for optimizing network flows, monitoring throughput, verifying compliance, detecting intrusions and more."
   query       = query.network_sg_flowlog_enabled
+
+  severity = "medium"
 
   tags = merge(local.regulatory_compliance_network_common_tags, {
     rbi_itf_nbfc_v2017 = "true"
@@ -366,6 +446,8 @@ control "network_watcher_flow_log_enabled" {
   description = "Audit for flow log resources to verify if flow log status is enabled. Enabling flow logs allows to log information about IP traffic flowing. It can be used for optimizing network flows, monitoring throughput, verifying compliance, detecting intrusions and more."
   query       = query.network_watcher_flow_log_enabled
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_network_common_tags, {
     rbi_itf_nbfc_v2017 = "true"
   })
@@ -375,6 +457,8 @@ control "network_watcher_flow_log_traffic_analytics_enabled" {
   title       = "Network Watcher flow logs should have traffic analytics enabled"
   description = "Traffic analytics analyzes flow logs to provide insights into traffic flow in your Azure cloud. It can be used to visualize network activity across your Azure subscriptions and identify hot spots, identify security threats, understand traffic flow patterns, pinpoint network misconfigurations and more."
   query       = query.network_watcher_flow_log_traffic_analytics_enabled
+
+  severity = "medium"
 
   tags = merge(local.regulatory_compliance_network_common_tags, {
     rbi_itf_nbfc_v2017 = "true"
@@ -386,6 +470,8 @@ control "application_gateway_waf_uses_specified_mode" {
   description = "Mandates the use of 'Detection' or 'Prevention' mode to be active on all Web Application Firewall policies for Application Gateway."
   query       = query.application_gateway_waf_uses_specified_mode
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_network_common_tags, {
     rbi_itf_nbfc_v2017 = "true"
   })
@@ -396,6 +482,8 @@ control "nsg_network_watcher_flow_log_send_to_log_analytics" {
   description   = "Ensure that network flow logs are captured and fed into a central log analytics workspace."
   query         = query.nsg_network_watcher_flow_log_send_to_log_analytics
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_network_common_tags
 }
 
@@ -403,6 +491,8 @@ control "network_security_group_https_port_80_443_access_restricted" {
   title         = "Ensure that HTTP(S) access from the Internet is evaluated and restricted"
   description   = "Network security groups should be periodically evaluated for port misconfigurations. Where certain ports and protocols may be exposed to the Internet, they should be evaluated for necessity and restricted wherever they are not explicitly required and narrowly configured."
   query         = query.network_security_group_https_port_80_443_access_restricted
+
+  severity = "high"
 
   tags = local.regulatory_compliance_network_common_tags
 }
@@ -412,6 +502,8 @@ control "application_gateway_http2_enabled" {
   description   = "HTTP/2 is a major revision of the HTTP network protocol and offers significant performance improvements over HTTP/1.1. Enabling HTTP/2 on Application Gateway can improve application performance and reduce latency."
   query         = query.application_gateway_http2_enabled
 
+  severity = "low"
+
   tags = local.regulatory_compliance_network_common_tags
 }
 
@@ -419,6 +511,8 @@ control "application_gateway_min_tls_1_2" {
   title         = "Ensure the SSL policy's 'Min protocol version' is set to 'TLSv1_2' or higher on Azure Application Gateway"
   description   = "The TLS protocol secures transmission of data between servers and clients by encrypting the data stream. Vulnerabilities in older versions of TLS can lead to potential security risks. Setting the minimum TLS version to TLSv1_2 or higher ensures that only secure versions of the protocol are used."
   query         = query.application_gateway_min_tls_1_2
+
+  severity = "medium"
 
   tags = local.regulatory_compliance_network_common_tags
 }
@@ -428,6 +522,8 @@ control "network_virtual_network_gateway_aad_only" {
   description   = "VPN Gateway point-to-site connections should use Azure Active Directory authentication for enhanced security and centralized identity management."
   query         = query.network_virtual_network_gateway_aad_only
 
+  severity = "high"
+
   tags = local.regulatory_compliance_network_common_tags
 }
 
@@ -436,6 +532,8 @@ control "web_application_firewall_policy_bot_protection_enabled" {
   description   = "Bot protection helps protect web applications from malicious bots that can scrape content, perform credential stuffing, or launch DDoS attacks. Enabling bot protection enhances application security."
   query         = query.web_application_firewall_policy_bot_protection_enabled
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_network_common_tags
 }
 
@@ -443,6 +541,8 @@ control "web_application_firewall_policy_request_body_inspection_enabled" {
   title         = "Ensure request body inspection is enabled in Azure Web Application Firewall policy on Azure Application Gateway"
   description   = "Request body inspection allows WAF to inspect the body of HTTP requests for potential threats. Enabling this feature enhances security by detecting attacks that may be hidden in request payloads."
   query         = query.web_application_firewall_policy_request_body_inspection_enabled
+
+  severity = "medium"
 
   tags = local.regulatory_compliance_network_common_tags
 }

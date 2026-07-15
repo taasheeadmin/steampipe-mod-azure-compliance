@@ -9,6 +9,8 @@ control "servicebus_namespace_logging_enabled" {
   description = "Audit enabling of resource logs. This enables you to recreate activity trails to use for investigation purposes; when a security incident occurs or when your network is compromised."
   query       = query.servicebus_namespace_logging_enabled
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_servicebus_common_tags, {
     fedramp_high          = "true"
     hipaa_hitrust_v92     = "true"
@@ -22,6 +24,8 @@ control "servicebus_name_space_private_link_used" {
   description = "Azure Private Link lets you connect your virtual network to Azure services without a public IP address at the source or destination. The Private Link platform handles the connectivity between the consumer and services over the Azure backbone network. By mapping private endpoints to Service Bus namespaces, data leakage risks are reduced."
   query       = query.servicebus_name_space_private_link_used
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_servicebus_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -33,6 +37,8 @@ control "servicebus_premium_namespace_cmk_encrypted" {
   title       = "Service Bus Premium namespaces should use a customer-managed key for encryption"
   description = "Azure Service Bus supports the option of encrypting data at rest with either Microsoft-managed keys (default) or customer-managed keys. Choosing to encrypt data using customer-managed keys enables you to assign, rotate, disable, and revoke access to the keys that Service Bus will use to encrypt data in your namespace. Note that Service Bus only supports encryption with customer-managed keys for premium namespaces."
   query       = query.servicebus_premium_namespace_cmk_encrypted
+
+  severity = "medium"
 
   tags = merge(local.regulatory_compliance_servicebus_common_tags, {
     fedramp_high          = "true"
@@ -46,6 +52,8 @@ control "servicebus_use_virtual_service_endpoint" {
   description = "Ensure that Service Bus uses virtual service endpoint. This contol is non-compliant if service bus does not uses virtual service endpoint."
   query       = query.servicebus_use_virtual_service_endpoint
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_servicebus_common_tags
 }
 
@@ -54,6 +62,8 @@ control "servicebus_namespace_azure_ad_authentication_enabled" {
   description = "This policy identifies Service bus namespaces that are not configured with Azure Active Directory (Azure AD) authentication and are enabled with local authentication. Azure AD provides superior security and ease of use over shared access signatures (SAS). With Azure AD, there's no need to store the tokens in your code and risk potential security vulnerabilities. It is recommended to configure the Service bus namespaces with Azure AD authentication so that all actions are strongly authenticated."
   query       = query.servicebus_namespace_azure_ad_authentication_enabled
 
+  severity = "high"
+
   tags = local.regulatory_compliance_servicebus_common_tags
 }
 
@@ -61,6 +71,8 @@ control "servicebus_namespace_no_overly_permissive_network_access" {
   title       = "Service bus namespace should not be configured with overly permissive network access"
   description = "This policy identifies Azure Service bus namespaces configured with overly permissive network access. By default, Service Bus namespaces are accessible from the internet as long as the request comes with valid authentication and authorization. With an IP firewall, you can restrict it further to only a set of IPv4 addresses or IPv4 address ranges. With Virtual Networks, the network traffic path is secured on both ends. It is recommended to configure the Service bus namespace with an IP firewall or by Virtual Network; so that the Service bus namespace is accessible only to restricted entities."
   query       = query.servicebus_namespace_no_overly_permissive_network_access
+
+  severity = "high"
 
   tags = local.regulatory_compliance_servicebus_common_tags
 }

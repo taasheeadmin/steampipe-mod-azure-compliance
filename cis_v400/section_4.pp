@@ -41,6 +41,8 @@ control "cis_v400_4_1_1" {
   query         = query.manual_control
   documentation = file("./cis_v400/docs/cis_v400_4_1_1.md")
 
+  severity = "critical"
+
   tags = merge(local.cis_v400_4_1_common_tags, {
     cis_item_id = "4.1.1"
     cis_level   = "2"

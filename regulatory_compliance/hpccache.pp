@@ -9,6 +9,8 @@ control "hpc_cache_encrypted_with_cmk" {
   description = "Manage encryption at rest of Azure HPC Cache with customer-managed keys. By default, customer data is encrypted with service-managed keys, but customer-managed keys are commonly required to meet regulatory compliance standards. Customer-managed keys enable the data to be encrypted with an Azure Key Vault key created and owned by you. You have full control and responsibility for the key lifecycle, including rotation and management."
   query       = query.hpc_cache_encrypted_with_cmk
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_hpccache_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"

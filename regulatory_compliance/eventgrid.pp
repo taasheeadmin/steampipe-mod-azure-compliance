@@ -9,6 +9,8 @@ control "eventgrid_domain_private_link_used" {
   description = "Azure Private Link lets you connect your virtual network to Azure services without a public IP address at the source or destination. The Private Link platform handles the connectivity between the consumer and services over the Azure backbone network. By mapping private endpoints to your Event Grid domain instead of the entire service, you'll also be protected against data leakage risks."
   query       = query.eventgrid_domain_private_link_used
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_eventgrid_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -20,6 +22,8 @@ control "eventgrid_topic_private_link_used" {
   title       = "Azure Event Grid topics should use private link"
   description = "Azure Private Link lets you connect your virtual network to Azure services without a public IP address at the source or destination. The Private Link platform handles the connectivity between the consumer and services over the Azure backbone network. By mapping private endpoints to your Event Grid topic instead of the entire service, you'll also be protected against data leakage risks."
   query       = query.eventgrid_topic_private_link_used
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_eventgrid_common_tags, {
     fedramp_high          = "true"
@@ -33,6 +37,8 @@ control "eventgrid_domain_restrict_public_access" {
   description = "Ensure that Event Grid Domain public network access is disabled. This control is non-compliant if Event Grid domains have public network access enabled."
   query       = query.eventgrid_domain_restrict_public_access
 
+  severity = "high"
+
   tags = local.regulatory_compliance_eventgrid_common_tags
 }
 
@@ -40,6 +46,8 @@ control "eventgrid_domain_identity_provider_enabled" {
   title       = "Event Grid domains identity provider should be enabled"
   description = "Ensure that managed identity provider is enabled for Event Grid Domain. This control is non-compliant if Event Grid domain identity provider is disabled."
   query       = query.eventgrid_domain_identity_provider_enabled
+
+  severity = "medium"
 
   tags = local.regulatory_compliance_eventgrid_common_tags
 }
@@ -49,6 +57,8 @@ control "eventgrid_topic_local_auth_enabled" {
   description = "This control checks if Event Grid topics have local authentication enabled."
   query       = query.eventgrid_topic_local_auth_enabled
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_eventgrid_common_tags
 }
 
@@ -56,6 +66,8 @@ control "eventgrid_topic_identity_provider_enabled" {
   title       = "Event Grid topics identity provider should be enabled"
   description = "Ensure that managed identity provider is enabled for the Event Grid Topic. This control is non-compliant if Event Grid topic identity provider is disabled."
   query       = query.eventgrid_topic_identity_provider_enabled
+
+  severity = "medium"
 
   tags = local.regulatory_compliance_eventgrid_common_tags
 }

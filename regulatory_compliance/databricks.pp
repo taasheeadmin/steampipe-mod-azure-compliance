@@ -9,6 +9,8 @@ control "databricks_workspace_deployed_in_custom_vnet" {
   description = "Databricks workspaces should be deployed in a customer-managed virtual network to ensure that the workspace is not accessible from the public internet."
   query       = query.databricks_workspace_deployed_in_custom_vnet
 
+  severity = "high"
+
   tags = local.regulatory_compliance_databricks_common_tags
 }
 
@@ -16,6 +18,8 @@ control "databricks_workspace_subnet_with_nsg_configured" {
   title         = "Ensure that network security groups are configured for Databricks subnets"
   description   = "Network Security Groups (NSGs) should be implemented to control inbound and outbound traffic to Azure Databricks subnets, ensuring only authorized communication."
   query         = query.databricks_workspace_subnet_with_nsg_configured
+
+  severity = "high"
 
   tags = local.regulatory_compliance_databricks_common_tags
 }
@@ -25,6 +29,8 @@ control "databricks_workspace_diagnostic_log_delivery_configured" {
   description   = "Azure Databricks Diagnostic Logging provides insights into system operations, user activities, and security events within a Databricks workspace."
   query         = query.databricks_workspace_diagnostic_log_delivery_configured
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_databricks_common_tags
 }
 
@@ -32,6 +38,8 @@ control "databricks_workspace_no_public_ip_enabled" {
   title         = "Ensure 'No Public IP' is set to 'Enabled'"
   description   = "Enable secure cluster connectivity (also known as no public IP) on Azure Databricks workspaces to ensure that clusters do not have public IP addresses and communicate with the control plane over a secure connection."
   query         = query.databricks_workspace_no_public_ip_enabled
+
+  severity = "high"
 
   tags = local.regulatory_compliance_databricks_common_tags
 }
@@ -41,6 +49,8 @@ control "databricks_workspace_public_network_access_disabled" {
   description   = "Disable public network access to prevent exposure to the internet and reduce the risk of unauthorized access. Use private endpoints to securely manage access within trusted networks."
   query         = query.databricks_workspace_public_network_access_disabled
 
+  severity = "high"
+
   tags = local.regulatory_compliance_databricks_common_tags
 }
 
@@ -48,6 +58,8 @@ control "databricks_workspace_uses_private_endpoint" {
   title         = "Ensure private endpoints are used to access Azure Databricks workspaces"
   description   = "Use private endpoints for Azure Databricks workspaces to allow clients and services to securely access data located over a network via an encrypted Private Link. To do this, the private endpoint uses an IP address from the VNet for each service. Network traffic between disparate services securely traverses encrypted over the VNet. This VNet can also link addressing space, extending your network and accessing resources on it. Similarly, it can be a tunnel through public networks to connect remote infrastructures together. This creates further security through segmenting network traffic and preventing outside sources from accessing it."
   query         = query.databricks_workspace_uses_private_endpoint
+
+  severity = "high"
 
   tags = local.regulatory_compliance_databricks_common_tags
 }
@@ -79,6 +91,8 @@ control "databricks_workspace_cmk_configured" {
   title       = "Databricks workspaces should have a customer-managed key configured"
   description = "Databricks workspaces should have a customer-managed key configured to encrypt data at rest."
   query       = query.databricks_workspace_cmk_configured
+
+  severity = "high"
 
   tags = local.regulatory_compliance_databricks_common_tags
 }

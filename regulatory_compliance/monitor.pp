@@ -9,6 +9,8 @@ control "monitor_log_profile_enabled_for_all_categories" {
   description = "This policy ensures that a log profile collects logs for categories 'write,' 'delete,' and 'action'."
   query       = query.monitor_log_profile_enabled_for_all_categories
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_monitor_common_tags, {
     hipaa_hitrust_v92  = "true"
     rbi_itf_nbfc_v2017 = "true"
@@ -20,6 +22,8 @@ control "monitor_log_alert_for_administrative_operations" {
   description = "This policy audits specific Administrative operations with no activity log alerts configured."
   query       = query.monitor_log_alert_for_administrative_operations
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_monitor_common_tags, {
     hipaa_hitrust_v92 = "true"
   })
@@ -29,6 +33,8 @@ control "monitor_log_profile_enabled_for_all_regions" {
   title       = "Azure Monitor should collect activity logs from all regions"
   description = "This policy audits the Azure Monitor log profile which does not export activities from all Azure supported regions including global."
   query       = query.monitor_log_profile_enabled_for_all_regions
+
+  severity = "medium"
 
   tags = merge(local.regulatory_compliance_monitor_common_tags, {
     hipaa_hitrust_v92  = "true"
@@ -41,6 +47,8 @@ control "log_profile_enabled_for_all_subscription" {
   description = "This policy ensures if a log profile is enabled for exporting activity logs. It audits if there is no log profile created to export the logs either to a storage account or to an event hub."
   query       = query.log_profile_enabled_for_all_subscription
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_monitor_common_tags, {
     rbi_itf_nbfc_v2017 = "true"
   })
@@ -50,6 +58,8 @@ control "audit_diagnostic_setting" {
   title       = "Audit diagnostic setting for selected resource types"
   description = "Audit diagnostic setting for selected resource types. Be sure to select only resource types which support diagnostics settings."
   query       = query.manual_control_hipaa
+
+  severity = "medium"
 
   tags = merge(local.regulatory_compliance_monitor_common_tags, {
     hipaa_hitrust_v92 = "true"
@@ -62,6 +72,8 @@ control "monitor_log_cluster_infrastructure_encryption_enabled" {
   description = "To ensure secure data encryption is enabled at the service level and the infrastructure level with two different encryption algorithms and two different keys, use an Azure Monitor dedicated cluster. This option is enabled by default when supported at the region, see https://docs.microsoft.com/azure/azure-monitor/platform/customer-managed-keys#customer-managed-key-overview."
   query       = query.manual_control
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_monitor_common_tags, {
     nist_sp_800_53_rev_5 = "true"
   })
@@ -71,6 +83,8 @@ control "monitor_log_analytics_workspace_integrated_with_encrypted_storage_accou
   title       = "Saved-queries in Azure Monitor should be saved in customer storage account for logs encryption"
   description = "Link storage account to Log Analytics workspace to protect saved-queries with storage account encryption. Customer-managed keys are commonly required to meet regulatory compliance and for more control over the access to your saved-queries in Azure Monitor. For more details on the above, see https://docs.microsoft.com/azure/azure-monitor/platform/customer-managed-keys?tabs=portal#customer-managed-key-for-saved-queries."
   query       = query.manual_control
+
+  severity = "medium"
 
   tags = merge(local.regulatory_compliance_monitor_common_tags, {
     nist_sp_800_53_rev_5 = "true"
@@ -82,6 +96,8 @@ control "monitor_log_cluster_encrypted_with_cmk" {
   description = "Create Azure Monitor logs cluster with customer-managed keys encryption. By default, the log data is encrypted with service-managed keys, but customer-managed keys are commonly required to meet regulatory compliance. Customer-managed key in Azure Monitor gives you more control over the access to you data, see https://docs.microsoft.com/azure/azure-monitor/platform/customer-managed-keys."
   query       = query.manual_control
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_monitor_common_tags, {
     nist_sp_800_53_rev_5 = "true"
   })
@@ -91,6 +107,8 @@ control "monitor_log_profile_retention_365_days" {
   title       = "Monitor log profiles should have retention set to 365 days or greater"
   description = "This control is non-compliant if Monitor log profile retention is set to less than 365 days."
   query       = query.monitor_log_profile_retention_365_days
+
+  severity = "low"
 
   tags = merge(local.regulatory_compliance_monitor_common_tags, {
     rbi_itf_nbfc_v2017 = "true"
@@ -102,6 +120,8 @@ control "monitor_diagnostic_settings_captures_proper_categories" {
   description = "A Diagnostic Setting must exist. If a Diagnostic Setting does not exist, the navigation and options within this recommendation will not be available. Please review the recommendation at the beginning of this subsection titled: 'Ensure that a 'Diagnostic Setting' exists.' The diagnostic setting should be configured to log the appropriate activities from the control/management plane."
   query       = query.monitor_diagnostic_settings_captures_proper_categories
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_monitor_common_tags
 }
 
@@ -109,6 +129,8 @@ control "monitor_log_alert_create_policy_assignment" {
   title       = "Ensure that Activity Log Alert exists for Create Policy Assignment"
   description = "Create an activity log alert for the Create Policy Assignment event."
   query       = query.monitor_log_alert_create_policy_assignment
+
+  severity = "high"
 
   tags = local.regulatory_compliance_monitor_common_tags
 }
@@ -118,6 +140,8 @@ control "monitor_log_alert_create_update_nsg_rule" {
   description = "Create an activity log alert for the Create or Update Network Security Group Rule event."
   query       = query.monitor_log_alert_create_update_nsg_rule
 
+  severity = "high"
+
   tags = local.regulatory_compliance_monitor_common_tags
 }
 
@@ -125,6 +149,8 @@ control "monitor_log_alert_create_update_nsg" {
   title       = "Ensure that Activity Log Alert exists for Create or Update Network Security Group"
   description = "Create an Activity Log Alert for the Create or Update Network Security Group event."
   query       = query.monitor_log_alert_create_update_nsg
+
+  severity = "high"
 
   tags = local.regulatory_compliance_monitor_common_tags
 }
@@ -134,6 +160,8 @@ control "monitor_log_alert_create_update_public_ip_address" {
   description = "Create an activity log alert for the Create or Update Public IP Addresses rule."
   query       = query.monitor_log_alert_create_update_public_ip_address
 
+  severity = "high"
+
   tags = local.regulatory_compliance_monitor_common_tags
 }
 
@@ -141,6 +169,8 @@ control "monitor_log_alert_create_update_security_solution" {
   title       = "Ensure that Activity Log Alert exists for Create or Update Security Solution"
   description = "Create an activity log alert for the Create or Update Security Solution event."
   query       = query.monitor_log_alert_create_update_security_solution
+
+  severity = "high"
 
   tags = local.regulatory_compliance_monitor_common_tags
 }
@@ -150,6 +180,8 @@ control "monitor_log_alert_create_update_sql_servers_firewall_rule" {
   description = "Create an activity log alert for the Create or Update SQL Server Firewall Rule event."
   query       = query.monitor_log_alert_create_update_sql_servers_firewall_rule
 
+  severity = "high"
+
   tags = local.regulatory_compliance_monitor_common_tags
 }
 
@@ -157,6 +189,8 @@ control "monitor_log_alert_delete_nsg_rule" {
   title       = "Ensure that Activity Log Alert exists for Delete Network Security Group Rule"
   description = "Create an activity log alert for the Delete Network Security Group Rule event."
   query       = query.monitor_log_alert_delete_nsg_rule
+
+  severity = "high"
 
   tags = local.regulatory_compliance_monitor_common_tags
 }
@@ -166,6 +200,8 @@ control "monitor_log_alert_delete_nsg" {
   description = "Create an activity log alert for the Delete Network Security Group event."
   query       = query.monitor_log_alert_delete_nsg
 
+  severity = "high"
+
   tags = local.regulatory_compliance_monitor_common_tags
 }
 
@@ -173,6 +209,8 @@ control "monitor_log_alert_delete_policy_assignment" {
   title       = "Ensure that Activity Log Alert exists for Delete Policy Assignment"
   description = "Create an activity log alert for the Delete Policy Assignment event."
   query       = query.monitor_log_alert_delete_policy_assignment
+
+  severity = "high"
 
   tags = local.regulatory_compliance_monitor_common_tags
 }
@@ -182,6 +220,8 @@ control "monitor_log_alert_delete_public_ip_address" {
   description = "Create an activity log alert for the Delete Public IP Address rule."
   query       = query.monitor_log_alert_delete_public_ip_address
 
+  severity = "high"
+
   tags = local.regulatory_compliance_monitor_common_tags
 }
 
@@ -189,6 +229,8 @@ control "monitor_log_alert_delete_security_solution" {
   title       = "Ensure that Activity Log Alert exists for Delete Security Solution"
   description = "Create an activity log alert for the Delete Security Solution event."
   query       = query.monitor_log_alert_delete_security_solution
+
+  severity = "high"
 
   tags = local.regulatory_compliance_monitor_common_tags
 }
@@ -198,6 +240,8 @@ control "monitor_log_alert_delete_sql_servers_firewall_rule" {
   description = "Create an activity log alert for the 'Delete SQL Server Firewall Rule.'"
   query       = query.monitor_log_alert_delete_sql_servers_firewall_rule
 
+  severity = "high"
+
   tags = local.regulatory_compliance_monitor_common_tags
 }
 
@@ -206,6 +250,8 @@ control "monitor_log_alert_sql_firewall_rule" {
   description = "Create an activity log alert for the Create or Update or Delete SQL Server Firewall Rule event."
   query       = query.monitor_log_alert_sql_firewall_rule
 
+  severity = "high"
+
   tags = local.regulatory_compliance_monitor_common_tags
 }
 
@@ -213,6 +259,8 @@ control "monitor_logs_storage_container_insights_activity_logs_encrypted_with_by
   title       = "Ensure the storage account containing the container with activity logs is encrypted with Customer Managed Key"
   description = "Storage accounts with the activity log exports can be configured to use Customer Managed Keys (CMK)."
   query       = query.monitor_logs_storage_container_insights_activity_logs_encrypted_with_byok
+
+  severity = "medium"
 
   tags = merge(local.regulatory_compliance_monitor_common_tags, {
     rbi_itf_nbfc_v2017 = "true"
@@ -224,6 +272,8 @@ control "application_insights_linked_to_log_analytics_workspace" {
   description = "Link the Application Insights component to a Log Analytics workspace for logs encryption. Customer-managed keys are commonly required to meet regulatory compliance and for more control over the access to your data in Azure Monitor. Linking your component to a Log Analytics workspace that's enabled with a customer-managed key, ensures that your Application Insights logs meet this compliance requirement, see https://docs.microsoft.com/azure/azure-monitor/platform/customer-managed-keys."
   query       = query.application_insights_linked_to_log_analytics_workspace
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_monitor_common_tags, {
     rbi_itf_nbfc_v2017 = "true"
   })
@@ -234,6 +284,8 @@ control "monitor_logs_storage_container_insights_operational_logs_encrypted_with
   description = "Storage accounts with the activity log exports can be configured to use Customer Managed Keys (CMK)."
   query       = query.monitor_logs_storage_container_insights_operational_logs_encrypted_with_byok
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_monitor_common_tags
 }
 
@@ -241,6 +293,8 @@ control "monitor_logs_storage_container_insights_operational_logs_not_public_acc
   title       = "Ensure the storage container storing the operational logs is not publicly accessible"
   description = "The storage account container containing the operational log export should not be publicly accessible."
   query       = query.monitor_logs_storage_container_insights_operational_logs_not_public_accessible
+
+  severity = "high"
 
   tags = local.regulatory_compliance_monitor_common_tags
 }
@@ -250,6 +304,8 @@ control "monitor_logs_storage_container_insights_activity_logs_not_public_access
   description = "The storage account container containing the activity log export should not be publicly accessible."
   query       = query.monitor_logs_storage_container_insights_activity_logs_not_public_accessible
 
+  severity = "high"
+
   tags = local.regulatory_compliance_monitor_common_tags
 }
 
@@ -257,6 +313,8 @@ control "log_analytics_workspace_block_log_ingestion_and_querying_from_public" {
   title       = "Log Analytics workspaces should block log ingestion and querying from public networks"
   description = "Improve workspace security by blocking log ingestion and querying from public networks. Only private-link connected networks will be able to ingest and query logs on this workspace. Learn more at https://aka.ms/AzMonPrivateLink#configure-log-analytics."
   query       = query.log_analytics_workspace_block_log_ingestion_and_querying_from_public
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_monitor_common_tags, {
     rbi_itf_nbfc_v2017 = "true"
@@ -268,6 +326,8 @@ control "log_analytics_workspace_block_non_azure_ingestion" {
   description = "Enforcing log ingestion to require Azure Active Directory authentication prevents unauthenticated logs from an attacker which could lead to incorrect status, false alerts, and incorrect logs stored in the system."
   query       = query.log_analytics_workspace_block_non_azure_ingestion
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_monitor_common_tags, {
     rbi_itf_nbfc_v2017 = "true"
   })
@@ -278,6 +338,8 @@ control "application_insights_block_log_ingestion_and_querying_from_public" {
   description = "Improve Application Insights security by blocking log ingestion and querying from public networks. Only private-link connected networks will be able to ingest and query logs of this component. Learn more at https://aka.ms/AzMonPrivateLink#configure-application-insights."
   query       = query.application_insights_block_log_ingestion_and_querying_from_public
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_monitor_common_tags, {
     rbi_itf_nbfc_v2017 = "true"
   })
@@ -287,6 +349,8 @@ control "monitor_diagnostic_settings_exists_for_subscription" {
   title         = "Ensure that a 'Diagnostic Setting' exists for Subscription Activity Logs"
   description   = "Enable Diagnostic settings for exporting activity logs. Diagnostic settings are available for each individual resource within a subscription. Settings should be configured for all appropriate resources for your environment."
   query         = query.monitor_diagnostic_settings_exists_for_subscription
+
+  severity = "medium"
 
   tags = local.regulatory_compliance_monitor_common_tags
 }

@@ -9,6 +9,8 @@ control "mariadb_server_geo_redundant_backup_enabled" {
   description = "Azure Database for MariaDB allows you to choose the redundancy option for your database server. It can be set to a geo-redundant backup storage in which the data is not only stored within the region in which your server is hosted, but is also replicated to a paired region to provide recovery option in case of a region failure. Configuring geo-redundant storage for backup is only allowed during server create."
   query       = query.mariadb_server_geo_redundant_backup_enabled
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_mariadb_common_tags, {
     fedramp_high          = "true"
     hipaa_hitrust_v92     = "true"
@@ -23,6 +25,8 @@ control "mariadb_server_public_network_access_disabled" {
   description = "Disable the public network access property to improve security and ensure your Azure Database for MariaDB can only be accessed from a private endpoint. This configuration strictly disables access from any public address space outside of Azure IP range, and denies all logins that match IP or virtual network-based firewall rules."
   query       = query.mariadb_server_public_network_access_disabled
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_mariadb_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -35,6 +39,8 @@ control "mariadb_server_private_link_used" {
   description = "Private endpoint connections enforce secure communication by enabling private connectivity to Azure Database for MariaDB. Configure a private endpoint connection to enable access to traffic coming only from known networks and prevent access from all other IP addresses, including within Azure."
   query       = query.mariadb_server_private_link_used
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_postgres_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -46,6 +52,8 @@ control "mariadb_server_ssl_enabled" {
   title       = "MariaDB servers should have 'Enforce SSL connection' set to 'ENABLED'"
   description = "This control checks whether MariaDB servers SSL enforcement is enabled. This control is non-compliant if SSL enforcement is disabled."
   query       = query.mariadb_server_ssl_enabled
+
+  severity = "high"
 
   tags = local.regulatory_compliance_postgres_common_tags
 }

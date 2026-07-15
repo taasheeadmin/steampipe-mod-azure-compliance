@@ -9,6 +9,8 @@ control "apimanagement_service_with_virtual_network" {
   description = "Azure Virtual Network deployment provides enhanced security, isolation and allows you to place your API Management service in a non-internet routable network that you control access to. These networks can then be connected to your on-premises networks using various VPN technologies, which enables access to your backend services within the network and/or on-premises. The developer portal and API gateway, can be configured to be accessible either from the Internet or only within the virtual network."
   query       = query.apimanagement_service_with_virtual_network
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_apimanagement_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -20,6 +22,8 @@ control "apimanagement_service_client_certificate_enabled" {
   title       = "API Management client certificate should be enabled"
   description = "Ensure API Management client certificate is enabled. This control is non-compliant if API Management client certificate is disabled."
   query       = query.apimanagement_service_client_certificate_enabled
+
+  severity = "high"
 
   tags = local.regulatory_compliance_apimanagement_common_tags
 }

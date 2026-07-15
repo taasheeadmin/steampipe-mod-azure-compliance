@@ -9,6 +9,8 @@ control "eventhub_namespace_logging_enabled" {
   description = "Audit enabling of resource logs. This enables you to recreate activity trails to use for investigation purposes; when a security incident occurs or when your network is compromised."
   query       = query.eventhub_namespace_logging_enabled
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_eventhub_common_tags, {
     fedramp_high          = "true"
     hipaa_hitrust_v92     = "true"
@@ -22,6 +24,8 @@ control "eventhub_namespace_use_virtual_service_endpoint" {
   description = "This policy audits any Event Hub not configured to use a virtual network service endpoint."
   query       = query.eventhub_namespace_use_virtual_service_endpoint
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_eventhub_common_tags, {
     hipaa_hitrust_v92 = "true"
   })
@@ -31,6 +35,8 @@ control "eventhub_namespace_private_link_used" {
   title       = "Event Hub namespaces should use private link"
   description = "Azure Private Link lets you connect your virtual network to Azure services without a public IP address at the source or destination. The Private Link platform handles the connectivity between the consumer and services over the Azure backbone network. By mapping private endpoints to Event Hub namespaces, data leakage risks are reduced."
   query       = query.eventhub_namespace_private_link_used
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_eventhub_common_tags, {
     fedramp_high          = "true"
@@ -43,6 +49,8 @@ control "eventhub_namespace_cmk_encryption_enabled" {
   title       = "Event Hub namespaces should use a customer-managed key for encryption"
   description = "Azure Event Hubs supports the option of encrypting data at rest with either Microsoft-managed keys (default) or customer-managed keys. Choosing to encrypt data using customer-managed keys enables you to assign, rotate, disable, and revoke access to the keys that Event Hub will use to encrypt data in your namespace. Note that Event Hub only supports encryption with customer-managed keys for namespaces in dedicated clusters."
   query       = query.eventhub_namespace_cmk_encryption_enabled
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_eventhub_common_tags, {
     fedramp_high          = "true"

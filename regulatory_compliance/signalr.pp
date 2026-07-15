@@ -9,6 +9,8 @@ control "signalr_service_private_link_used" {
   description = "Azure Private Link lets you connect your virtual network to Azure services without a public IP address at the source or destination. The private link platform handles the connectivity between the consumer and services over the Azure backbone network. By mapping private endpoints to your Azure SignalR Service resource instead of the entire service, you'll reduce your data leakage risks."
   query       = query.signalr_service_private_link_used
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_signalr_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -20,6 +22,8 @@ control "signalr_service_no_free_tier_sku" {
   title       = "SignalR Service should not use free tier SKU"
   description = "This control checks whether SignalR service uses paid SKU for its SLA."
   query       = query.signalr_service_no_free_tier_sku
+
+  severity = "low"
 
   tags = local.regulatory_compliance_signalr_common_tags
 }

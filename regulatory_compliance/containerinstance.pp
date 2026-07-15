@@ -9,6 +9,8 @@ control "container_instance_container_group_encrypted_using_cmk" {
   description = "Secure your containers with greater flexibility using customer-managed keys. When you specify a customer-managed key, that key is used to protect and control access to the key that encrypts your data. Using customer-managed keys provides additional capabilities to control rotation of the key encryption key or cryptographically erase data."
   query       = query.container_instance_container_group_encrypted_using_cmk
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_containerinstance_common_tags, {
     nist_sp_800_171_rev_2 = "true"
     nist_sp_800_53_rev_5  = "true"
@@ -20,6 +22,8 @@ control "container_instance_container_group_in_virtual_network" {
   description = "This control ensures that the container group is deployed into a virtual network."
   query       = query.container_instance_container_group_in_virtual_network
 
+  severity = "high"
+
   tags = local.regulatory_compliance_containerinstance_common_tags
 }
 
@@ -28,6 +32,8 @@ control "container_instance_container_group_identity_provider_enabled" {
   description = "Ensure that managed identity provider is enabled for the container instance container group. This control is non-compliant if container instance container group identity provider is disabled."
   query       = query.container_instance_container_group_identity_provider_enabled
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_containerinstance_common_tags
 }
 
@@ -35,6 +41,8 @@ control "container_instance_container_group_secured_environment_variable" {
   title       = "Container instance container groups should use secured environment variable"
   description = "Ensure that container instance container group uses secured environment variables. This control is non-compliant if container instance container group does not uses secured environment variables."
   query       = query.container_instance_container_group_secured_environment_variable
+
+  severity = "medium"
 
   tags = local.regulatory_compliance_containerinstance_common_tags
 }

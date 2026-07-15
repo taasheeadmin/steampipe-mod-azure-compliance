@@ -9,6 +9,8 @@ control "iot_hub_logging_enabled" {
   description = "Audit enabling of resource logs. This enables you to recreate activity trails to use for investigation purposes; when a security incident occurs or when your network is compromised."
   query       = query.iot_hub_logging_enabled
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_iothub_common_tags, {
     fedramp_high          = "true"
     hipaa_hitrust_v92     = "true"
@@ -22,6 +24,8 @@ control "iot_hub_private_link_used" {
   description = "Azure Private Link lets you connect your virtual network to Azure services without a public IP address at the source or destination. The Private Link platform handles the connectivity between the consumer and services over the Azure backbone network. By mapping private endpoints to the IoT Hub device provisioning service, data leakage risks are reduced."
   query       = query.iot_hub_private_link_used
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_iothub_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -33,6 +37,8 @@ control "iot_hub_encrypted_with_cmk" {
   title       = "IoT Hub device provisioning service data should be encrypted using customer-managed keys (CMK)"
   description = "Use customer-managed keys to manage the encryption at rest of your IoT Hub device provisioning service. The data is automatically encrypted at rest with service-managed keys, but customer-managed keys (CMK) are commonly required to meet regulatory compliance standards. CMKs enable the data to be encrypted with an Azure Key Vault key created and owned by you. Learn more about CMK encryption at https://aka.ms/dps/CMK."
   query       = query.manual_control
+
+  severity = "medium"
 
   tags = merge(local.regulatory_compliance_iothub_common_tags, {
     nist_sp_800_53_rev_5  = "true"

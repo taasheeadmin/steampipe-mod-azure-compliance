@@ -9,6 +9,8 @@ control "app_configuration_private_link_used" {
   description = "Azure Private Link lets you connect your virtual network to Azure services without a public IP address at the source or destination. The private link platform handles the connectivity between the consumer and services over the Azure backbone network. By mapping private endpoints to your app configuration instances instead of the entire service, you'll also be protected against data leakage risks."
   query       = query.app_configuration_private_link_used
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_appconfiguration_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -21,6 +23,8 @@ control "app_configuration_sku_standard" {
   description = "Ensure that App Configuration uses standard SKU tier. This control is non-compliant if App Configuration does not use standard SKU."
   query       = query.app_configuration_sku_standard
 
+  severity = "low"
+
   tags = local.regulatory_compliance_appconfiguration_common_tags
 }
 
@@ -28,6 +32,8 @@ control "app_configuration_encryption_enabled" {
   title       = "App Configuration encryption should be enabled"
   description = "Enabling App Configuration encryption helps protect and safeguard your data to meet your organizational security and compliance commitments."
   query       = query.app_configuration_encryption_enabled
+
+  severity = "medium"
 
   tags = local.regulatory_compliance_appconfiguration_common_tags
 }

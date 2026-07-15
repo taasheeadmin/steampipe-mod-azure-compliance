@@ -9,6 +9,8 @@ control "frontdoor_waf_enabled" {
   description = "Deploy Azure Web Application Firewall (WAF) in front of public facing web applications for additional inspection of incoming traffic. Web Application Firewall (WAF) provides centralized protection of your web applications from common exploits and vulnerabilities such as SQL injections, Cross-Site Scripting, local and remote file executions. You can also restrict access to your web applications by countries, IP address ranges, and other http(s) parameters via custom rules."
   query       = query.frontdoor_waf_enabled
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_frontdoor_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"

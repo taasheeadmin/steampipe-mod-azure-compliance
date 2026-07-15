@@ -9,6 +9,8 @@ control "recovery_service_vault_encrypted_with_cmk" {
   description = "Use customer-managed keys to manage the encryption at rest of your backup data. By default, customer data is encrypted with service-managed keys, but customer-managed keys are commonly required to meet regulatory compliance standards. Customer-managed keys enable the data to be encrypted with an Azure Key Vault key created and owned by you. You have full control and responsibility for the key lifecycle, including rotation and management. Learn more at https://aka.ms/AB-CmkEncryption."
   query       = query.manual_control
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_recoveryservice_common_tags, {
     nist_sp_800_53_rev_5 = "true"
   })
@@ -19,6 +21,8 @@ control "recovery_service_vault_uses_managed_identity" {
   description = "Recovery Services vaults should use a managed identity for enhanced authentication security."
   query       = query.recovery_service_vault_uses_managed_identity
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_recoveryservice_common_tags
 }
 
@@ -26,6 +30,8 @@ control "recovery_service_vault_uses_private_link" {
   title       = "Recovery Services vaults should use private link"
   description = "Azure Private Link lets you connect your virtual network to Azure services without a public IP address at the source or destination. The Private Link platform handles the connectivity between the consumer and services over the Azure backbone network. By mapping private endpoints to Azure Recovery Services vaults, data leakage risks are reduced. Learn more about private links for Azure Site Recovery at: https://aka.ms/HybridScenarios-PrivateLink and https://aka.ms/AzureToAzure-PrivateLink."
   query       = query.recovery_service_vault_uses_private_link
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_recoveryservice_common_tags, {
     rbi_itf_nbfc_v2017 = "true"
@@ -36,6 +42,8 @@ control "recovery_service_vault_uses_private_link_for_backup" {
   title       = "Azure Recovery Services vaults should use private link for backup"
   description = "Azure Private Link lets you connect your virtual network to Azure services without a public IP address at the source or destination. The Private Link platform handles the connectivity between the consumer and services over the Azure backbone network. By mapping private endpoints to Azure Recovery Services vaults, data leakage risks are reduced. Learn more about private links at: https://aka.ms/AB-PrivateEndpoints."
   query       = query.recovery_service_vault_uses_private_link_for_backup
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_recoveryservice_common_tags, {
     rbi_itf_nbfc_v2017 = "true"

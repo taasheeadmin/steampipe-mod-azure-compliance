@@ -9,6 +9,8 @@ control "keyvault_purge_protection_enabled" {
   description = "Malicious deletion of a key vault can lead to permanent data loss. A malicious insider in your organization can potentially delete and purge key vaults. Purge protection protects you from insider attacks by enforcing a mandatory retention period for soft deleted key vaults. No one inside your organization or Microsoft will be able to purge your key vaults during the soft delete retention period."
   query       = query.keyvault_purge_protection_enabled
 
+  severity = "critical"
+
   tags = merge(local.regulatory_compliance_keyvault_common_tags, {
     fedramp_high          = "true"
     hipaa_hitrust_v92     = "true"
@@ -23,6 +25,8 @@ control "keyvault_logging_enabled" {
   description = "Audit enabling of resource logs. This enables you to recreate activity trails to use for investigation purposes when a security incident occurs or when your network is compromised."
   query       = query.keyvault_logging_enabled
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_keyvault_common_tags, {
     fedramp_high          = "true"
     hipaa_hitrust_v92     = "true"
@@ -36,6 +40,8 @@ control "keyvault_vault_use_virtual_service_endpoint" {
   description = "This policy audits any Key Vault not configured to use a virtual network service endpoint."
   query       = query.keyvault_vault_use_virtual_service_endpoint
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_keyvault_common_tags, {
     hipaa_hitrust_v92 = "true"
   })
@@ -45,6 +51,8 @@ control "keyvault_managed_hms_purge_protection_enabled" {
   title       = "Azure Key Vault Managed HSM should have purge protection enabled"
   description = "Malicious deletion of an Azure Key Vault Managed HSM can lead to permanent data loss. A malicious insider in your organization can potentially delete and purge Azure Key Vault Managed HSM. Purge protection protects you from insider attacks by enforcing a mandatory retention period for soft deleted Azure Key Vault Managed HSM. No one inside your organization or Microsoft will be able to purge your Azure Key Vault Managed HSM during the soft delete retention period."
   query       = query.keyvault_managed_hms_purge_protection_enabled
+
+  severity = "critical"
 
   tags = merge(local.regulatory_compliance_keyvault_common_tags, {
     hipaa_hitrust_v92 = "true"
@@ -56,6 +64,8 @@ control "keyvault_managed_hms_logging_enabled" {
   description = "To recreate activity trails for investigation purposes when a security incident occurs or when your network is compromised, you may want to audit by enabling resource logs on Managed HSMs."
   query       = query.keyvault_managed_hms_logging_enabled
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_keyvault_common_tags, {
     hipaa_hitrust_v92 = "true"
   })
@@ -65,6 +75,8 @@ control "keyvault_vault_private_link_used" {
   title       = "Azure Key Vaults should use private link"
   description = "Azure Private Link lets you connect your virtual networks to Azure services without a public IP address at the source or destination. The Private Link platform handles the connectivity between the consumer and services over the Azure backbone network. By mapping private endpoints to key vault, you can reduce data leakage risks."
   query       = query.keyvault_vault_private_link_used
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_keyvault_common_tags, {
     fedramp_high          = "true"
@@ -79,6 +91,8 @@ control "keyvault_vault_public_network_access_disabled" {
   description = "Disable public network access for your key vault so that it's not accessible over the public internet. This can reduce data leakage risks."
   query       = query.keyvault_vault_public_network_access_disabled
 
+  severity = "critical"
+
   tags = local.regulatory_compliance_keyvault_common_tags
 }
 
@@ -86,6 +100,8 @@ control "keyvault_key_expiration_set" {
   title       = "Key Vault keys should have an expiration date"
   description = "Cryptographic keys should have a defined expiration date and not be permanent. Keys that are valid forever provide a potential attacker with more time to compromise the key. It is a recommended security practice to set expiration dates on cryptographic keys."
   query       = query.keyvault_key_expiration_set
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_keyvault_common_tags, {
     fedramp_high          = "true"
@@ -98,6 +114,8 @@ control "keyvault_secret_expiration_set" {
   title       = "Key Vault secrets should have an expiration date"
   description = "Secrets should have a defined expiration date and not be permanent. Secrets that are valid forever provide a potential attacker with more time to compromise them. It is a recommended security practice to set expiration dates on secrets."
   query       = query.keyvault_secret_expiration_set
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_keyvault_common_tags, {
     fedramp_high          = "true"
@@ -112,6 +130,8 @@ control "keyvault_soft_delete_enabled" {
   description = "Deleting a key vault without soft delete enabled permanently deletes all secrets, keys, and certificates stored in the key vault. Accidental deletion of a key vault can lead to permanent data loss. Soft delete allows you to recover an accidentally deleted key vault for a configurable retention period."
   query       = query.keyvault_soft_delete_enabled
 
+  severity = "critical"
+
   tags = merge(local.regulatory_compliance_keyvault_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -124,6 +144,8 @@ control "keyvault_firewall_enabled" {
   title       = "Azure Key Vault should have firewall enabled"
   description = "Enable the key vault firewall so that the key vault is not accessible by default to any public IPs. Optionally, you can configure specific IP ranges to limit access to those networks."
   query       = query.keyvault_firewall_enabled
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_keyvault_common_tags, {
     fedramp_high          = "true"
@@ -138,6 +160,8 @@ control "keyvault_certificate_validity_12_months" {
   description = "Manage your organizational compliance requirements by specifying the maximum amount of time that a certificate can be valid within your key vault."
   query       = query.manual_control
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_keyvault_common_tags, {
     nist_sp_800_53_rev_5 = "true"
   })
@@ -148,6 +172,8 @@ control "keyvault_rbac_enabled" {
   description = "Role assignments disappear when a Key Vault has been deleted (soft- delete) and recovered. Afterwards it will be required to recreate all role assignments. This is a limitation of the soft-delete feature across all Azure services."
   query       = query.keyvault_rbac_enabled
 
+  severity = "high"
+
   tags = local.regulatory_compliance_keyvault_common_tags
 }
 
@@ -155,6 +181,8 @@ control "keyvault_with_non_rbac_key_expiration_set" {
   title       = "Ensure that the Expiration Date is set for all Keys in Non-RBAC Key Vaults"
   description = "Ensure that all Keys in Non Role Based Access Control (RBAC) Azure Key Vaults have an expiration time set."
   query       = query.keyvault_with_non_rbac_key_expiration_set
+
+  severity = "medium"
 
   tags = local.regulatory_compliance_keyvault_common_tags
 }
@@ -164,6 +192,8 @@ control "keyvault_vault_recoverable" {
   description = "The key vault contains object keys, secrets and certificates. Accidental unavailability of a key vault can cause immediate data loss or loss of security functions (authentication, validation, verification, non-repudiation, etc.) supported by the key vault objects. It is recommended the key vault be made recoverable by enabling the \"Do Not Purge\" and \"Soft Delete\" functions."
   query       = query.keyvault_vault_recoverable
 
+  severity = "critical"
+
   tags = local.regulatory_compliance_keyvault_common_tags
 }
 
@@ -171,6 +201,8 @@ control "keyvault_with_non_rbac_secret_expiration_set" {
   title       = "Ensure that the Expiration Date is set for all Secrets in Non-RBAC Key Vaults"
   description = "Ensure that all Secrets in Non Role Based Access Control (RBAC) Azure Key Vaults have an expiration time set."
   query       = query.keyvault_with_non_rbac_secret_expiration_set
+
+  severity = "medium"
 
   tags = local.regulatory_compliance_keyvault_common_tags
 }
@@ -180,6 +212,8 @@ control "keyvault_with_rbac_key_expiration_set" {
   description = "Ensure that all Keys in Role Based Access Control (RBAC) Azure Key Vaults have an expiration date set."
   query       = query.keyvault_with_rbac_key_expiration_set
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_keyvault_common_tags
 }
 
@@ -187,6 +221,8 @@ control "keyvault_with_rbac_secret_expiration_set" {
   title       = "Ensure that the Expiration Date is set for all Secrets in RBAC Key Vaults"
   description = "Ensure that all Secrets in Role Based Access Control (RBAC) Azure Key Vaults have an expiration date set."
   query       = query.keyvault_with_rbac_secret_expiration_set
+
+  severity = "medium"
 
   tags = local.regulatory_compliance_keyvault_common_tags
 }
@@ -196,6 +232,8 @@ control "keyvault_key_automatic_rotation_enabled" {
   description   = "Automated cryptographic key rotation in Key Vault allows users to configure Key Vault to automatically generate a new key version at a specified frequency."
   query         = query.keyvault_key_automatic_rotation_enabled
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_keyvault_common_tags
 }
 
@@ -203,6 +241,8 @@ control "keyvault_certificate_validity_period_less_equal_12_months" {
   title         = "Ensure certificate 'Validity Period (in months)' is less than or equal to '12'"
   description   = "Restrict the validity period of certificates stored in Azure Key Vault to 12 months or less."
   query         = query.keyvault_certificate_validity_period_less_equal_12_months
+
+  severity = "medium"
 
   tags = local.regulatory_compliance_keyvault_common_tags
 }

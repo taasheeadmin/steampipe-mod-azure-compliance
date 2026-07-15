@@ -9,6 +9,8 @@ control "machine_learning_workspace_encrypted_with_cmk" {
   description = "Manage encryption at rest of Azure Machine Learning workspace data with customer-managed keys. By default, customer data is encrypted with service-managed keys, but customer-managed keys are commonly required to meet regulatory compliance standards. Customer-managed keys enable the data to be encrypted with an Azure Key Vault key created and owned by you. You have full control and responsibility for the key lifecycle, including rotation and management."
   query       = query.machine_learning_workspace_encrypted_with_cmk
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_machinelearning_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -20,6 +22,8 @@ control "machine_learning_workspace_private_link_used" {
   title       = "Azure Machine Learning workspaces should use private link"
   description = "Azure Private Link lets you connect your virtual network to Azure services without a public IP address at the source or destination. The Private Link platform handles the connectivity between the consumer and services over the Azure backbone network. By mapping private endpoints to Azure Machine Learning workspaces, data leakage risks are reduced. Learn more about private links at: https://docs.microsoft.com/azure/machine-learning/how-to-configure-private-link."
   query       = query.manual_control
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_machinelearning_common_tags, {
     nist_sp_800_171_rev_2 = "true"

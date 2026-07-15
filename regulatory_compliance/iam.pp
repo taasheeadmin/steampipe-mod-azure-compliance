@@ -9,6 +9,8 @@ control "iam_subscription_owner_more_than_1" {
   description = "It is recommended to designate more than one subscription owner in order to have administrator access redundancy."
   query       = query.iam_subscription_owner_more_than_1
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_iam_common_tags, {
     hipaa_hitrust_v92     = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -21,6 +23,8 @@ control "iam_subscription_owner_max_3" {
   title       = "A maximum of 3 owners should be designated for your subscription"
   description = "It is recommended to designate up to 3 subscription owners in order to reduce the potential for breach by a compromised owner."
   query       = query.iam_subscription_owner_max_3
+
+  severity = "medium"
 
   tags = merge(local.regulatory_compliance_iam_common_tags, {
     fedramp_high          = "true"
@@ -37,6 +41,8 @@ control "iam_deprecated_account_with_owner_roles" {
   description = "Deprecated accounts with owner permissions should be removed from your subscription. Deprecated accounts are accounts that have been blocked from signing in."
   query       = query.iam_deprecated_account_with_owner_roles
 
+  severity = "critical"
+
   tags = merge(local.regulatory_compliance_iam_common_tags, {
     fedramp_high          = "true"
     hipaa_hitrust_v92     = "true"
@@ -51,6 +57,8 @@ control "iam_no_custom_role" {
   title       = "Audit usage of custom RBAC roles"
   description = "Audit built-in roles such as 'Owner, Contributor, Reader' instead of custom RBAC roles, which are error prone. Using custom roles is treated as an exception and requires a rigorous review and threat modeling."
   query       = query.iam_no_custom_role
+
+  severity = "medium"
 
   tags = merge(local.regulatory_compliance_iam_common_tags, {
     fedramp_high          = "true"
@@ -67,6 +75,8 @@ control "iam_external_user_with_owner_role" {
   description = "External accounts with owner permissions should be removed from your subscription in order to prevent unmonitored access."
   query       = query.iam_external_user_with_owner_role
 
+  severity = "critical"
+
   tags = merge(local.regulatory_compliance_iam_common_tags, {
     fedramp_high          = "true"
     hipaa_hitrust_v92     = "true"
@@ -81,6 +91,8 @@ control "iam_deprecated_account" {
   title       = "Blocked accounts with read and write permissions on Azure resources should be removed"
   description = "Deprecated accounts should be removed from your subscriptions. Deprecated accounts are accounts that have been blocked from signing in."
   query       = query.iam_deprecated_account
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_iam_common_tags, {
     fedramp_high          = "true"
@@ -97,6 +109,8 @@ control "iam_external_user_with_read_permission" {
   description = "External accounts with read privileges should be removed from your subscription in order to prevent unmonitored access."
   query       = query.iam_external_user_with_read_permission
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_iam_common_tags, {
     fedramp_high          = "true"
     hipaa_hitrust_v92     = "true"
@@ -111,6 +125,8 @@ control "iam_external_user_with_write_permission" {
   title       = "Guest accounts with write permissions on Azure resources should be removed"
   description = "External accounts with write privileges should be removed from your subscription in order to prevent unmonitored access."
   query       = query.iam_external_user_with_write_permission
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_iam_common_tags, {
     fedramp_high          = "true"
@@ -127,6 +143,8 @@ control "iam_user_with_write_permission_on_subscription_mfa_enabled" {
   description = "Multi-Factor Authentication (MFA) should be enabled for all subscription accounts with write privileges to prevent a breach of accounts or resources."
   query       = query.manual_control
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_iam_common_tags, {
     hipaa_hitrust_v92    = "true"
     nist_sp_800_53_rev_5 = "true"
@@ -139,6 +157,8 @@ control "iam_user_with_read_permission_on_subscription_mfa_enabled" {
   description = "Multi-Factor Authentication (MFA) should be enabled for all subscription accounts with read privileges to prevent a breach of accounts or resources."
   query       = query.manual_control
 
+  severity = "medium"
+
   tags = merge(local.regulatory_compliance_iam_common_tags, {
     hipaa_hitrust_v92    = "true"
     nist_sp_800_53_rev_5 = "true"
@@ -149,6 +169,8 @@ control "iam_user_with_owner_permission_on_subscription_mfa_enabled" {
   title       = "Accounts with owner permissions on Azure resources should be MFA enabled"
   description = "Multi-Factor Authentication (MFA) should be enabled for all subscription accounts with owner permissions to prevent a breach of accounts or resources."
   query       = query.manual_control
+
+  severity = "critical"
 
   tags = merge(local.regulatory_compliance_iam_common_tags, {
     hipaa_hitrust_v92    = "true"
@@ -162,6 +184,8 @@ control "iam_no_custom_subscription_owner_roles_created" {
   description = "The principle of least privilege should be followed and only necessary privileges should be assigned instead of allowing full administrative access."
   query       = query.iam_no_custom_subscription_owner_roles_created
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_iam_common_tags
 }
 
@@ -169,6 +193,8 @@ control "iam_conditional_access_mfa_enabled" {
   title       = "Ensure Multi-factor Authentication is required for Azure Management"
   description = "For designated users, they will be prompted to use their multi-factor authentication (MFA) process on logins."
   query       = query.iam_conditional_access_mfa_enabled
+
+  severity = "critical"
 
   tags = local.regulatory_compliance_iam_common_tags
 }
@@ -179,6 +205,8 @@ control "iam_user_not_allowed_to_create_security_group" {
   description = "Restrict security group creation to administrators only."
   query       = query.iam_user_not_allowed_to_create_security_group
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_iam_common_tags
 }
 
@@ -186,6 +214,8 @@ control "iam_user_not_allowed_to_create_tenants" {
   title       = "Ensure that 'Users Can Create Tenants' is set to 'No'"
   description = "Restrict tenant creation to administrators only."
   query       = query.iam_user_not_allowed_to_create_tenants
+
+  severity = "high"
 
   tags = local.regulatory_compliance_iam_common_tags
 
@@ -196,6 +226,8 @@ control "iam_user_not_allowed_to_register_application" {
   description = "Require administrators or appropriately delegated users to register third-party applications."
   query       = query.iam_user_not_allowed_to_register_application
 
+  severity = "high"
+
   tags = local.regulatory_compliance_iam_common_tags
 }
 
@@ -203,6 +235,8 @@ control "iam_subscriptions_with_custom_roles_no_overly_permissive" {
   title       = "Subscriptions with custom roles should not be overly permissive"
   description = "This policy identifies azure subscriptions with custom roles are overly permissive. Least privilege access rule should be followed and only necessary privileges should be assigned instead of allowing full administrative access."
   query       = query.iam_subscriptions_with_custom_roles_no_overly_permissive
+
+  severity = "high"
 
   tags = local.regulatory_compliance_iam_common_tags
 }
@@ -212,6 +246,8 @@ control "iam_user_no_built_in_contributor_role" {
   description = "Ensure that IAM user does not have built in contributor role. This rule is non-compliant if IAM user have built in contributor role."
   query       = query.iam_user_no_built_in_contributor_role
 
+  severity = "high"
+
   tags = local.regulatory_compliance_iam_common_tags
 }
 
@@ -219,6 +255,8 @@ control "iam_user_access_administrator_role_restricted" {
   title       = "Use of the 'User Access Administrator' role should be restricted"
   description = "The User Access Administrator role grants the ability to view all resources and manage access assignments at any subscription or management group level within the tenant. Due to its high privilege level, this role assignment should be removed immediately after completing the necessary changes at the root scope to minimize security risks."
   query       = query.iam_user_access_administrator_role_restricted
+
+  severity = "critical"
 
   tags = local.regulatory_compliance_iam_common_tags
 }
@@ -228,6 +266,8 @@ control "iam_conditional_access_trusted_location_configured" {
   description = "Microsoft Entra ID Conditional Access allows an organization to configure Named locations and configure whether those locations are trusted or untrusted. These settings provide organizations the means to specify Geographical locations for use in conditional access policies, or define actual IP addresses and IP ranges and whether or not those IP addresses and/or ranges are trusted by the organization."
   query       = query.iam_conditional_access_trusted_location_configured
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_iam_common_tags
 }
 
@@ -235,6 +275,8 @@ control "iam_subscription_tenant_transfer_restricted" {
   title         = "5.25 Ensure that 'Subscription leaving Microsoft Entra tenant' and 'Subscription entering Microsoft Entra tenant' is set to 'Permit no one'"
   description   = "Users who are set as subscription owners are able to make administrative changes to the subscriptions and move them into and out of Microsoft Entra ID."
   query         = query.iam_subscription_tenant_transfer_restricted
+
+  severity = "high"
 
   tags = local.regulatory_compliance_iam_common_tags
 }

@@ -38,6 +38,7 @@ control "cis_v500_3_1_1" {
   title         = "3.1.1 Ensure only MFA enabled identities can access privileged Virtual Machine"
   description   = "Verify identities without MFA that can log in to a privileged virtual machine using separate login credentials. An adversary can leverage the access to move laterally and perform actions with the virtual machine's managed identity. Make sure the virtual machine only has necessary permissions, and revoke the admin-level permissions according to the principle of least privilege."
   query         = query.manual_control
+  severity = "critical"
   documentation = file("./cis_v500/docs/cis_v500_3_1_1.md")
 
   tags = merge(local.cis_v500_3_1_common_tags, {

@@ -9,6 +9,8 @@ control "mysql_ssl_enabled" {
   description = "Azure Database for MySQL supports connecting your Azure Database for MySQL server to client applications using Secure Sockets Layer (SSL). Enforcing SSL connections between your database server and your client applications helps protect against 'man in the middle' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server."
   query       = query.mysql_ssl_enabled
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_mysql_common_tags, {
     fedramp_high          = "true"
     hipaa_hitrust_v92     = "true"
@@ -22,6 +24,8 @@ control "mysql_db_server_geo_redundant_backup_enabled" {
   title       = "Geo-redundant backup should be enabled for Azure Database for MySQL"
   description = "Azure Database for MySQL allows you to choose the redundancy option for your database server. It can be set to a geo-redundant backup storage in which the data is not only stored within the region in which your server is hosted, but is also replicated to a paired region to provide recovery option in case of a region failure. Configuring geo-redundant storage for backup is only allowed during server create."
   query       = query.mysql_db_server_geo_redundant_backup_enabled
+
+  severity = "medium"
 
   tags = merge(local.regulatory_compliance_mysql_common_tags, {
     fedramp_high          = "true"
@@ -37,6 +41,8 @@ control "mssql_managed_instance_encryption_at_rest_using_cmk" {
   description = "Implementing Transparent Data Encryption (TDE) with your own key provides you with increased transparency and control over the TDE Protector, increased security with an HSM-backed external service, and promotion of separation of duties. This recommendation applies to organizations with a related compliance requirement."
   query       = query.mssql_managed_instance_encryption_at_rest_using_cmk
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_mysql_common_tags, {
     fedramp_high          = "true"
     hipaa_hitrust_v92     = "true"
@@ -49,6 +55,8 @@ control "mssql_managed_instance_vulnerability_assessment_enabled" {
   title       = "Vulnerability assessment should be enabled on SQL Managed Instance"
   description = "Audit each SQL Managed Instance which doesn't have recurring vulnerability assessment scans enabled. Vulnerability assessment can discover, track, and help you remediate potential database vulnerabilities."
   query       = query.mssql_managed_instance_vulnerability_assessment_enabled
+
+  severity = "medium"
 
   tags = merge(local.regulatory_compliance_mysql_common_tags, {
     fedramp_high          = "true"
@@ -64,6 +72,8 @@ control "mysql_server_public_network_access_disabled" {
   description = "Disable the public network access property to improve security and ensure your Azure Database for MySQL can only be accessed from a private endpoint. This configuration strictly disables access from any public address space outside of Azure IP range, and denies all logins that match IP or virtual network-based firewall rules."
   query       = query.mysql_server_public_network_access_disabled
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_mysql_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -75,6 +85,8 @@ control "mysql_server_infrastructure_encryption_enabled" {
   title       = "Infrastructure encryption should be enabled for Azure Database for MySQL servers"
   description = "Enable infrastructure encryption for Azure Database for MySQL servers to have higher level of assurance that the data is secure. When infrastructure encryption is enabled, the data at rest is encrypted twice using FIPS 140-2 compliant Microsoft managed keys."
   query       = query.mysql_server_infrastructure_encryption_enabled
+
+  severity = "medium"
 
   tags = merge(local.regulatory_compliance_mysql_common_tags, {
     fedramp_high          = "true"
@@ -89,6 +101,8 @@ control "mysql_server_private_link_used" {
   description = "Private endpoint connections enforce secure communication by enabling private connectivity to Azure Database for MySQL. Configure a private endpoint connection to enable access to traffic coming only from known networks and prevent access from all other IP addresses, including within Azure."
   query       = query.mysql_server_private_link_used
 
+  severity = "high"
+
   tags = merge(local.regulatory_compliance_mysql_common_tags, {
     fedramp_high          = "true"
     nist_sp_800_171_rev_2 = "true"
@@ -100,6 +114,8 @@ control "mysql_server_encrypted_at_rest_using_cmk" {
   title       = "MySQL servers should use customer-managed keys to encrypt data at rest"
   description = "Use customer-managed keys to manage the encryption at rest of your MySQL servers. By default, the data is encrypted at rest with service-managed keys, but customer-managed keys are commonly required to meet regulatory compliance standards. Customer-managed keys enable the data to be encrypted with an Azure Key Vault key created and owned by you. You have full control and responsibility for the key lifecycle, including rotation and management."
   query       = query.mysql_server_encrypted_at_rest_using_cmk
+
+  severity = "high"
 
   tags = merge(local.regulatory_compliance_mysql_common_tags, {
     fedramp_high          = "true"
@@ -114,6 +130,8 @@ control "mysql_server_audit_logging_enabled" {
   description = "Enable audit logging on MySQL Servers."
   query       = query.mysql_server_audit_logging_enabled
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_mysql_common_tags
 }
 
@@ -121,6 +139,8 @@ control "mysql_server_audit_logging_events_connection_set" {
   title       = "Ensure server parameter 'audit_log_events' has 'CONNECTION' set for MySQL Database Server"
   description = "Set audit_log_enabled to include CONNECTION on MySQL Servers."
   query       = query.mysql_server_audit_logging_events_connection_set
+
+  severity = "medium"
 
   tags = local.regulatory_compliance_mysql_common_tags
 }
@@ -130,6 +150,8 @@ control "mysql_server_min_tls_1_2" {
   description = "Ensure TLS version on MySQL flexible servers is set to the default value."
   query       = query.mysql_server_min_tls_1_2
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_mysql_common_tags
 }
 
@@ -137,6 +159,8 @@ control "mysql_flexible_server_ssl_enabled" {
   title         = "Ensure server parameter 'require_secure_transport' is set to 'ON' for MySQL flexible server"
   description   = "Enable require_secure_transport on MySQL flexible servers."
   query         = query.mysql_flexible_server_ssl_enabled
+
+  severity = "high"
 
   tags = local.regulatory_compliance_mysql_common_tags
 }
@@ -146,6 +170,8 @@ control "mysql_flexible_server_min_tls_1_2" {
   description   = "Ensure tls_version on MySQL flexible servers is set to use TLS version 1.2 or higher."
   query         = query.mysql_flexible_server_min_tls_1_2
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_mysql_common_tags
 }
 
@@ -154,6 +180,8 @@ control "mysql_flexible_server_audit_logging_enabled" {
   description   = "Enable audit_log_enabled on MySQL flexible Servers."
   query         = query.mysql_flexible_server_audit_logging_enabled
 
+  severity = "medium"
+
   tags = local.regulatory_compliance_mysql_common_tags
 }
 
@@ -161,6 +189,8 @@ control "mysql_flexible_server_audit_logging_events_connection_set" {
   title         = "Ensure server parameter 'audit_log_events' has 'CONNECTION' set for MySQL flexible Server"
   description   = "Set audit_log_enabled to include CONNECTION on MySQL flexible servers."
   query         = query.mysql_flexible_server_audit_logging_events_connection_set
+
+  severity = "medium"
 
   tags = local.regulatory_compliance_mysql_common_tags
 }
