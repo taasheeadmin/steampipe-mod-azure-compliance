@@ -27,7 +27,8 @@ control "cis_v150_6_1" {
   description   = "Network security groups should be periodically evaluated for port misconfigurations. Where certain ports and protocols may be exposed to the Internet, they should be evaluated for necessity and restricted wherever they are not explicitly required."
   query         = query.network_security_group_rdp_access_restricted
   documentation = file("./cis_v150/docs/cis_v150_6_1.md")
-
+  severity = "critical"
+  
   tags = merge(local.cis_v150_6_common_tags, {
     cis_item_id = "6.1"
     cis_level   = "1"
@@ -41,7 +42,8 @@ control "cis_v150_6_2" {
   description   = "Network security groups should be periodically evaluated for port misconfigurations. Where certain ports and protocols may be exposed to the Internet, they should be evaluated for necessity and restricted wherever they are not explicitly required."
   query         = query.network_security_group_ssh_access_restricted
   documentation = file("./cis_v150/docs/cis_v150_6_2.md")
-
+  severity = "critical"
+  
   tags = merge(local.cis_v150_6_common_tags, {
     cis_item_id = "6.2"
     cis_level   = "1"
@@ -55,7 +57,8 @@ control "cis_v150_6_3" {
   description   = "Network security groups should be periodically evaluated for port misconfigurations. Where certain ports and protocols may be exposed to the Internet, they should be evaluated for necessity and restricted wherever they are not explicitly required."
   query         = query.network_security_group_udp_service_restricted
   documentation = file("./cis_v150/docs/cis_v150_6_3.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v150_6_common_tags, {
     cis_item_id = "6.3"
     cis_level   = "1"
@@ -69,7 +72,8 @@ control "cis_v150_6_4" {
   description   = "Network security groups should be periodically evaluated for port misconfigurations. Where certain ports and protocols may be exposed to the Internet, they should be evaluated for necessity and restricted wherever they are not explicitly required and narrowly configured."
   query         = query.network_security_group_https_access_restricted
   documentation = file("./cis_v150/docs/cis_v150_6_4.md")
-
+  severity = "medium"
+  
   tags = merge(local.cis_v150_6_common_tags, {
     cis_item_id = "6.4"
     cis_level   = "1"
@@ -83,7 +87,8 @@ control "cis_v150_6_5" {
   description   = "Network Security Group Flow Logs should be enabled and the retention period is set to greater than or equal to 90 days."
   query         = query.network_sg_flowlog_retention_period_greater_than_90
   documentation = file("./cis_v150/docs/cis_v150_6_5.md")
-
+  severity = "medium"
+  
   tags = merge(local.cis_v150_6_common_tags, {
     cis_item_id = "6.5"
     cis_level   = "2"
@@ -97,7 +102,8 @@ control "cis_v150_6_6" {
   description   = "Enable Network Watcher for Azure subscriptions."
   query         = query.network_watcher_enabled
   documentation = file("./cis_v150/docs/cis_v150_6_6.md")
-
+  severity = "medium"
+  
   tags = merge(local.cis_v150_6_common_tags, {
     cis_item_id = "6.6"
     cis_level   = "2"
