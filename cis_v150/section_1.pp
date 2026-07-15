@@ -71,7 +71,8 @@ control "cis_v150_1_1_1" {
   description   = "Security defaults in Azure Active Directory (Azure AD) make it easier to be secure and help protect your organization. Security defaults contain preconfigured security settings for common attacks. Microsoft is making security defaults available to everyone. The goal is to ensure that all organizations have a basic level of security enabled at no extra cost. You may turn on security defaults in the Azure portal."
   query         = query.ad_manual_control
   documentation = file("./cis_v150/docs/cis_v150_1_1_1.md")
-
+  severity = "critical"
+  
   tags = merge(local.cis_v150_1_1_common_tags, {
     cis_item_id = "1.1.1"
     cis_level   = "1"
@@ -85,7 +86,8 @@ control "cis_v150_1_1_2" {
   description   = "Enable multi-factor authentication for all roles, groups, and users that have write access or permissions to Azure resources."
   query         = query.ad_manual_control
   documentation = file("./cis_v150/docs/cis_v150_1_1_2.md")
-
+  severity = "critical"
+  
   tags = merge(local.cis_v150_1_1_common_tags, {
     cis_item_id = "1.1.2"
     cis_level   = "1"
@@ -99,7 +101,8 @@ control "cis_v150_1_1_3" {
   description   = "Enable multi-factor authentication for all non-privileged users."
   query         = query.ad_manual_control
   documentation = file("./cis_v150/docs/cis_v150_1_1_3.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v150_1_1_common_tags, {
     cis_item_id = "1.1.3"
     cis_level   = "2"
@@ -113,7 +116,8 @@ control "cis_v150_1_1_4" {
   description   = "Do not allow users to remember multi-factor authentication on devices."
   query         = query.ad_manual_control
   documentation = file("./cis_v150/docs/cis_v150_1_1_4.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v150_1_1_common_tags, {
     cis_item_id = "1.1.4"
     cis_level   = "1"
@@ -145,7 +149,8 @@ control "cis_v150_1_2_1" {
   description   = "Azure Active Directory Conditional Access allows an organization to configure Named locations and configure whether those locations are trusted or untrusted. These settings provide organizations the means to specify Geographical locations for use in conditional access policies, or define actual IP addresses and IP ranges and whether or not those IP addresses and/or ranges are trusted by the organization."
   query         = query.iam_conditional_access_trusted_location_configured
   documentation = file("./cis_v150/docs/cis_v150_1_2_1.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v150_1_2_common_tags, {
     cis_item_id = "1.2.1"
     cis_level   = "1"
@@ -159,7 +164,8 @@ control "cis_v150_1_2_2" {
   description   = "Conditional Access Policies can be used to block access from geographic locations that are deemed out-of-scope for your organization or application. The scope and variables for this policy should be carefully examined and defined."
   query         = query.ad_manual_control
   documentation = file("./cis_v150/docs/cis_v150_1_2_2.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v150_1_2_common_tags, {
     cis_item_id = "1.2.2"
     cis_level   = "1"
@@ -173,7 +179,8 @@ control "cis_v150_1_2_3" {
   description   = "For designated users, they will be prompted to use their multi-factor authentication (MFA) process on login."
   query         = query.ad_manual_control
   documentation = file("./cis_v150/docs/cis_v150_1_2_3.md")
-
+  severity = "critical"
+  
   tags = merge(local.cis_v150_1_2_common_tags, {
     cis_item_id = "1.2.3"
     cis_level   = "1"
@@ -187,7 +194,8 @@ control "cis_v150_1_2_4" {
   description   = "For designated users, they will be prompted to use their multi-factor authentication (MFA) process on logins."
   query         = query.ad_manual_control
   documentation = file("./cis_v150/docs/cis_v150_1_2_4.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v150_1_2_common_tags, {
     cis_item_id = "1.2.4"
     cis_level   = "1"
@@ -201,7 +209,8 @@ control "cis_v150_1_2_5" {
   description   = "For designated users, they will be prompted to use their multi-factor authentication (MFA) process on login."
   query         = query.ad_manual_control
   documentation = file("./cis_v150/docs/cis_v150_1_2_5.md")
-
+  severity = "critical"
+  
   tags = merge(local.cis_v150_1_2_common_tags, {
     cis_item_id = "1.2.5"
     cis_level   = "1"
@@ -215,7 +224,8 @@ control "cis_v150_1_2_6" {
   description   = "For designated users, they will be prompted to use their multi-factor authentication(MFA) process on logins."
   query         = query.iam_conditional_access_mfa_enabled
   documentation = file("./cis_v150/docs/cis_v150_1_2_6.md")
-
+  severity = "critical"
+  
   tags = merge(local.cis_v150_1_2_common_tags, {
     cis_item_id = "1.2.6"
     cis_level   = "1"
@@ -229,7 +239,8 @@ control "cis_v150_1_3" {
   description   = "This recommendation extends guest access review by utilizing the Azure AD Privileged Identity Management feature provided in Azure AD Premium P2. Azure AD is extended to include Azure AD B2B collaboration, allowing you to invite people from outside your organization to be guest users in your cloud account and sign in with their own work, school, or social identities. Guest users allow you to share your company's applications and services with users from any other organization, while maintaining control over your own corporate data. Work with external partners, large or small, even if they don't have Azure AD or an IT department. A simple invitation and redemption process lets partners use their own credentials to access your company's resources a a guest user."
   query         = query.ad_manual_control
   documentation = file("./cis_v150/docs/cis_v150_1_3.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v150_1_common_tags, {
     cis_item_id = "1.3"
     cis_level   = "2"
@@ -243,7 +254,8 @@ control "cis_v150_1_4" {
   description   = "Azure AD is extended to include Azure AD B2B collaboration, allowing you to invite people from outside your organization to be guest users in your cloud account and sign in with their own work, school, or social identities. Guest users allow you to share your company's applications and services with users from any other organization, while maintaining control over your own corporate data. Work with external partners, large or small, even if they don't have Azure AD or an IT department. A simple invitation and redemption process lets partners use their own credentials to access your company's resources as a guest user. Guest users in every subscription should be review on a regular basis to ensure that inactive and unneeded accounts are removed."
   query         = query.ad_guest_user_reviewed_monthly
   documentation = file("./cis_v150/docs/cis_v150_1_4.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v150_1_common_tags, {
     cis_item_id = "1.4"
     cis_level   = "1"
@@ -257,7 +269,8 @@ control "cis_v150_1_5" {
   description   = "Do not allow users to remember multi-factor authentication on devices."
   query         = query.ad_manual_control
   documentation = file("./cis_v150/docs/cis_v150_1_5.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v150_1_common_tags, {
     cis_item_id = "1.5"
     cis_level   = "1"
@@ -271,7 +284,8 @@ control "cis_v150_1_6" {
   description   = "Ensures that two alternate forms of identification are provided before allowing a password reset."
   query         = query.ad_manual_control
   documentation = file("./cis_v150/docs/cis_v150_1_6.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v150_1_common_tags, {
     cis_item_id = "1.6"
     cis_level   = "1"
@@ -285,7 +299,8 @@ control "cis_v150_1_7" {
   description   = "Microsoft Azure creates a default bad password policy that is already applied to Azure administrative and normal user accounts. This is not applied to user accounts that are synced from an on-premise Active Directory unless Azure AD Connect is used and you enable EnforceCloudPasswordPolicyForPasswordSyncedUsers. Please see the list in default values on the specifics of this policy."
   query         = query.ad_manual_control
   documentation = file("./cis_v150/docs/cis_v150_1_7.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v150_1_common_tags, {
     cis_item_id = "1.7"
     cis_level   = "1"
@@ -299,7 +314,8 @@ control "cis_v150_1_8" {
   description   = "Ensure that the number of days before users are asked to re-confirm their authentication information is not set to 0."
   query         = query.ad_manual_control
   documentation = file("./cis_v150/docs/cis_v150_1_8.md")
-
+  severity = "medium"
+  
   tags = merge(local.cis_v150_1_common_tags, {
     cis_item_id = "1.8"
     cis_level   = "1"
@@ -313,7 +329,8 @@ control "cis_v150_1_9" {
   description   = "Ensure that users are notified on their primary and secondary emails on password resets."
   query         = query.ad_manual_control
   documentation = file("./cis_v150/docs/cis_v150_1_9.md")
-
+  severity = "medium"
+  
   tags = merge(local.cis_v150_1_common_tags, {
     cis_item_id = "1.9"
     cis_level   = "1"
@@ -327,7 +344,8 @@ control "cis_v150_1_10" {
   description   = "Ensure that all administrators are notified if any other administrator resets their password."
   query         = query.ad_manual_control
   documentation = file("./cis_v150/docs/cis_v150_1_10.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v150_1_common_tags, {
     cis_item_id = "1.10"
     cis_level   = "1"
@@ -341,7 +359,8 @@ control "cis_v150_1_11" {
   description   = "Allow users to provide consent for selected permissions when a request is coming from a verified publisher."
   query         = query.ad_manual_control
   documentation = file("./cis_v150/docs/cis_v150_1_11.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v150_1_common_tags, {
     cis_item_id = "1.11"
     cis_level   = "2"
@@ -355,7 +374,8 @@ control "cis_v150_1_12" {
   description   = "Require administrators to provide consent for the apps before use."
   query         = query.ad_manual_control
   documentation = file("./cis_v150/docs/cis_v150_1_12.md")
-
+  severity = "critical"
+  
   tags = merge(local.cis_v150_1_common_tags, {
     cis_item_id = "1.12"
     cis_level   = "1"
@@ -369,7 +389,8 @@ control "cis_v150_1_13" {
   description   = "Require administrators to provide consent for the apps before use."
   query         = query.ad_manual_control
   documentation = file("./cis_v150/docs/cis_v150_1_13.md")
-
+  severity = "medium"
+  
   tags = merge(local.cis_v150_1_common_tags, {
     cis_item_id = "1.13"
     cis_level   = "1"
@@ -383,7 +404,8 @@ control "cis_v150_1_14" {
   description   = "Require administrators or appropriately delegated users to register third-party applications."
   query         = query.iam_user_not_allowed_to_register_application
   documentation = file("./cis_v150/docs/cis_v150_1_14.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v150_1_common_tags, {
     cis_item_id = "1.14"
     cis_level   = "1"
@@ -397,7 +419,8 @@ control "cis_v150_1_15" {
   description   = "Limit guest user permissions."
   query         = query.ad_manual_control
   documentation = file("./cis_v150/docs/cis_v150_1_15.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v150_1_common_tags, {
     cis_item_id = "1.15"
     cis_level   = "1"
@@ -411,7 +434,8 @@ control "cis_v150_1_16" {
   description   = "Restrict invitations to users with specific administrative roles only."
   query         = query.ad_manual_control
   documentation = file("./cis_v150/docs/cis_v150_1_16.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v150_1_common_tags, {
     cis_item_id = "1.16"
     cis_level   = "2"
@@ -425,7 +449,8 @@ control "cis_v150_1_17" {
   description   = "Restrict access to the Azure AD administration portal to administrators only."
   query         = query.ad_manual_control
   documentation = file("./cis_v150/docs/cis_v150_1_17.md")
-
+  severity = "critical"
+  
   tags = merge(local.cis_v150_1_common_tags, {
     cis_item_id = "1.17"
     cis_level   = "1"
@@ -439,7 +464,8 @@ control "cis_v150_1_18" {
   description   = "Restricts group creation to administrators with permissions only."
   query         = query.ad_manual_control
   documentation = file("./cis_v150/docs/cis_v150_1_18.md")
-
+  severity = "medium"
+  
   tags = merge(local.cis_v150_1_common_tags, {
     cis_item_id = "1.18"
     cis_level   = "2"
@@ -453,7 +479,8 @@ control "cis_v150_1_19" {
   description   = "Restrict security group creation to administrators only."
   query         = query.iam_user_not_allowed_to_create_security_group
   documentation = file("./cis_v150/docs/cis_v150_1_19.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v150_1_common_tags, {
     cis_item_id = "1.19"
     cis_level   = "2"
@@ -467,7 +494,8 @@ control "cis_v150_1_20" {
   description   = "Restrict security group management to administrators only."
   query         = query.ad_manual_control
   documentation = file("./cis_v150/docs/cis_v150_1_20.md")
-
+  severity = "medium"
+  
   tags = merge(local.cis_v150_1_common_tags, {
     cis_item_id = "1.20"
     cis_level   = "2"
@@ -481,7 +509,8 @@ control "cis_v150_1_21" {
   description   = "Restrict Microsoft 365 group creation to administrators only."
   query         = query.ad_manual_control
   documentation = file("./cis_v150/docs/cis_v150_1_21.md")
-
+  severity = "medium"
+  
   tags = merge(local.cis_v150_1_common_tags, {
     cis_item_id = "1.21"
     cis_level   = "2"
@@ -495,7 +524,8 @@ control "cis_v150_1_22" {
   description   = "Joining or registering devices to the active directory should require Multi-factor authentication."
   query         = query.ad_manual_control
   documentation = file("./cis_v150/docs/cis_v150_1_22.md")
-
+  severity = "critical"
+  
   tags = merge(local.cis_v150_1_common_tags, {
     cis_item_id = "1.22"
     cis_level   = "1"
@@ -509,7 +539,8 @@ control "cis_v150_1_23" {
   description   = "Subscription ownership should not include permission to create custom owner roles. The principle of least privilege should be followed and only necessary privileges should be assigned instead of allowing full administrative access."
   query         = query.iam_no_custom_subscription_owner_roles_created
   documentation = file("./cis_v150/docs/cis_v150_1_23.md")
-
+  severity = "critical"
+  
   tags = merge(local.cis_v150_1_common_tags, {
     cis_item_id = "1.23"
     cis_level   = "1"
@@ -523,7 +554,8 @@ control "cis_v150_1_24" {
   description   = "Resource locking is a powerful protection mechanism that can prevent inadvertent modification/deletion of resources within Azure subscriptions/Resource Groups and is a recommended NIST configuration."
   query         = query.ad_manual_control
   documentation = file("./cis_v150/docs/cis_v150_1_24.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v150_1_common_tags, {
     cis_item_id = "1.24"
     cis_level   = "2"
@@ -537,7 +569,8 @@ control "cis_v150_1_25" {
   description   = "Users who are set as subscription owners are able to make administrative changes to the subscriptions and move them into and out of Azure Active Directories."
   query         = query.ad_manual_control
   documentation = file("./cis_v150/docs/cis_v150_1_25.md")
-
+  severity = "critical"
+  
   tags = merge(local.cis_v150_1_common_tags, {
     cis_item_id = "1.25"
     cis_level   = "2"
