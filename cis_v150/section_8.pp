@@ -28,7 +28,8 @@ control "cis_v150_8_1" {
   description   = "Ensure that all Keys in Role Based Access Control (RBAC) Azure Key Vaults have an expiration time set."
   query         = query.keyvault_with_rbac_key_expiration_set
   documentation = file("./cis_v150/docs/cis_v150_8_1.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v150_8_common_tags, {
     cis_item_id = "8.1"
     cis_level   = "1"
@@ -42,7 +43,8 @@ control "cis_v150_8_2" {
   description   = "Ensure that all Keys in Non Role Based Access Control (RBAC) Azure Key Vaults have an expiration time set."
   query         = query.keyvault_with_non_rbac_key_expiration_set
   documentation = file("./cis_v150/docs/cis_v150_8_2.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v150_8_common_tags, {
     cis_item_id = "8.2"
     cis_level   = "1"
@@ -56,7 +58,8 @@ control "cis_v150_8_3" {
   description   = "Ensure that all Secrets in Role Based Access Control (RBAC) Azure Key Vaults have an expiration time set."
   query         = query.keyvault_with_rbac_secret_expiration_set
   documentation = file("./cis_v150/docs/cis_v150_8_3.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v150_8_common_tags, {
     cis_item_id = "8.3"
     cis_level   = "1"
@@ -70,7 +73,8 @@ control "cis_v150_8_4" {
   description   = "Ensure that all Secrets in Non Role Based Access Control (RBAC) Azure Key Vaults have an expiration time set."
   query         = query.keyvault_with_non_rbac_secret_expiration_set
   documentation = file("./cis_v150/docs/cis_v150_8_4.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v150_8_common_tags, {
     cis_item_id = "8.4"
     cis_level   = "1"
@@ -84,7 +88,8 @@ control "cis_v150_8_5" {
   description   = "The key vault contains object keys, secrets and certificates. Accidental unavailability of a key vault can cause immediate data loss or loss of security functions (authentication, validation, verification, non-repudiation, etc.) supported by the key vault objects. It is recommended the key vault be made recoverable by enabling the \"Do Not Purge\" and \"Soft Delete\" functions."
   query         = query.keyvault_vault_recoverable
   documentation = file("./cis_v150/docs/cis_v150_8_5.md")
-
+  severity = "critical"
+  
   tags = merge(local.cis_v150_8_common_tags, {
     cis_item_id = "8.5"
     cis_level   = "1"
@@ -98,7 +103,8 @@ control "cis_v150_8_6" {
   description   = "Role assignments disappear when a Key Vault has been deleted (soft- delete) and recovered. Afterwards it will be required to recreate all role assignments. This is a limitation of the soft-delete feature across all Azure services."
   query         = query.keyvault_rbac_enabled
   documentation = file("./cis_v150/docs/cis_v150_8_6.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v150_8_common_tags, {
     cis_item_id = "8.6"
     cis_level   = "2"
@@ -112,7 +118,8 @@ control "cis_v150_8_7" {
   description   = "Private endpoints will secure network traffic from Azure Key Vault to the resources requesting secrets and keys."
   query         = query.keyvault_vault_private_link_used
   documentation = file("./cis_v150/docs/cis_v150_8_7.md")
-
+  severity = "critical"
+  
   tags = merge(local.cis_v150_8_common_tags, {
     cis_item_id = "8.7"
     cis_level   = "2"
@@ -126,7 +133,8 @@ control "cis_v150_8_8" {
   description   = "Automatic Key Rotation is available in Public Preview. The currently supported applications are Key Vault, Managed Disks, and Storage accounts accessing keys within Key Vault. The number of supported applications will incrementally increased."
   query         = query.keyvault_key_automatic_rotation_enabled
   documentation = file("./cis_v150/docs/cis_v150_8_8.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v150_8_common_tags, {
     cis_item_id = "8.8"
     cis_level   = "2"
