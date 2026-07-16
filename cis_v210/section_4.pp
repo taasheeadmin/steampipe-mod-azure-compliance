@@ -56,6 +56,7 @@ control "cis_v210_4_1_1" {
   title         = "4.1.1 Ensure that 'Auditing' is set to 'On'"
   description   = "Enable auditing on SQL Servers."
   query         = query.sql_server_auditing_on
+  severity      = "high"
   documentation = file("./cis_v210/docs/cis_v210_4_1_1.md")
 
   tags = merge(local.cis_v210_4_1_common_tags, {
@@ -70,6 +71,7 @@ control "cis_v210_4_1_2" {
   title         = "4.1.2 Ensure no Azure SQL Databases allow ingress from 0.0.0.0/0 (ANY IP)"
   description   = "Ensure that no SQL Databases allow ingress from 0.0.0.0/0 (ANY IP)."
   query         = query.sql_database_allow_internet_access
+  severity      = "critical"
   documentation = file("./cis_v210/docs/cis_v210_4_1_2.md")
 
   tags = merge(local.cis_v210_4_1_common_tags, {
@@ -84,6 +86,7 @@ control "cis_v210_4_1_3" {
   title         = "4.1.3 Ensure SQL server's Transparent Data Encryption (TDE) protector is encrypted with Customer-managed key"
   description   = "Transparent Data Encryption (TDE) with Customer-managed key support provides increased transparency and control over the TDE Protector, increased security with an HSM-backed external service, and promotion of separation of duties."
   query         = query.sql_server_tde_protector_cmk_encrypted
+  severity      = "high"
   documentation = file("./cis_v210/docs/cis_v210_4_1_3.md")
 
   tags = merge(local.cis_v210_4_1_common_tags, {
@@ -98,6 +101,7 @@ control "cis_v210_4_1_4" {
   title         = "4.1.4 Ensure that Microsoft Entra authentication is Configured for SQL Servers"
   description   = "Use Azure Active Directory Authentication for authentication with SQL Database to manage credentials in a single place."
   query         = query.sql_db_active_directory_admin_configured
+  severity      = "high"
   documentation = file("./cis_v210/docs/cis_v210_4_1_4.md")
 
   tags = merge(local.cis_v210_4_1_common_tags, {
@@ -112,6 +116,7 @@ control "cis_v210_4_1_5" {
   title         = "4.1.5 Ensure that 'Data encryption' is set to 'On' on a SQL Database"
   description   = "Enable Transparent Data Encryption on every SQL server."
   query         = query.sql_database_transparent_data_encryption_enabled
+  severity      = "high"
   documentation = file("./cis_v210/docs/cis_v210_4_1_5.md")
 
   tags = merge(local.cis_v210_4_1_common_tags, {
@@ -126,6 +131,7 @@ control "cis_v210_4_1_6" {
   title         = "4.1.6 Ensure that 'Auditing' Retention is 'greater than 90 days'"
   description   = "SQL Server Audit Retention should be configured to be greater than 90 days."
   query         = query.sql_server_auditing_retention_period_90
+  severity      = "medium"
   documentation = file("./cis_v210/docs/cis_v210_4_1_6.md")
 
   tags = merge(local.cis_v210_4_1_common_tags, {
@@ -159,6 +165,7 @@ control "cis_v210_4_3_1" {
   title         = "4.3.1 Ensure 'Enforce SSL connection' is set to 'ENABLED' for PostgreSQL Database Server"
   description   = "Enable SSL connection on PostgreSQL Servers."
   query         = query.postgres_sql_ssl_enabled
+  severity      = "high"
   documentation = file("./cis_v210/docs/cis_v210_4_3_1.md")
 
   tags = merge(local.cis_v210_4_3_common_tags, {
@@ -173,6 +180,7 @@ control "cis_v210_4_3_2" {
   title         = "4.3.2 Ensure Server Parameter 'log_checkpoints' is set to 'ON' for PostgreSQL Database Server"
   description   = "Enable log_checkpoints on PostgreSQL Servers."
   query         = query.postgres_db_server_log_checkpoints_on
+  severity      = "medium"
   documentation = file("./cis_v210/docs/cis_v210_4_3_2.md")
 
   tags = merge(local.cis_v210_4_3_common_tags, {
@@ -187,6 +195,7 @@ control "cis_v210_4_3_3" {
   title         = "4.3.3 Ensure server parameter 'log_connections' is set to 'ON' for PostgreSQL Database Server"
   description   = "Enable log_connections on PostgreSQL Servers."
   query         = query.postgres_db_server_log_connections_on
+  severity      = "medium"
   documentation = file("./cis_v210/docs/cis_v210_4_3_3.md")
 
   tags = merge(local.cis_v210_4_3_common_tags, {
@@ -201,6 +210,7 @@ control "cis_v210_4_3_4" {
   title         = "4.3.4 Ensure server parameter 'log_disconnections' is set to 'ON' for PostgreSQL Database Server"
   description   = "Enable log_disconnections on PostgreSQL Servers."
   query         = query.postgres_db_server_log_disconnections_on
+  severity      = "medium"
   documentation = file("./cis_v210/docs/cis_v210_4_3_4.md")
 
   tags = merge(local.cis_v210_4_3_common_tags, {
@@ -215,6 +225,7 @@ control "cis_v210_4_3_5" {
   title         = "4.3.5 Ensure server parameter 'connection_throttling' is set to 'ON' for PostgreSQL Database Server"
   description   = "Enable connection_throttling on PostgreSQL Servers."
   query         = query.postgres_db_server_connection_throttling_on
+  severity      = "high"
   documentation = file("./cis_v210/docs/cis_v210_4_3_5.md")
 
   tags = merge(local.cis_v210_4_3_common_tags, {
@@ -229,6 +240,7 @@ control "cis_v210_4_3_6" {
   title         = "4.3.6 Ensure Server Parameter 'log_retention_days' is greater than 3 days for PostgreSQL Database Server"
   description   = "Ensure log_retention_days on PostgreSQL Servers is set to an appropriate value."
   query         = query.postgres_db_server_log_retention_days_3
+  severity      = "medium"
   documentation = file("./cis_v210/docs/cis_v210_4_3_6.md")
 
   tags = merge(local.cis_v210_4_3_common_tags, {
@@ -243,6 +255,7 @@ control "cis_v210_4_3_7" {
   title         = "4.3.7 Ensure 'Allow access to Azure services' for PostgreSQL Database Server is disabled"
   description   = "Disable access from Azure services to PostgreSQL Database Server."
   query         = query.postgres_db_server_allow_access_to_azure_services_disabled
+  severity      = "high"
   documentation = file("./cis_v210/docs/cis_v210_4_3_7.md")
 
   tags = merge(local.cis_v210_4_3_common_tags, {
@@ -257,6 +270,7 @@ control "cis_v210_4_3_8" {
   title         = "4.3.8 Ensure 'Infrastructure double encryption' for PostgreSQL Database Server is 'Enabled'"
   description   = "Azure Database for PostgreSQL servers should be created with 'infrastructure double encryption' enabled."
   query         = query.postgresql_server_infrastructure_encryption_enabled
+  severity      = "high"
   documentation = file("./cis_v210/docs/cis_v210_4_3_8.md")
 
   tags = merge(local.cis_v210_4_3_common_tags, {
@@ -287,6 +301,7 @@ control "cis_v210_4_4_1" {
   title         = "4.4.1 Ensure 'Enforce SSL connection' is set to 'Enabled' for Standard MySQL Database Server"
   description   = "Enable SSL connection on MySQL Servers."
   query         = query.mysql_ssl_enabled
+  severity      = "high"
   documentation = file("./cis_v210/docs/cis_v210_4_4_1.md")
 
   tags = merge(local.cis_v210_4_4_common_tags, {
@@ -301,6 +316,7 @@ control "cis_v210_4_4_2" {
   title         = "4.4.2 Ensure 'TLS Version' is set to 'TLSV1.2' for MySQL flexible Database Server"
   description   = "Ensure TLS version on MySQL flexible servers is set to use TLS version 1.2 or higher."
   query         = query.mysql_server_min_tls_1_2
+  severity      = "high"
   documentation = file("./cis_v210/docs/cis_v210_4_4_2.md")
 
   tags = merge(local.cis_v210_4_4_common_tags, {
@@ -315,6 +331,7 @@ control "cis_v210_4_4_3" {
   title         = "4.4.3 Ensure server parameter 'audit_log_enabled' is set to 'ON' for MySQL Database Server"
   description   = "Enable audit_log_enabled on MySQL Servers."
   query         = query.mysql_server_audit_logging_enabled
+  severity      = "medium"
   documentation = file("./cis_v210/docs/cis_v210_4_4_3.md")
 
   tags = merge(local.cis_v210_4_4_common_tags, {
@@ -329,6 +346,7 @@ control "cis_v210_4_4_4" {
   title         = "4.4.4 Ensure server parameter 'audit_log_events' has 'CONNECTION' set for MySQL Database Server"
   description   = "Set audit_log_enabled to include CONNECTION on MySQL Servers."
   query         = query.mysql_server_audit_logging_events_connection_set
+  severity      = "medium"
   documentation = file("./cis_v210/docs/cis_v210_4_4_4.md")
 
   tags = merge(local.cis_v210_4_4_common_tags, {
@@ -358,6 +376,7 @@ control "cis_v210_4_5_1" {
   title         = "4.5.1 Ensure That 'Firewalls & Networks' Is Limited to Use Selected Networks Instead of All Networks"
   description   = "Limiting your Cosmos DB to only communicate on whitelisted networks lowers its attack footprint."
   query         = query.cosmosdb_account_virtual_network_filter_enabled
+  severity      = "high"
   documentation = file("./cis_v210/docs/cis_v210_4_5_1.md")
 
   tags = merge(local.cis_v210_4_5_common_tags, {
@@ -372,6 +391,7 @@ control "cis_v210_4_5_2" {
   title         = "4.5.2 Ensure That Private Endpoints Are Used Where Possible"
   description   = "Private endpoints limit network traffic to approved sources."
   query         = query.cosmosdb_account_uses_private_link
+  severity      = "high"
   documentation = file("./cis_v210/docs/cis_v210_4_5_2.md")
 
   tags = merge(local.cis_v210_4_5_common_tags, {
@@ -386,6 +406,7 @@ control "cis_v210_4_5_3" {
   title         = "4.5.3 Use Entra ID Client Authentication and Azure RBAC where possible"
   description   = "Cosmos DB can use tokens or AAD for client authentication which in turn will use Azure RBAC for authorization. Using AAD is significantly more secure because AAD handles the credentials and allows for MFA and centralized management, and the Azure RBAC better integrated with the rest of Azure."
   query         = query.manual_control
+  severity      = "high"
   documentation = file("./cis_v210/docs/cis_v210_4_5_3.md")
 
   tags = merge(local.cis_v210_4_5_common_tags, {
