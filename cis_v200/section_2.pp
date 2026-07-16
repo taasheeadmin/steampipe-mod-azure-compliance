@@ -71,7 +71,8 @@ control "cis_v200_2_1_1" {
   description   = "Turning on Microsoft Defender for Servers enables threat detection for Servers, providing threat intelligence, anomaly detection, and behavior analytics in the Microsoft Defender for Cloud."
   query         = query.securitycenter_azure_defender_on_for_server
   documentation = file("./cis_v200/docs/cis_v200_2_1_1.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v200_2_1_common_tags, {
     cis_item_id = "2.1.1"
     cis_type    = "manual"
@@ -85,7 +86,8 @@ control "cis_v200_2_1_2" {
   description   = "Turning on Microsoft Defender for App Service enables threat detection for App Service, providing threat intelligence, anomaly detection, and behavior analytics in the Microsoft Defender for Cloud."
   query         = query.securitycenter_azure_defender_on_for_appservice
   documentation = file("./cis_v200/docs/cis_v200_2_1_2.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v200_2_1_common_tags, {
     cis_item_id = "2.1.2"
     cis_type    = "manual"
@@ -99,7 +101,8 @@ control "cis_v200_2_1_3" {
   description   = "Turning on Microsoft Defender for Databases enables threat detection for the instances running your database software. This provides threat intelligence, anomaly detection, and behavior analytics in the Azure Microsoft Defender for Cloud. Instead of being enabled on services like Platform as a Service (PaaS), this implementation will run within your instances as Infrastructure as a Service (IaaS) on the Operating Systems hosting your databases."
   query         = query.securitycenter_azure_defender_on_for_database
   documentation = file("./cis_v200/docs/cis_v200_2_1_3.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v200_2_1_common_tags, {
     cis_item_id = "2.1.3"
     cis_type    = "manual"
@@ -113,7 +116,8 @@ control "cis_v200_2_1_4" {
   description   = "Turning on Microsoft Defender for Azure SQL Databases enables threat detection for Azure SQL database servers, providing threat intelligence, anomaly detection, and behavior analytics in the Microsoft Defender for Cloud."
   query         = query.securitycenter_azure_defender_on_for_sqldb
   documentation = file("./cis_v200/docs/cis_v200_2_1_4.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v200_2_1_common_tags, {
     cis_item_id = "2.1.4"
     cis_type    = "manual"
@@ -127,7 +131,8 @@ control "cis_v200_2_1_5" {
   description   = "Turning on Microsoft Defender for SQL servers on machines enables threat detection for SQL servers on machines, providing threat intelligence, anomaly detection, and behavior analytics in the Microsoft Defender for Cloud."
   query         = query.securitycenter_azure_defender_on_for_sqlservervm
   documentation = file("./cis_v200/docs/cis_v200_2_1_5.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v200_2_1_common_tags, {
     cis_item_id = "2.1.5"
     cis_type    = "manual"
@@ -141,7 +146,8 @@ control "cis_v200_2_1_6" {
   description   = "Turning on Microsoft Defender for Open-source relational databases enables threat detection for Open-source relational databases, providing threat intelligence, anomaly detection, and behavior analytics in the Microsoft Defender for Cloud."
   query         = query.securitycenter_azure_defender_on_for_opensource_relational_db
   documentation = file("./cis_v200/docs/cis_v200_2_1_6.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v200_2_1_common_tags, {
     cis_item_id = "2.1.6"
     cis_type    = "manual"
@@ -155,7 +161,8 @@ control "cis_v200_2_1_7" {
   description   = "Turning on Microsoft Defender for Storage enables threat detection for Storage, providing threat intelligence, anomaly detection, and behavior analytics in the Microsoft Defender for Cloud."
   query         = query.securitycenter_azure_defender_on_for_storage
   documentation = file("./cis_v200/docs/cis_v200_2_1_7.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v200_2_1_common_tags, {
     cis_item_id = "2.1.7"
     cis_type    = "manual"
@@ -169,7 +176,8 @@ control "cis_v200_2_1_8" {
   description   = "Turning on Microsoft Defender for Containers enables threat detection for Container Registries including Kubernetes, providing threat intelligence, anomaly detection, and behavior analytics in the Microsoft Defender for Cloud."
   query         = query.securitycenter_azure_defender_on_for_containerregistry
   documentation = file("./cis_v200/docs/cis_v200_2_1_8.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v200_2_1_common_tags, {
     cis_item_id = "2.1.8"
     cis_type    = "manual"
@@ -183,7 +191,8 @@ control "cis_v200_2_1_9" {
   description   = "Microsoft Defender for Azure Cosmos DB scans all incoming network requests for threats to your Azure Cosmos DB resources."
   query         = query.securitycenter_azure_defender_on_for_cosmosdb
   documentation = file("./cis_v200/docs/cis_v200_2_1_9.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v200_2_1_common_tags, {
     cis_item_id = "2.1.9"
     cis_type    = "manual"
@@ -197,7 +206,8 @@ control "cis_v200_2_1_10" {
   description   = "Turning on Microsoft Defender for Key Vault enables threat detection for Key Vault, providing threat intelligence, anomaly detection, and behavior analytics in the Microsoft Defender for Cloud."
   query         = query.securitycenter_azure_defender_on_for_keyvault
   documentation = file("./cis_v200/docs/cis_v200_2_1_10.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v200_2_1_common_tags, {
     cis_item_id = "2.1.10"
     cis_type    = "manual"
@@ -211,7 +221,8 @@ control "cis_v200_2_1_11" {
   description   = "Microsoft Defender for DNS scans all network traffic exiting from within a subscription."
   query         = query.securitycenter_azure_defender_on_for_dns
   documentation = file("./cis_v200/docs/cis_v200_2_1_11.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v200_2_1_common_tags, {
     cis_item_id = "2.1.11"
     cis_type    = "manual"
@@ -225,7 +236,8 @@ control "cis_v200_2_1_12" {
   description   = "Microsoft Defender for Resource Manager scans incoming administrative requests to change your infrastructure from both CLI and the Azure portal."
   query         = query.manual_control
   documentation = file("./cis_v200/docs/cis_v200_2_1_12.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v200_2_1_common_tags, {
     cis_item_id = "2.1.12"
     cis_type    = "manual"
@@ -239,7 +251,8 @@ control "cis_v200_2_1_13" {
   description   = "Ensure that the latest OS patches for all virtual machines are applied."
   query         = query.manual_control
   documentation = file("./cis_v200/docs/cis_v200_2_1_13.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v200_2_1_common_tags, {
     cis_item_id = "2.1.13"
     cis_type    = "manual"
@@ -253,7 +266,8 @@ control "cis_v200_2_1_14" {
   description   = "None of the settings offered by ASC Default policy should be set to effect Disabled."
   query         = query.securitycenter_asc_default_setting_not_disabled
   documentation = file("./cis_v200/docs/cis_v200_2_1_14.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v200_2_1_common_tags, {
     cis_item_id = "2.1.14"
     cis_type    = "manual"
@@ -267,7 +281,8 @@ control "cis_v200_2_1_15" {
   description   = "Enable automatic provisioning of the monitoring agent to collect security data."
   query         = query.securitycenter_automatic_provisioning_monitoring_agent_on
   documentation = file("./cis_v200/docs/cis_v200_2_1_15.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v200_2_1_common_tags, {
     cis_item_id = "2.1.15"
     cis_type    = "automated"
@@ -281,7 +296,8 @@ control "cis_v200_2_1_16" {
   description   = "Enable automatic provisioning of vulnerability assessment for machines on both Azure and hybrid (Arc enabled) machines."
   query         = query.manual_control
   documentation = file("./cis_v200/docs/cis_v200_2_1_16.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v200_2_1_common_tags, {
     cis_item_id = "2.1.16"
     cis_type    = "manual"
@@ -295,7 +311,8 @@ control "cis_v200_2_1_17" {
   description   = "Enable automatic provisioning of the Microsoft Defender for Containers components."
   query         = query.manual_control
   documentation = file("./cis_v200/docs/cis_v200_2_1_17.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v200_2_1_common_tags, {
     cis_item_id = "2.1.17"
     cis_type    = "manual"
@@ -309,7 +326,8 @@ control "cis_v200_2_1_18" {
   description   = "Enable security alert emails to subscription owners."
   query         = query.securitycenter_security_alerts_to_owner_enabled
   documentation = file("./cis_v200/docs/cis_v200_2_1_18.md")
-
+  severity = "medium"
+  
   tags = merge(local.cis_v200_2_1_common_tags, {
     cis_item_id = "2.1.18"
     cis_type    = "automated"
@@ -323,7 +341,8 @@ control "cis_v200_2_1_19" {
   description   = "Microsoft Defender for Cloud emails the subscription owners whenever a high-severity alert is triggered for their subscription. You should provide a security contact email address as an additional email address."
   query         = query.securitycenter_additional_email_configured
   documentation = file("./cis_v200/docs/cis_v200_2_1_19.md")
-
+  severity = "medium"
+  
   tags = merge(local.cis_v200_2_1_common_tags, {
     cis_item_id = "2.1.19"
     cis_type    = "automated"
@@ -337,7 +356,8 @@ control "cis_v200_2_1_20" {
   description   = "Enables emailing security alerts to the subscription owner or other designated security contact."
   query         = query.securitycenter_notify_alerts_configured
   documentation = file("./cis_v200/docs/cis_v200_2_1_20.md")
-
+  severity = "medium"
+  
   tags = merge(local.cis_v200_2_1_common_tags, {
     cis_item_id = "2.1.20"
     cis_type    = "automated"
@@ -351,7 +371,8 @@ control "cis_v200_2_1_21" {
   description   = "This integration setting enables Microsoft Defender for Cloud Apps (formerly 'Microsoft Cloud App Security' or 'MCAS' - see additional info) to communicate with Microsoft Defender for Cloud."
   query         = query.securitycenter_mcas_integration
   documentation = file("./cis_v200/docs/cis_v200_2_1_21.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v200_2_1_common_tags, {
     cis_item_id = "2.1.21"
     cis_type    = "manual"
@@ -365,7 +386,8 @@ control "cis_v200_2_1_22" {
   description   = "This integration setting enables Microsoft Defender for Endpoint (formerly 'Advanced Threat Protection' or 'ATP' or 'WDATP' - see additional info) to communicate with Microsoft Defender for Cloud."
   query         = query.securitycenter_wdatp_integration
   documentation = file("./cis_v200/docs/cis_v200_2_1_22.md")
-
+  severity = "high"
+  
   tags = merge(local.cis_v200_2_1_common_tags, {
     cis_item_id = "2.1.22"
     cis_type    = "manual"
@@ -392,7 +414,8 @@ control "cis_v200_2_2_1" {
   description   = "Microsoft Defender for IoT acts as a central security hub for IoT devices within your organization."
   query         = query.manual_control
   documentation = file("./cis_v200/docs/cis_v200_2_2_1.md")
-
+  severity = "medium"
+  
   tags = merge(local.cis_v200_2_2_common_tags, {
     cis_item_id = "2.2.1"
     cis_type    = "manual"
